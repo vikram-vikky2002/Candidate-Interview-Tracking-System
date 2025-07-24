@@ -9,10 +9,10 @@ namespace CITS_DataAccessLayer
 {
     public class EducationRepository
     {
-        public DbContext _context { get; set; }
+        public CitsdbContext _context { get; set; }
         public EducationRepository()
         {
-            _context = new DbContext();
+            _context = new CitsdbContext();
         }
         public List<Education> GetEducationByCandidateId(int candidateId)
         {

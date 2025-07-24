@@ -9,10 +9,10 @@ namespace CITS_DataAccessLayer
 {
     public class SkillsRepository
     {
-        public DbContext _context { get; set; }
+        public CitsdbContext _context { get; set; }
         public SkillsRepository()
         {
-            _context = new DbContext();
+            _context = new CitsdbContext();
         }
         public List<Skill> GetAllSkills()
         {

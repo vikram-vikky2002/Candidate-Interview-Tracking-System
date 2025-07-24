@@ -13,3 +13,12 @@ E:\Works\NexTurn\NextHack\CITS_solution\CITS_DataAccessLayer\obj\Debug\net8.0\re
 E:\Works\NexTurn\NextHack\CITS_solution\CITS_DataAccessLayer\obj\Debug\net8.0\CITS_DataAccessLayer.pdb
 E:\Works\NexTurn\NextHack\CITS_solution\CITS_DataAccessLayer\obj\Debug\net8.0\CITS_DataAccessLayer.genruntimeconfig.cache
 E:\Works\NexTurn\NextHack\CITS_solution\CITS_DataAccessLayer\obj\Debug\net8.0\ref\CITS_DataAccessLayer.dll
+C:\Users\praga\source\NH\Candidate-Interview-Tracking-System\CITS_solution\CITS_DataAccessLayer\obj\Debug\net8.0\CITS_DataAccessLayer.csproj.AssemblyReference.cache
+C:\Users\praga\source\NH\Candidate-Interview-Tracking-System\CITS_solution\CITS_DataAccessLayer\obj\Debug\net8.0\CITS_DataAccessLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\praga\source\NH\Candidate-Interview-Tracking-System\CITS_solution\CITS_DataAccessLayer\obj\Debug\net8.0\CITS_DataAccessLayer.AssemblyInfoInputs.cache
+C:\Users\praga\source\NH\Candidate-Interview-Tracking-System\CITS_solution\CITS_DataAccessLayer\obj\Debug\net8.0\CITS_DataAccessLayer.AssemblyInfo.cs
+C:\Users\praga\source\NH\Candidate-Interview-Tracking-System\CITS_solution\CITS_DataAccessLayer\obj\Debug\net8.0\CITS_DataAccessLayer.csproj.CoreCompileInputs.cache
+C:\Users\praga\source\NH\Candidate-Interview-Tracking-System\CITS_solution\CITS_DataAccessLayer\obj\Debug\net8.0\CITS_DataAccessLayer.sourcelink.json
+C:\Users\praga\source\NH\Candidate-Interview-Tracking-System\CITS_solution\CITS_DataAccessLayer\obj\Debug\net8.0\CITS_DataAccessLayer.dll
+C:\Users\praga\source\NH\Candidate-Interview-Tracking-System\CITS_solution\CITS_DataAccessLayer\obj\Debug\net8.0\refint\CITS_DataAccessLayer.dll
+C:\Users\praga\source\NH\Candidate-Interview-Tracking-System\CITS_solution\CITS_DataAccessLayer\obj\Debug\net8.0\CITS_DataAccessLayer.pdb

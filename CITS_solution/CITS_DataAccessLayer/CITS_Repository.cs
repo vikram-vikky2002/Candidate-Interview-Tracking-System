@@ -4,10 +4,10 @@ namespace CITS_DataAccessLayer;
 
 public class CITS_Repository
 {
-    public DbContext _context { get; set; }
+    public CitsdbContext _context { get; set; }
     public CITS_Repository()
     {
-        _context = new DbContext();
+        _context = new CitsdbContext();
     }
     //User CRUD
 
