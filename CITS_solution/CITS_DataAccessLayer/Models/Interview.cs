@@ -23,8 +23,6 @@ public partial class Interview
 
     public virtual ICollection<Evaluation> Evaluations { get; set; } = new List<Evaluation>();
 
-    public virtual ICollection<Feedback> Feedbacks { get; set; } = new List<Feedback>();
-
     public virtual User Interviewer { get; set; } = null!;
 
     public virtual InterviewStage Stage { get; set; } = null!;

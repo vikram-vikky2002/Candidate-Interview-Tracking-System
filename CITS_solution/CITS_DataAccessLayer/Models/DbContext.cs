@@ -5,13 +5,13 @@ using Microsoft.Extensions.Configuration;
 
 namespace CITS_DataAccessLayer.Models;
 
-public partial class MyDbContext : DbContext
+public partial class DbContext : Microsoft.EntityFrameworkCore.DbContext
 {
-    public MyDbContext()
+    public DbContext()
     {
     }
 
-    public MyDbContext(DbContextOptions<DbContext> options)
+    public DbContext(DbContextOptions<DbContext> options)
         : base(options)
     {
     }
@@ -24,8 +24,6 @@ public partial class MyDbContext : DbContext
 
     public virtual DbSet<Evaluation> Evaluations { get; set; }
 
-    public virtual DbSet<Feedback> Feedbacks { get; set; }
-
     public virtual DbSet<Interview> Interviews { get; set; }
 
     public virtual DbSet<InterviewStage> InterviewStages { get; set; }
@@ -37,7 +35,7 @@ public partial class MyDbContext : DbContext
     public virtual DbSet<User> Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder
- optionsBuilder)
+optionsBuilder)
     {
         var builder = new ConfigurationBuilder()
         .SetBasePath(Directory.GetCurrentDirectory())
@@ -91,7 +89,7 @@ public partial class MyDbContext : DbContext
 
         modelBuilder.Entity<CandidateSkill>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Candidat__3214EC277B51C103");
+            entity.HasKey(e => e.Id).HasName("PK__Candidat__3214EC27B4256FDD");
 
             entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.CandidateId).HasColumnName("CandidateID");
@@ -108,7 +106,7 @@ public partial class MyDbContext : DbContext
 
         modelBuilder.Entity<Education>(entity =>
         {
-            entity.HasKey(e => e.EducationId).HasName("PK__Educatio__4BBE38E593CE28D9");
+            entity.HasKey(e => e.EducationId).HasName("PK__Educatio__4BBE38E5B7DBEC10");
 
             entity.ToTable("Education");
 
@@ -153,31 +151,6 @@ public partial class MyDbContext : DbContext
                 .HasForeignKey(d => d.InterviewId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fk_Evaluations_InterviewID");
-        });
-
-        modelBuilder.Entity<Feedback>(entity =>
-        {
-            entity.HasKey(e => e.FeedbackId).HasName("pk_Feedback_FeedbackID");
-
-            entity.ToTable("Feedback");
-
-            entity.Property(e => e.FeedbackId).HasColumnName("FeedbackID");
-            entity.Property(e => e.Comments).HasColumnType("text");
-            entity.Property(e => e.InterviewId).HasColumnName("InterviewID");
-            entity.Property(e => e.InterviewerId).HasColumnName("InterviewerID");
-            entity.Property(e => e.SubmittedAt)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime");
-
-            entity.HasOne(d => d.Interview).WithMany(p => p.Feedbacks)
-                .HasForeignKey(d => d.InterviewId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("fk_Feedback_InterviewID");
-
-            entity.HasOne(d => d.Interviewer).WithMany(p => p.Feedbacks)
-                .HasForeignKey(d => d.InterviewerId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("fk_Feedback_InterviewerID");
         });
 
         modelBuilder.Entity<Interview>(entity =>
@@ -236,9 +209,9 @@ public partial class MyDbContext : DbContext
 
         modelBuilder.Entity<Skill>(entity =>
         {
-            entity.HasKey(e => e.SkillId).HasName("PK__Skills__DFA091E7D93F7001");
+            entity.HasKey(e => e.SkillId).HasName("PK__Skills__DFA091E7E47749C6");
 
-            entity.HasIndex(e => e.SkillName, "UQ__Skills__8100EB55EF1E02DD").IsUnique();
+            entity.HasIndex(e => e.SkillName, "UQ__Skills__8100EB5570A76C29").IsUnique();
 
             entity.Property(e => e.SkillId).HasColumnName("SkillID");
             entity.Property(e => e.SkillName)
