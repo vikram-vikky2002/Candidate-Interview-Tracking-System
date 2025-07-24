@@ -204,3 +204,5 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+/CITS_solution/CITS_DataAccessLayer/Models/Feedback.cs
+/CITS_solution/CITS_DataAccessLayer/Models/Feedback.cs
