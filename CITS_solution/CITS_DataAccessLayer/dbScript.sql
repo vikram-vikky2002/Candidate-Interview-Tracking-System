@@ -100,20 +100,7 @@ CREATE TABLE Interviews (
 );
 GO
 
-
--- 9. Feedback Table
-CREATE TABLE Feedback (
-    FeedbackID INT CONSTRAINT pk_Feedback_FeedbackID PRIMARY KEY IDENTITY,
-    InterviewID INT NOT NULL CONSTRAINT fk_Feedback_InterviewID FOREIGN KEY REFERENCES Interviews(InterviewID),
-    InterviewerID INT NOT NULL CONSTRAINT fk_Feedback_InterviewerID FOREIGN KEY REFERENCES Users(UserID),
-    Comments TEXT,
-    Rating INT NOT NULL CONSTRAINT chk_Feedback_Rating CHECK (Rating BETWEEN 1 AND 10),
-    SubmittedAt DATETIME CONSTRAINT def_Feedback_SubmittedAt DEFAULT GETDATE()
-);
-GO
-
-
--- 10. Evaluation Table
+-- 9. Evaluation Table
 CREATE TABLE Evaluations (
     EvaluationID INT CONSTRAINT pk_AI_Evaluations_EvaluationID PRIMARY KEY IDENTITY,
     CandidateID INT NOT NULL CONSTRAINT fk_AI_Evaluations_CandidateID FOREIGN KEY REFERENCES Candidates(CandidateID),
