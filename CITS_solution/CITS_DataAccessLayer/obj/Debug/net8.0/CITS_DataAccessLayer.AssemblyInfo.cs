@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CITS_DataAccessLayer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6b552a154b819416e8eb50828dce19e0ac05fac9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+48c09fec2f4131b8ecbee471e614c9cf5af7619d")]
 [assembly: System.Reflection.AssemblyProductAttribute("CITS_DataAccessLayer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CITS_DataAccessLayer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
