@@ -27,6 +27,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "CITS_App", "CITS_App\", "{9
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "53909"
+		SlnRelativePath = "CITS_App\"
 	EndProjectSection
 EndProject
 Global
