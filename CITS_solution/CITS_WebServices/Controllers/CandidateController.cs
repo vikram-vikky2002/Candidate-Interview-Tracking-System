@@ -1,5 +1,6 @@
 ﻿using CITS_DataAccessLayer;
 using CITS_DataAccessLayer.Models;
+using CITS_WebServices.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -52,7 +53,7 @@ namespace CITS_WebServices.Controllers
         }
         //AddCandidate
         [HttpPost]
-        public IActionResult AddCandidate(Candidate candidate)
+        public IActionResult AddCandidate(Models.Candidate candidate)
         {
             if (candidate == null)
             {
@@ -60,7 +61,16 @@ namespace CITS_WebServices.Controllers
             }
             try
             {
-                var result = _repository.AddCandidate(candidate);
+                CITS_DataAccessLayer.Models.Candidate newCandidate = new CITS_DataAccessLayer.Models.Candidate
+                {
+                    FullName = candidate.FullName,
+                    Email = candidate.Email,
+                    Phone = candidate.Phone,
+                    Status = candidate.Status,
+                    CreatedAt = DateTime.Now
+                };
+
+                var result = _repository.AddCandidate(newCandidate);
                 if (result)
                 {
                     return CreatedAtAction(nameof(GetCandidateById), new { candidateId = candidate.CandidateId }, candidate);
@@ -74,12 +84,20 @@ namespace CITS_WebServices.Controllers
         }
         //UpdateCandidate
         [HttpPut]
-        public IActionResult UpdateCandidate(Candidate candidate)
+        public IActionResult UpdateCandidate(Models.Candidate candidate)
         {
             bool result = false;
             try
             {
-                result = _repository.UpdateCandidate(candidate);
+                CITS_DataAccessLayer.Models.Candidate newCandidate = new CITS_DataAccessLayer.Models.Candidate
+                {
+                    FullName = candidate.FullName,
+                    Email = candidate.Email,
+                    Phone = candidate.Phone,
+                    Status = candidate.Status,
+                    CreatedAt = DateTime.Now
+                };
+                result = _repository.UpdateCandidate(newCandidate);
                 if (result)
                 {
                     return Ok("Candidate updated successfully.");
