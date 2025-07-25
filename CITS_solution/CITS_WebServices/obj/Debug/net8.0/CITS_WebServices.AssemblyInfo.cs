@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CITS_WebServices")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+30beea510dc190c864223080e66914097e7d5d6c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ea7cb9a9c0970fabb67184ebc4cc12a698cda5d8")]
 [assembly: System.Reflection.AssemblyProductAttribute("CITS_WebServices")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CITS_WebServices")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
