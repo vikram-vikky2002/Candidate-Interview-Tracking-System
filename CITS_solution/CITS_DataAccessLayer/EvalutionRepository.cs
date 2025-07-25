@@ -1,0 +1,60 @@
+﻿using CITS_DataAccessLayer.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CITS_DataAccessLayer
+{
+    public class EvalutionRepository
+    {
+        public CitsdbContext _context { get; set; }
+        public EvalutionRepository()
+        {
+            _context = new CitsdbContext();
+        }
+        public bool AddEvaluation(Evaluation evaluation)
+        {
+            try
+            {
+                _context.Evaluations.Add(evaluation);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        public List<Evaluation> GetEvaluationsByCandidateId(int candidateId)
+        {
+            try
+            {
+                return _context.Evaluations
+                    .Where(e => e.CandidateId == candidateId)
+                    .ToList();
+            }
+            catch (Exception ex)
+            {
+                return new List<Evaluation>();
+            }
+        }
+
+        public List<Evaluation> GetEvaluationsByInterviewerId(int interviewerId)
+        {
+            try
+            {
+                return _context.Evaluations
+                    .Where(e => e.InterviewId == interviewerId)
+                    .ToList();
+            }
+            catch (Exception ex)
+            {
+                return new List<Evaluation>();
+            }
+        }
+    }
+}
+    
+
