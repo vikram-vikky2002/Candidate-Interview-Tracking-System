@@ -1,4 +1,6 @@
 
+using CITS_DataAccessLayer;
+
 namespace CITS_WebServices
 {
     public class Program
@@ -13,6 +15,8 @@ namespace CITS_WebServices
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddTransient<InterviewRepository>();
 
             var app = builder.Build();
 
