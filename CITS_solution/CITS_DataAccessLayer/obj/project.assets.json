@@ -4320,23 +4320,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\naren\\.nuget\\packages\\": {},
+    "C:\\Users\\praga\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\naren\\source\\repos\\Mysore_Training\\NextHack\\Candidate-Interview-Tracking-System\\CITS_solution\\CITS_DataAccessLayer\\CITS_DataAccessLayer.csproj",
+      "projectUniqueName": "C:\\Users\\praga\\source\\NH\\Candidate-Interview-Tracking-System\\CITS_solution\\CITS_DataAccessLayer\\CITS_DataAccessLayer.csproj",
       "projectName": "CITS_DataAccessLayer",
-      "projectPath": "C:\\Users\\naren\\source\\repos\\Mysore_Training\\NextHack\\Candidate-Interview-Tracking-System\\CITS_solution\\CITS_DataAccessLayer\\CITS_DataAccessLayer.csproj",
-      "packagesPath": "C:\\Users\\naren\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\naren\\source\\repos\\Mysore_Training\\NextHack\\Candidate-Interview-Tracking-System\\CITS_solution\\CITS_DataAccessLayer\\obj\\",
+      "projectPath": "C:\\Users\\praga\\source\\NH\\Candidate-Interview-Tracking-System\\CITS_solution\\CITS_DataAccessLayer\\CITS_DataAccessLayer.csproj",
+      "packagesPath": "C:\\Users\\praga\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\praga\\source\\NH\\Candidate-Interview-Tracking-System\\CITS_solution\\CITS_DataAccessLayer\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\naren\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\praga\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -4345,6 +4345,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -4363,7 +4364,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.300"
+      "SdkAnalysisLevel": "9.0.200"
     },
     "frameworks": {
       "net8.0": {
@@ -4408,7 +4409,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
