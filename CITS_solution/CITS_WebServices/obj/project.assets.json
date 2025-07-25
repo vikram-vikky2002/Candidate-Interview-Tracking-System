@@ -3481,23 +3481,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\naren\\.nuget\\packages\\": {},
+    "C:\\Users\\mamun\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\naren\\source\\repos\\Mysore_Training\\NextHack\\Candidate-Interview-Tracking-System\\CITS_solution\\CITS_WebServices\\CITS_WebServices.csproj",
+      "projectUniqueName": "E:\\Works\\NexTurn\\NextHack\\CITS_solution\\CITS_WebServices\\CITS_WebServices.csproj",
       "projectName": "CITS_WebServices",
-      "projectPath": "C:\\Users\\naren\\source\\repos\\Mysore_Training\\NextHack\\Candidate-Interview-Tracking-System\\CITS_solution\\CITS_WebServices\\CITS_WebServices.csproj",
-      "packagesPath": "C:\\Users\\naren\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\naren\\source\\repos\\Mysore_Training\\NextHack\\Candidate-Interview-Tracking-System\\CITS_solution\\CITS_WebServices\\obj\\",
+      "projectPath": "E:\\Works\\NexTurn\\NextHack\\CITS_solution\\CITS_WebServices\\CITS_WebServices.csproj",
+      "packagesPath": "C:\\Users\\mamun\\.nuget\\packages\\",
+      "outputPath": "E:\\Works\\NexTurn\\NextHack\\CITS_solution\\CITS_WebServices\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\naren\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\mamun\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -3512,8 +3512,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\naren\\source\\repos\\Mysore_Training\\NextHack\\Candidate-Interview-Tracking-System\\CITS_solution\\CITS_DataAccessLayer\\CITS_DataAccessLayer.csproj": {
-              "projectPath": "C:\\Users\\naren\\source\\repos\\Mysore_Training\\NextHack\\Candidate-Interview-Tracking-System\\CITS_solution\\CITS_DataAccessLayer\\CITS_DataAccessLayer.csproj"
+            "E:\\Works\\NexTurn\\NextHack\\CITS_solution\\CITS_DataAccessLayer\\CITS_DataAccessLayer.csproj": {
+              "projectPath": "E:\\Works\\NexTurn\\NextHack\\CITS_solution\\CITS_DataAccessLayer\\CITS_DataAccessLayer.csproj"
             }
           }
         }
@@ -3558,7 +3558,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
