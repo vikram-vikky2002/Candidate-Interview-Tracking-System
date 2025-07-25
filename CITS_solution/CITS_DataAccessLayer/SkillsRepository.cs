@@ -31,7 +31,7 @@ namespace CITS_DataAccessLayer
         }
 
         // Assign skill to candidate
-        public void AssignSkillToCandidate(int candidateId, int skillId)
+        public void AssignSkillToCandidate(int? candidateId, int? skillId)
         {
             if (!_context.CandidateSkills.Any(cs => cs.CandidateId == candidateId && cs.SkillId == skillId))
             {
