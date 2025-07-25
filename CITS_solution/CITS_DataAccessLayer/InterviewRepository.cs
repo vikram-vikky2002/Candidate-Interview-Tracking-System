@@ -21,7 +21,7 @@ namespace CITS_DataAccessLayer
         public List<Interview> GetInterviewsByCandidateId(int candidateId)
         {
             List<Interview> interviews = new List<Interview>();
-
+            
             try
             {
                 interviews = Context.Interviews
@@ -68,7 +68,7 @@ namespace CITS_DataAccessLayer
                                 .Include(i => i.Candidate)
                                 .Include(i => i.Interviewer)
                                 .Include(i => i.Stage)
-                                .Where(i => i.ScheduledDateTime == date.Date && i.Status == "Scheduled")
+                                .Where(i => i.ScheduledDateTime > date.Date && i.Status == "Scheduled")
                                 .ToList();
             }
             catch (Exception ex)
