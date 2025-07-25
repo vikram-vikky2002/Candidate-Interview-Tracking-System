@@ -22,3 +22,4 @@ C:\Users\praga\source\NH\Candidate-Interview-Tracking-System\CITS_solution\CITS_
 C:\Users\praga\source\NH\Candidate-Interview-Tracking-System\CITS_solution\CITS_DataAccessLayer\obj\Debug\net8.0\CITS_DataAccessLayer.dll
 C:\Users\praga\source\NH\Candidate-Interview-Tracking-System\CITS_solution\CITS_DataAccessLayer\obj\Debug\net8.0\refint\CITS_DataAccessLayer.dll
 C:\Users\praga\source\NH\Candidate-Interview-Tracking-System\CITS_solution\CITS_DataAccessLayer\obj\Debug\net8.0\CITS_DataAccessLayer.pdb
+E:\Works\NexTurn\NextHack\CITS_solution\CITS_DataAccessLayer\bin\Debug\net8.0\appsettings.json

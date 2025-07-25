@@ -70,3 +70,4 @@ E:\Works\NexTurn\NextHack\CITS_solution\Debug\obj\Debug\net8.0\refint\Debug.dll
 E:\Works\NexTurn\NextHack\CITS_solution\Debug\obj\Debug\net8.0\Debug.pdb
 E:\Works\NexTurn\NextHack\CITS_solution\Debug\obj\Debug\net8.0\Debug.genruntimeconfig.cache
 E:\Works\NexTurn\NextHack\CITS_solution\Debug\obj\Debug\net8.0\ref\Debug.dll
+E:\Works\NexTurn\NextHack\CITS_solution\Debug\bin\Debug\net8.0\appsettings.json
