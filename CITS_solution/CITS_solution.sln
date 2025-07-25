@@ -5,7 +5,7 @@ VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CITS_DataAccessLayer", "CITS_DataAccessLayer\CITS_DataAccessLayer.csproj", "{965D8786-2237-436B-A447-05A4C0248B94}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Debug", "Debug\Debug.csproj", "{85FFEBA2-2D70-4EFD-8F12-F90AE8399931}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DebugInterview", "Debug\DebugInterview.csproj", "{85FFEBA2-2D70-4EFD-8F12-F90AE8399931}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -3051,9 +3051,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Works\\NexTurn\\NextHack\\CITS_solution\\Debug\\Debug.csproj",
-      "projectName": "Debug",
-      "projectPath": "E:\\Works\\NexTurn\\NextHack\\CITS_solution\\Debug\\Debug.csproj",
+      "projectUniqueName": "E:\\Works\\NexTurn\\NextHack\\CITS_solution\\Debug\\DebugInterview.csproj",
+      "projectName": "DebugInterview",
+      "projectPath": "E:\\Works\\NexTurn\\NextHack\\CITS_solution\\Debug\\DebugInterview.csproj",
       "packagesPath": "C:\\Users\\mamun\\.nuget\\packages\\",
       "outputPath": "E:\\Works\\NexTurn\\NextHack\\CITS_solution\\Debug\\obj\\",
       "projectStyle": "PackageReference",
