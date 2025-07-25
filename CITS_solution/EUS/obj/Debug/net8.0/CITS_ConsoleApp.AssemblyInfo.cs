@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CITS_ConsoleApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+74c8b8b4711b077eb8d8d0c1e267ea36ed3b0bee")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+82ca0fa89b2480e6d1706e121efa2cc69eda3328")]
 [assembly: System.Reflection.AssemblyProductAttribute("CITS_ConsoleApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CITS_ConsoleApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
