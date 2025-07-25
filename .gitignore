@@ -224,3 +224,4 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+/CITS_solution/CITS_DataAccessLayer/obj/Debug/net8.0/CITS_DataAccessLayer.AssemblyInfoInputs.cache
