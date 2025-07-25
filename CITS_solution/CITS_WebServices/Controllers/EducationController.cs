@@ -32,11 +32,19 @@ namespace CITS_WebServices.Controllers
 
         // POST: api/education/add
         [HttpPost("add")]
-        public IActionResult AddEducation([FromBody] Education education)
+        public IActionResult AddEducation([FromBody] Models.Education education)
         {
             try
             {
-                _repository.AddEducation(education);
+                CITS_DataAccessLayer.Models.Education newEducation = new CITS_DataAccessLayer.Models.Education
+                    {
+                        CandidateId = education.CandidateId,
+                        Degree = education.Degree,
+                    Institute = education.Institute,
+                    Year = education.Year
+                    };
+
+                _repository.AddEducation(newEducation);
                 return Ok("Education added successfully.");
             }
             catch (Exception ex)

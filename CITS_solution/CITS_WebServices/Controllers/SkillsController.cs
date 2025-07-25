@@ -47,7 +47,7 @@ namespace CITS_WebServices.Controllers
 
         // POST: api/skills/assign
         [HttpPost("assign")]
-        public IActionResult AssignSkillToCandidate([FromBody] CandidateSkill skillData)
+        public IActionResult AssignSkillToCandidate([FromBody] Models.CandidateSkill skillData)
         {
             try
             {
