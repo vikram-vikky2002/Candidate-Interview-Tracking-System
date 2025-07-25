@@ -1,0 +1,132 @@
+﻿using CITS_DataAccessLayer;
+using CITS_DataAccessLayer.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
+namespace CITS_WebServices.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class CandidateController : ControllerBase
+    {
+        public CandidateRepository _repository { get; set; }
+        public CandidateController()
+        {
+            _repository = new CandidateRepository();
+        }
+        //GetAllCandidates
+        [HttpGet]
+        public IActionResult GetAllCandidates()
+        {
+            try
+            {
+                var candidates = _repository.GetAllCandidates();
+                if (candidates == null || candidates.Count == 0)
+                {
+                    return NotFound("No candidates found.");
+                }
+                return Ok(candidates);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Internal server error: " + ex.Message);
+            }
+        }
+        //GetCandidateById
+        [HttpGet("{candidateId}")]
+        public IActionResult GetCandidateById(int candidateId)
+        {
+            try
+            {
+                var candidate = _repository.GetCandidateById(candidateId);
+                if (candidate == null)
+                {
+                    return NotFound("Candidate not found.");
+                }
+                return Ok(candidate);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Internal server error: " + ex.Message);
+            }
+        }
+        //AddCandidate
+        [HttpPost]
+        public IActionResult AddCandidate(Candidate candidate)
+        {
+            if (candidate == null)
+            {
+                return BadRequest("Candidate data is null.");
+            }
+            try
+            {
+                var result = _repository.AddCandidate(candidate);
+                if (result)
+                {
+                    return CreatedAtAction(nameof(GetCandidateById), new { candidateId = candidate.CandidateId }, candidate);
+                }
+                return BadRequest("Failed to add candidate.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Internal server error: " + ex.Message);
+            }
+        }
+        //UpdateCandidate
+        [HttpPut]
+        public IActionResult UpdateCandidate(Candidate candidate)
+        {
+            bool result = false;
+            try
+            {
+                result = _repository.UpdateCandidate(candidate);
+                if (result)
+                {
+                    return Ok("Candidate updated successfully.");
+                }
+                return BadRequest("Failed to update candidate.");
+            }
+            catch (Exception ex)
+            {
+                result = false;
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+        }
+        //DeleteCandidate
+        [HttpDelete("{candidateId}")]
+        public IActionResult DeleteCandidate(int candidateId)
+        {
+            try
+            {
+                var result = _repository.DeleteCandidate(candidateId);
+                if (result)
+                {
+                    return Ok("Candidate deleted successfully.");
+                }
+                return NotFound("Candidate not found.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Internal server error: " + ex.Message);
+            }
+        }
+        //GetCandidatesByStatus
+        [HttpGet("GetCandidatesByStatus/{status}")]
+        public IActionResult GetCandidatesByStatus(string status)
+        {
+            try
+            {
+                var candidates = _repository.GetCandidatesByStatus(status);
+                if (candidates == null || candidates.Count == 0)
+                {
+                    return NotFound("No candidates found with the specified status.");
+                }
+                return Ok(candidates);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Internal server error: " + ex.Message);
+            }
+        }
+    }
+}

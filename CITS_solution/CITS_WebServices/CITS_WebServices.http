@@ -1,0 +1,6 @@
+@CITS_WebServices_HostAddress = http://localhost:5170
+
+GET {{CITS_WebServices_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
