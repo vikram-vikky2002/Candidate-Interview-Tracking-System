@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EUS")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8a787400be1fd6cc14f2515966e265408ef36f52")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+beaa36d64203de3c89f2ce6090322c87f3cfc810")]
 [assembly: System.Reflection.AssemblyProductAttribute("EUS")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EUS")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
