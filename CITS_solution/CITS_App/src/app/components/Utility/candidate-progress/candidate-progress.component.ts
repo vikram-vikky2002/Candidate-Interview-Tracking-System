@@ -8,18 +8,19 @@ import { UtilityService } from '../../../services/Utility/utility.service';
 })
 export class CandidateProgressComponent {
   candidateId: number = 0;
-  progress: any = null;
+  progressList: any = null;
 
   constructor(private utilityService: UtilityService) { }
 
   getProgress() {
     this.utilityService.getCandidateProgress(this.candidateId).subscribe({
-      next: data => this.progress = data,
+      next: data => {
+        this.progressList = data ;
+      },
       error: err => {
-        console.error('Error fetching candidate progress', err);
-        this.progress = null;
+        console.error('Error fetching candidate progress:', err);
+        this.progressList = [];
       }
     });
   }
 }
-

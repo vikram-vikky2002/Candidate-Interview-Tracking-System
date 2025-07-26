@@ -9,6 +9,7 @@ import { EducationService } from '../../../services/Education/education.service'
 export class EducationListComponent implements OnInit {
   educations: any[] = [];
   candidateId: number = 0;
+  displayedColumns: string[] = ['educationId', 'candidateId', 'degree', 'university', 'grade', 'startDate', 'endDate'];
 
   constructor(private educationService: EducationService) { }
 

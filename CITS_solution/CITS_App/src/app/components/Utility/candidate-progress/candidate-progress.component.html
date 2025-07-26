@@ -1,26 +1,23 @@
+<mat-card class="mat-elevation-z4 p-5 w-75 mx-auto mt-5">
+  <h2 class="mb-4 text-center">Candidate Interview Progress</h2>
 
-<h1>hello</h1>
-<div class="progress-container">
-  <h2>Candidate Progress</h2>
+  <mat-form-field appearance="outline" class="w-100 mb-3">
+    <mat-label>Candidate ID</mat-label>
+    <input matInput type="number" [(ngModel)]="candidateId" name="candidateId" required />
+  </mat-form-field>
 
-  <form (ngSubmit)="getProgress()">
-    <label>Candidate ID:</label>
-    <input type="number" [(ngModel)]="candidateId" name="candidateId" required />
-    <button type="submit">View Progress</button>
-  </form>
+  <button mat-raised-button color="primary" (click)="getProgress()">Check Progress</button>
 
-  <div *ngIf="progress">
-    <h3>Progress for Candidate #{{ candidateId }}</h3>
-    <ul>
-      <li><strong>Current Stage:</strong> {{ progress.currentStage }}</li>
-      <li><strong>Status:</strong> {{ progress.status }}</li>
-    </ul>
-
-    <h4>Feedbacks:</h4>
-    <ul>
-      <li *ngFor="let feedback of progress.feedbacks">
-        • {{ feedback }}
-      </li>
-    </ul>
+  <div *ngIf="progressList.length > 0" class="mt-4">
+    <h4>Progress Details:</h4>
+    <mat-list>
+      <mat-list-item *ngFor="let item of progressList">
+        <strong>{{ item.interviewName }}:</strong>&nbsp; {{ item.status }}
+      </mat-list-item>
+    </mat-list>
   </div>
-</div>
+
+  <div *ngIf="progressList.length === 0 && candidateId > 0" class="mt-4">
+    <p>No progress data available for this candidate.</p>
+  </div>
+</mat-card>

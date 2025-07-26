@@ -8,6 +8,7 @@ import { SkillsService } from '../../../services/Skills/skills.service';
 })
 export class SkillsListComponent implements OnInit {
   skills: any[] = [];
+  displayedColumns: string[] = ['skillId', 'skillName'];
 
   constructor(private skillsService: SkillsService) { }
 

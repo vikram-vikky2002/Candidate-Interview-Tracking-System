@@ -1,18 +1,24 @@
-<div class="search-container">
-  <h3>Search Interviews</h3>
-  <form (ngSubmit)="search()">
-    <input type="date" [(ngModel)]="from" name="from" placeholder="From Date" />
-    <input type="date" [(ngModel)]="to" name="to" placeholder="To Date" />
-    <input type="email" [(ngModel)]="interviewerEmail" name="interviewerEmail" placeholder="Interviewer Email" />
-    <button type="submit">Search</button>
-  </form>
+<mat-card class="mat-elevation-z4 form-card">
+  <h2 class="form-title">Search Interviews</h2>
 
-  <div *ngIf="interviews.length > 0">
-    <h4>Results:</h4>
-    <ul>
-      <li *ngFor="let interview of interviews">
-        {{ interview.interviewId }} - {{ interview.scheduledDateTime }} - {{ interview.interviewer?.email }}
-      </li>
-    </ul>
-  </div>
-</div>
+  <form (ngSubmit)="search()" class="form-grid">
+    <mat-form-field appearance="fill">
+      <mat-label>From Date</mat-label>
+      <input matInput [(ngModel)]="from" name="from" type="date" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>To Date</mat-label>
+      <input matInput [(ngModel)]="to" name="to" type="date" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Interviewer Email</mat-label>
+      <input matInput [(ngModel)]="interviewerEmail" name="interviewerEmail" required>
+    </mat-form-field>
+
+    <div class="button-wrapper">
+      <button mat-raised-button color="primary" type="submit">Search</button>
+    </div>
+  </form>
+</mat-card>
