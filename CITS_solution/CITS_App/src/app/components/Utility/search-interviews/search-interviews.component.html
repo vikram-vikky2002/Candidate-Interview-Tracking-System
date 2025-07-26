@@ -1,0 +1,18 @@
+<div class="search-container">
+  <h3>Search Interviews</h3>
+  <form (ngSubmit)="search()">
+    <input type="date" [(ngModel)]="from" name="from" placeholder="From Date" />
+    <input type="date" [(ngModel)]="to" name="to" placeholder="To Date" />
+    <input type="email" [(ngModel)]="interviewerEmail" name="interviewerEmail" placeholder="Interviewer Email" />
+    <button type="submit">Search</button>
+  </form>
+
+  <div *ngIf="interviews.length > 0">
+    <h4>Results:</h4>
+    <ul>
+      <li *ngFor="let interview of interviews">
+        {{ interview.interviewId }} - {{ interview.scheduledDateTime }} - {{ interview.interviewer?.email }}
+      </li>
+    </ul>
+  </div>
+</div>

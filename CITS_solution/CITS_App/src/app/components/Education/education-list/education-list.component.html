@@ -1,0 +1,11 @@
+<div>
+  <h3>Education List</h3>
+  <input [(ngModel)]="candidateId" placeholder="Enter Candidate ID" />
+  <button (click)="fetchEducation()">Fetch</button>
+
+  <ul *ngIf="educations.length">
+    <li *ngFor="let edu of educations">
+      {{ edu.degree }} from {{ edu.institution }} ({{ edu.year }})
+    </li>
+  </ul>
+</div>

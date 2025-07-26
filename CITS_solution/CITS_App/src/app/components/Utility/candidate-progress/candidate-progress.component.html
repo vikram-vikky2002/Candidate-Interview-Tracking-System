@@ -1,0 +1,26 @@
+
+<h1>hello</h1>
+<div class="progress-container">
+  <h2>Candidate Progress</h2>
+
+  <form (ngSubmit)="getProgress()">
+    <label>Candidate ID:</label>
+    <input type="number" [(ngModel)]="candidateId" name="candidateId" required />
+    <button type="submit">View Progress</button>
+  </form>
+
+  <div *ngIf="progress">
+    <h3>Progress for Candidate #{{ candidateId }}</h3>
+    <ul>
+      <li><strong>Current Stage:</strong> {{ progress.currentStage }}</li>
+      <li><strong>Status:</strong> {{ progress.status }}</li>
+    </ul>
+
+    <h4>Feedbacks:</h4>
+    <ul>
+      <li *ngFor="let feedback of progress.feedbacks">
+        • {{ feedback }}
+      </li>
+    </ul>
+  </div>
+</div>

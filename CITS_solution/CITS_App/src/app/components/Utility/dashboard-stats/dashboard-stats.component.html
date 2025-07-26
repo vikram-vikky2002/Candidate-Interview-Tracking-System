@@ -1,0 +1,22 @@
+<div class="dashboard-container" *ngIf="stats">
+  <h2>Dashboard Summary</h2>
+  <div class="stat-grid">
+    <div class="stat-card">
+      <h3>Total Candidates</h3>
+      <p>{{ stats.totalCandidates }}</p>
+    </div>
+    <div class="stat-card">
+      <h3>Scheduled Interviews</h3>
+      <p>{{ stats.interviewsScheduled }}</p>
+    </div>
+    <div class="stat-card">
+      <h3>Selected Candidates</h3>
+      <p>{{ stats.selectedCandidates }}</p>
+    </div>
+    <div class="stat-card">
+      <h3>Rejected Candidates</h3>
+      <p>{{ stats.rejectedCandidates }}</p>
+    </div>
+  </div>
+</div>
+<h1>hello</h1>

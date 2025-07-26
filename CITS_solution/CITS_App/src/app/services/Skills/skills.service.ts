@@ -1,0 +1,35 @@
+// services/skills.service.ts
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Skill } from '../../models/Skills/Skills';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class SkillsService {
+  private baseUrl = 'https://localhost:7181/api/Skills'; // replace with actual port
+
+  constructor(private http: HttpClient) { }
+
+  getAllSkills(): Observable<Skill[]> {
+    return this.http.get<Skill[]>(`${this.baseUrl}`);
+  }
+
+  getSkillsByCandidateId(candidateId: number): Observable<Skill[]> {
+    return this.http.get<Skill[]>(`${this.baseUrl}/ByCandidate/${candidateId}`);
+  }
+
+  addSkill(skillName: string): Observable<any> {
+    return this.http.post(`${this.baseUrl}/add`, { skillName });
+  }
+
+  assignSkillToCandidate(candidateId: number, skillId: number): Observable<any> {
+    return this.http.post(`${this.baseUrl}/assign`, { candidateId, skillId });
+  }
+
+  removeSkillFromCandidate(candidateId: number, skillId: number): Observable<any> {
+
+    return this.http.delete(`${this.baseUrl}/remove?candidate=${candidateId}&skillId=${skillId}`);
+  }
+}
