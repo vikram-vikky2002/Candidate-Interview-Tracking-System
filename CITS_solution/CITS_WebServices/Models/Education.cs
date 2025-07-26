@@ -14,6 +14,5 @@ public partial class Education
     public string? Institute { get; set; }
 
     public string? Year { get; set; }
-
-    public virtual Candidate? Candidate { get; set; }
+    
 }
