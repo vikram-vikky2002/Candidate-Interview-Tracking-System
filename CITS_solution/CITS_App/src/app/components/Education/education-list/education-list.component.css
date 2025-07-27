@@ -1,0 +1,37 @@
+.education-card {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 32px;
+  border-radius: 12px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.education-title {
+  color: #3f51b5;
+  margin: 0;
+}
+
+.custom-education-table {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f9f9f9;
+}
+
+.mat-header-cell {
+  background-color: #3f51b5;
+  color: #fff;
+  font-weight: 500;
+}
+
+.mat-cell {
+  padding: 12px;
+}

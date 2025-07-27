@@ -21,12 +21,15 @@ export class SkillsService {
   }
 
   addSkill(skillName: string): Observable<any> {
-    return this.http.post(`${this.baseUrl}/add`, { skillName });
+    console.log(`Adding skill: ${skillName}`);
+    const skill = { skillId: 0, skillName: skillName }; 
+    return this.http.post(`${this.baseUrl}/add`, skill);
   }
 
   assignSkillToCandidate(candidateId: number, skillId: number): Observable<any> {
     return this.http.post(`${this.baseUrl}/assign`, { candidateId, skillId });
   }
+
 
   removeSkillFromCandidate(candidateId: number, skillId: number): Observable<any> {
 

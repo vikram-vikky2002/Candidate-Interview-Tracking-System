@@ -16,15 +16,16 @@ export class EducationService {
     return this.http.get<Education[]>(`${this.baseUrl}/candidate/${candidateId}`);
   }
 
-  addEducation(education: Education): Observable<any> {
-    return this.http.post(`${this.baseUrl}/add`, education);
+  // ✅ Returns the created education object now
+  addEducation(education: Education): Observable<Education> {
+    return this.http.post<Education>(`${this.baseUrl}/add`, education);
   }
 
-  //updateEducation(education: Education): Observable<any> {
-  //  return this.http.put(`${this.baseUrl}/Update/${education.educationId}`, education);
-  //}
-
-  deleteEducation(educationId: number): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/delete/${educationId}`);
+  // ✅ Returns true/false from backend (boolean deletion status)
+  deleteEducation(educationId: number): Observable<boolean> {
+    return this.http.delete<boolean>(`${this.baseUrl}/delete/${educationId}`);
+  }
+  updateEducation(education: Education): Observable<Education> {
+    return this.http.put<Education>(`${this.baseUrl}/update/${education.educationId}`, education);
   }
 }

@@ -1,0 +1,49 @@
+.skills-card {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 32px;
+  border-radius: 12px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.skills-title {
+  text-align: center;
+  margin-bottom: 24px;
+  color: #3f51b5;
+  font-weight: 600;
+}
+
+.custom-skills-table {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f9f9f9;
+}
+
+.mat-header-row, .mat-row {
+  font-size: 15px;
+}
+
+.mat-header-cell {
+  background-color: #3f51b5;
+  color: white;
+  font-weight: 500;
+}
+
+.mat-cell {
+  padding: 12px;
+}
+.skills-card {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 24px;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.skills-title {
+  text-align: center;
+  color: #3f51b5;
+  margin-bottom: 16px;
+}
