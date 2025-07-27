@@ -1,93 +1,96 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using CITS_DataAccessLayer;
-using CITS_DataAccessLayer.Models;
-
-namespace CITS_WebServices.Controllers
+using CITS_WebServices.Models;
+[ApiController]
+[Route("api/[controller]")]
+public class SkillsController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class SkillsController : ControllerBase
+    private readonly SkillsRepository _repository;
+
+    public SkillsController()
     {
-        private readonly SkillsRepository _repository;
+        _repository = new SkillsRepository();
+    }
 
-        public SkillsController()
+    [HttpGet]
+    public IActionResult GetAllSkills()
+    {
+        try
         {
-            _repository = new SkillsRepository();
+            var skills = _repository.GetAllSkills();
+            return Ok(skills);
         }
-
-        // GET: api/skills
-        [HttpGet]
-        public IActionResult GetAllSkills()
+        catch (Exception ex)
         {
-            try
+            return StatusCode(500, "Error retrieving skills: " + ex.Message);
+        }
+    }
+
+    [HttpPost("add")]
+    public IActionResult AddSkill([FromBody] Skill skill)
+    {
+        try
+        {
+            var addedSkill = _repository.AddSkill(skill.SkillName);
+            return Ok(new
             {
-                var skills = _repository.GetAllSkills();
-                return Ok(skills);
+                message = "Skill added successfully.",
+                skill = addedSkill
+            });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, "Error adding skill: " + ex.Message);
+        }
+    }
+    // ✅ POST: api/skills/assign (data from body)
+    [HttpPost("assign")]
+    public IActionResult AssignSkillToCandidate([FromBody] CandidateSkill skillData)
+    {
+        try
+        {
+            var success = _repository.AssignSkillToCandidate(skillData.CandidateId, skillData.SkillId);
+            if (success)
+                return Ok(new { message = "Skill assigned to candidate successfully." });
+            else
+                return Conflict("Skill already assigned to candidate.");
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, "Error assigning skill: " + ex.Message);
+        }
+    }
+    [HttpDelete("remove")]
+    public IActionResult RemoveSkillFromCandidate([FromQuery] int candidateId, [FromQuery] int skillId)
+    {
+        try
+        {
+            var success = _repository.RemoveSkillFromCandidate(candidateId, skillId);
+            if (success)
+            {
+                return Ok(new { message = "Skill removed from candidate successfully." });
             }
-            catch (Exception ex)
+            else
             {
-                return StatusCode(500, "Error retrieving skills: " + ex.Message);
+                return NotFound("Skill assignment not found for this candidate.");
             }
         }
-
-        // POST: api/skills/add
-        [HttpPost("add")]
-        public IActionResult AddSkill([FromBody] string skillName)
+        catch (Exception ex)
         {
-            try
-            {
-                _repository.AddSkill(skillName);
-                return Ok("Skill added successfully.");
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, "Error adding skill: " + ex.Message);
-            }
+            return StatusCode(500, "Error removing skill: " + ex.Message);
         }
+    }
 
-        // POST: api/skills/assign
-        [HttpPost("assign")]
-        public IActionResult AssignSkillToCandidate([FromBody] Models.CandidateSkill skillData)
+    [HttpGet("candidate/{candidateId}")]
+    public IActionResult GetSkillsByCandidateId(int candidateId)
+    {
+        try
         {
-            try
-            {
-                _repository.AssignSkillToCandidate(skillData.CandidateId, skillData.SkillId);
-                return Ok("Skill assigned to candidate successfully.");
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, "Error assigning skill: " + ex.Message);
-            }
+            var skills = _repository.GetSkillsByCandidateId(candidateId);
+            return Ok(skills);
         }
-
-        // DELETE: api/skills/remove
-        [HttpDelete("remove")]
-        public IActionResult RemoveSkillFromCandidate([FromQuery] int candidateId, [FromQuery] int skillId)
+        catch (Exception ex)
         {
-            try
-            {
-                _repository.RemoveSkillFromCandidate(candidateId, skillId);
-                return Ok("Skill removed from candidate successfully.");
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, "Error removing skill: " + ex.Message);
-            }
-        }
-
-        // GET: api/skills/candidate/5
-        [HttpGet("candidate/{candidateId}")]
-        public IActionResult GetSkillsByCandidateId(int candidateId)
-        {
-            try
-            {
-                var skills = _repository.GetSkillsByCandidateId(candidateId);
-                return Ok(skills);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, "Error retrieving candidate skills: " + ex.Message);
-            }
+            return StatusCode(500, "Error retrieving candidate skills: " + ex.Message);
         }
     }
 }
