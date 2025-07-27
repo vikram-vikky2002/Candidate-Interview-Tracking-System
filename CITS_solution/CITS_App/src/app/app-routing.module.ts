@@ -8,6 +8,8 @@ import { SkillsListComponent } from './components/Skills/skill-list/skill-list.c
 import { AssignSkillComponent } from './components/Skills/assign-skill/assign-skill.component';
 import { SearchInterviewsComponent } from './components/Utility/search-interviews/search-interviews.component';
 import { LayoutComponent } from './components/layout/layout.component';
+import { InterviewEvaluationComponent } from './components/Interviewer/interview-evaluation/interview-evaluation.component';
+import { InterviewCalendarComponent } from './components/Interviewer/interview-calendar/interview-calendar.component';
 
 
 const routes: Routes = [
@@ -22,6 +24,8 @@ const routes: Routes = [
       { path: 'add-education', component: AddEducationComponent },
       { path: 'skills-list', component: SkillsListComponent },
       { path: 'assign-skill', component: AssignSkillComponent },
+      { path: 'evaluate/:interviewId', component: InterviewEvaluationComponent },
+      { path: 'interviewer-calendar', component: InterviewCalendarComponent },
       { path: '', redirectTo: 'dashboard-stats', pathMatch: 'full' } // default route
     ]
   }
