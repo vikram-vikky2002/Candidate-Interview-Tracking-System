@@ -1,64 +1,102 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { InterviewService } from '../../../services/interview.service';
-import { Interview } from '../../../models/interview';
+  import { Component, OnInit } from '@angular/core';
+  import { ActivatedRoute, Router } from '@angular/router';
+  import { InterviewService } from '../../../services/interview.service';
+  import { Interview } from '../../../models/interview';
+import { Evaluation } from '../../../models/Evaluation/Evaluation';
 
-@Component({
-  selector: 'app-interview-evaluation',
-  templateUrl: './interview-evaluation.component.html',
-  styleUrls: ['./interview-evaluation.component.css']
-})
-export class InterviewEvaluationComponent implements OnInit {
-  interviewId!: number;
-  interview?: Interview;
-  feedback: string = '';
-  score: number = 0;
-  loading = true;
-  errorMsg: string | null = null;
+  @Component({
+    selector: 'app-interview-evaluation',
+    templateUrl: './interview-evaluation.component.html',
+    styleUrls: ['./interview-evaluation.component.css']
+  })
+  export class InterviewEvaluationComponent implements OnInit {
+    interviewId!: number;
+    interview: Interview = {
+ 
+      candidateId: 0,
+      interviewerId: 0,
+      scheduledDateTime: new Date(),
+      status: '',
+      meetingLink: '',
+      interviewMode: '',
+      stageId: 0,
+      interviewId: 0
 
-  constructor(
-    private route: ActivatedRoute,
-    private interviewService: InterviewService,
-    private router: Router
-  ) { }
+    }
 
-  ngOnInit(): void {
-    this.interviewId = Number(this.route.snapshot.paramMap.get('interviewId'));
-    this.interviewService.getInterviewById(this.interviewId).subscribe({
-      next: (data: Interview) => {
-        this.interview = data;
-        this.loading = false;
-      },
-      error: () => {
-        this.errorMsg = 'Interview not found.';
-        this.loading = false;
+  ;
+    feedback: string = '';
+    score: number = 0;
+    loading = true;
+    errorMsg: string | null = null;
+
+    constructor(
+      private route: ActivatedRoute,
+      private interviewService: InterviewService,
+      private router: Router
+    ) { }
+
+    ngOnInit(): void {
+      this.interviewId = Number(this.route.snapshot.paramMap.get('interviewId'));
+      this.interviewService.getInterviewById(this.interviewId).subscribe({
+        next: (data) => {
+          this.interview = data;
+          console.log('Interview data:', this.interview);
+          console.log('Interview ID:', this.interview.candidateId);
+          this.loading = false;
+        },
+        error: () => {
+          this.errorMsg = 'Interview not found.';
+          this.loading = false;
+        }
+      });
+    }
+
+    submitEvaluation(): void {
+      if (this.score < 0 || this.score > 10) {
+        alert('Score must be between 0 and 10');
+        return;
       }
-    });
-  }
+      if (!this.feedback.trim()) {
+        alert('Feedback cannot be empty');
+        return;
+      }
+      const evalue: Evaluation = {
+        evaluationId: 0, 
+        candidateId: this.interview.candidateId,
+        interviewId: this.interviewId,
+        evaluationType: 'Online', // Default type, adjust as necessary
+        score: this.score,
+        feedback: this.feedback,
+        evaluatedAt: new Date().toISOString() // Current date and time
+      };
+      this.interviewService.submitEvaluation(evalue).subscribe({
+        next: (ere) => {
+          console.log('Evaluation submitted:', ere);
+          this.interviewService.updateInterview(this.interviewId, 'Completed').subscribe({
+            next: (res) => {
+              console.log('Interview status updated:', res);
+              alert('Evaluation submitted and interview marked as completed!');
+              this.router.navigate(['/interviewer-calendar']);
+            },
+            error: (err) => {
+              console.error('Failed to update interview status:', err);
+              alert('Evaluation saved, but failed to update interview status.');
+            }
+          });
+        },
+        error: (err) => {
+          console.error('Error submitting evaluation:', err);
+          alert('Failed to submit evaluation.')
+        }
+      });
+    }
 
-  submitEvaluation(): void {
-    if (this.score < 0 || this.score > 10) {
-      alert('Score must be between 0 and 10');
-      return;
-    }
-    if (!this.feedback.trim()) {
-      alert('Feedback cannot be empty');
-      return;
-    }
-    this.interviewService.submitEvaluation(this.interviewId, { feedback: this.feedback, score: this.score }).subscribe({
-      next: () => {
-        alert('Evaluation submitted successfully!');
-        this.router.navigate(['/calendar']); // Adjust route as necessary
-      },
-      error: () => alert('Failed to submit evaluation.')
-    });
-  }
-
-  openMeetingLink(): void {
-    if (this.interview?.meetingLink) {
-      window.open(this.interview.meetingLink, '_blank');
-    } else {
-      alert('No meeting link available');
+    openMeetingLink(): void {
+      if (this.interview?.meetingLink) {
+        window.open(this.interview.meetingLink, '_blank');
+      } else {
+        alert('No meeting link available');
+      }
     }
   }
-}

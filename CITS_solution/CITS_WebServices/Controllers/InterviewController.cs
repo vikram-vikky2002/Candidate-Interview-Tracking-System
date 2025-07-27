@@ -2,6 +2,7 @@
 using CITS_DataAccessLayer.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CITS_WebServices.Controllers
 {
@@ -35,7 +36,15 @@ namespace CITS_WebServices.Controllers
 
             return Ok(result);
         }
+        [HttpGet("{id}")]
+        public IActionResult GetInterviewById(int id)
+        {
+            var interview = Repository.GetInterviewById(id);
+            if (interview == null)
+                return NotFound();
 
+            return Ok(interview); // 👈 Not Ok([interview])
+        }
         [HttpGet]
         public ActionResult<List<Interview>> GetAllInterviews()
         {
@@ -87,7 +96,7 @@ namespace CITS_WebServices.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPut]
         public IActionResult UpdateStatus(int interviewId, string status)
         {
             try
@@ -95,7 +104,7 @@ namespace CITS_WebServices.Controllers
                 bool isUpdated = Repository.UpdateInterviewStatus(interviewId, status);
 
                 if (isUpdated)
-                    return Ok("Status updated successfully");
+                    return Ok(new { message = "Status updated successfully" });
 
                 return BadRequest("Interview unable to update..");
             }
