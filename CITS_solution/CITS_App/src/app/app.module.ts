@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 
@@ -29,7 +28,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { LayoutComponent } from './components/layout/layout.component'; // optional: for alerts
+import { LayoutComponent } from './components/layout/layout.component';
+import { InterviewEvaluationComponent } from './components/Interviewer/interview-evaluation/interview-evaluation.component'; // optional: for alerts
+import { InterviewCalendarComponent } from './components/Interviewer/interview-calendar/interview-calendar.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,9 @@ import { LayoutComponent } from './components/layout/layout.component'; // optio
     AddEducationComponent,
     SkillsListComponent,
     AssignSkillComponent,
-    LayoutComponent
+    LayoutComponent,
+    InterviewCalendarComponent,
+    InterviewEvaluationComponent
   ],
   imports: [
     BrowserModule,

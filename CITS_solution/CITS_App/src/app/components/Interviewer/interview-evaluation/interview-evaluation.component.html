@@ -1,0 +1,30 @@
+<mat-card class="evaluation-card">
+  <h2>Interview Evaluation</h2>
+
+  <div *ngIf="loading" class="loading-block">
+    Loading interview details...
+  </div>
+
+  <div *ngIf="errorMsg" class="error-block">{{ errorMsg }}</div>
+
+  <form *ngIf="interview && !loading && !errorMsg" (ngSubmit)="submitEvaluation()" #evalForm="ngForm" autocomplete="off">
+    <p><strong>Candidate ID:</strong> {{ interview.candidateId }}</p>
+    <p><strong>Interviewer ID:</strong> {{ interview.interviewerId }}</p>
+    <p><strong>Scheduled:</strong> {{ interview.scheduledDateTime ? (interview.scheduledDateTime | date: 'MMM d, y - h:mm a') : 'N/A' }}</p>
+
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Feedback</mat-label>
+      <textarea matInput required [(ngModel)]="feedback" name="feedback" rows="4"></textarea>
+    </mat-form-field>
+    
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Score (out of 10)</mat-label>
+      <input matInput required type="number" name="score" [(ngModel)]="score" min="0" max="10" />
+    </mat-form-field>
+
+    <div class="actions">
+      <button mat-raised-button color="primary" type="submit" [disabled]="!evalForm.form.valid">Submit Evaluation</button>
+      <button mat-button color="accent" type="button" (click)="openMeetingLink()" [disabled]="!interview.meetingLink">Join Meeting</button>
+    </div>
+  </form>
+</mat-card>

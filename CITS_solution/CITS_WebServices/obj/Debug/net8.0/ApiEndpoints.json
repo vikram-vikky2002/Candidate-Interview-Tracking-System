@@ -19,7 +19,7 @@
     "Parameters": [
       {
         "Name": "candidate",
-        "Type": "CITS_DataAccessLayer.Models.Candidate",
+        "Type": "CITS_WebServices.Models.Candidate",
         "IsRequired": true
       }
     ],
@@ -35,7 +35,7 @@
     "Parameters": [
       {
         "Name": "candidate",
-        "Type": "CITS_DataAccessLayer.Models.Candidate",
+        "Type": "CITS_WebServices.Models.Candidate",
         "IsRequired": true
       }
     ],
@@ -90,6 +90,54 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "CITS_WebServices.Controllers.EducationController",
+    "Method": "AddEducation",
+    "RelativePath": "api/Education/add",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "education",
+        "Type": "CITS_DataAccessLayer.Models.Education",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CITS_WebServices.Controllers.EducationController",
+    "Method": "GetEducationByCandidateId",
+    "RelativePath": "api/Education/candidate/{candidateId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "candidateId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CITS_WebServices.Controllers.EducationController",
+    "Method": "DeleteEducation",
+    "RelativePath": "api/Education/delete/{educationId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "educationId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "CITS_WebServices.Controllers.EvaluationController",
     "Method": "AddEvaluation",
     "RelativePath": "api/Evaluation/AddEvaluation",
@@ -99,7 +147,7 @@
     "Parameters": [
       {
         "Name": "evaluation",
-        "Type": "CITS_DataAccessLayer.Models.Evaluation",
+        "Type": "CITS_WebServices.Models.Evaluation",
         "IsRequired": true
       }
     ],
@@ -133,6 +181,230 @@
         "Name": "interviewerId",
         "Type": "System.Int32",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CITS_WebServices.Controllers.InterviewController",
+    "Method": "GetAllInterviews",
+    "RelativePath": "api/Interview/GetAllInterviews",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[CITS_DataAccessLayer.Models.Interview, CITS_DataAccessLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "CITS_WebServices.Controllers.InterviewController",
+    "Method": "GetByCandidateId",
+    "RelativePath": "api/Interview/GetByCandidateId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "candidateId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[CITS_DataAccessLayer.Models.Interview, CITS_DataAccessLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "CITS_WebServices.Controllers.InterviewController",
+    "Method": "GetByInterviewer",
+    "RelativePath": "api/Interview/GetByInterviewer",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "interviewerId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[CITS_DataAccessLayer.Models.Interview, CITS_DataAccessLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "CITS_WebServices.Controllers.InterviewController",
+    "Method": "GetInterviewById",
+    "RelativePath": "api/Interview/GetInterviewById/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CITS_WebServices.Controllers.InterviewController",
+    "Method": "GetUpcoming",
+    "RelativePath": "api/Interview/GetUpcoming",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[CITS_DataAccessLayer.Models.Interview, CITS_DataAccessLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "CITS_WebServices.Controllers.InterviewController",
+    "Method": "Schedule",
+    "RelativePath": "api/Interview/Schedule",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "interview",
+        "Type": "CITS_WebServices.Models.Interview",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CITS_WebServices.Controllers.InterviewController",
+    "Method": "UpdateStatus",
+    "RelativePath": "api/Interview/UpdateStatus",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "interviewId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "status",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SkillsController",
+    "Method": "GetAllSkills",
+    "RelativePath": "api/Skills",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SkillsController",
+    "Method": "AddSkill",
+    "RelativePath": "api/Skills/add",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "skill",
+        "Type": "CITS_WebServices.Models.Skill",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SkillsController",
+    "Method": "AssignSkillToCandidate",
+    "RelativePath": "api/Skills/assign",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "skillData",
+        "Type": "CITS_WebServices.Models.CandidateSkill",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SkillsController",
+    "Method": "GetSkillsByCandidateId",
+    "RelativePath": "api/Skills/candidate/{candidateId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "candidateId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SkillsController",
+    "Method": "RemoveSkillFromCandidate",
+    "RelativePath": "api/Skills/remove",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "candidateId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "skillId",
+        "Type": "System.Int32",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -218,6 +490,58 @@
         "Name": "userData",
         "Type": "System.Object",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CITS_WebServices.Controllers.UtilityController",
+    "Method": "GetDashboardStats",
+    "RelativePath": "api/Utility/dashboard",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CITS_WebServices.Controllers.UtilityController",
+    "Method": "GetCandidateProgress",
+    "RelativePath": "api/Utility/progress/{candidateId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "candidateId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CITS_WebServices.Controllers.UtilityController",
+    "Method": "SearchInterviews",
+    "RelativePath": "api/Utility/search-interviews",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "from",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "to",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "interviewerEmail",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

@@ -70,6 +70,20 @@ namespace CITS_DataAccessLayer
             return interviews;
         }
 
+        public Interview GetInterviewById(int id)
+        {
+            Interview interview = new Interview();
+            try
+            {
+               interview = Context.Interviews.FirstOrDefault(i => i.InterviewId == id);
+              
+            }
+            catch (Exception ex)
+            {
+                interview = null;
+            }
+            return interview;
+        }
         public List<Interview> GetUpcomingInterviewsByDate(DateTime date)
         {
             List<Interview> interviews = new List<Interview>();

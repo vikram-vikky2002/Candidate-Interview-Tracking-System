@@ -73,7 +73,7 @@ namespace CITS_WebServices.Controllers
                 var result = _repository.AddEvaluation(newEvaluation);
                 if (result)
                 {
-                    return Ok("Evaluation added successfully.");
+                    return Ok(new { message = "Evaluation added successfully." });
                 }
                 else
                 {
