@@ -32,20 +32,15 @@ namespace CITS_WebServices.Controllers
 
         // POST: api/education/add
         [HttpPost("add")]
-        public IActionResult AddEducation([FromBody] Models.Education education)
+        public IActionResult AddEducation([FromBody] Education education)
         {
             try
             {
-                CITS_DataAccessLayer.Models.Education newEducation = new CITS_DataAccessLayer.Models.Education
-                    {
-                        CandidateId = education.CandidateId,
-                        Degree = education.Degree,
-                    Institute = education.Institute,
-                    Year = education.Year
-                    };
+                var created = _repository.AddEducation(education);
 
-                _repository.AddEducation(newEducation);
-                return Ok("Education added successfully.");
+                // Return 201 Created with the created record
+                return CreatedAtAction(nameof(GetEducationByCandidateId),
+                    new { candidateId = created.CandidateId }, created);
             }
             catch (Exception ex)
             {
@@ -59,7 +54,10 @@ namespace CITS_WebServices.Controllers
         {
             try
             {
-                _repository.DeleteEducation(educationId);
+                var deleted = _repository.DeleteEducation(educationId);
+                if (!deleted)
+                    return NotFound($"Education record with ID {educationId} not found.");
+
                 return Ok("Education deleted successfully.");
             }
             catch (Exception ex)
