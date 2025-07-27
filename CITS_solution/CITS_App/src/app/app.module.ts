@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 // Your Components
 import { CandidateProgressComponent } from './components/Utility/candidate-progress/candidate-progress.component';
@@ -29,8 +29,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { LayoutComponent } from './components/layout/layout.component';
-import { LoginComponent } from './components/login/login.component';
-import { CandidateListComponent } from './components/Candidates/candidate-list/candidate-list.component'; // optional: for alerts
+import { InterviewEvaluationComponent } from './components/Interviewer/interview-evaluation/interview-evaluation.component'; // optional: for alerts
+import { InterviewCalendarComponent } from './components/Interviewer/interview-calendar/interview-calendar.component';
 
 @NgModule({
   declarations: [
@@ -43,8 +43,8 @@ import { CandidateListComponent } from './components/Candidates/candidate-list/c
     SkillsListComponent,
     AssignSkillComponent,
     LayoutComponent,
-    LoginComponent,
-    CandidateListComponent
+    InterviewCalendarComponent,
+    InterviewEvaluationComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +52,6 @@ import { CandidateListComponent } from './components/Candidates/candidate-list/c
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule,
 
     // ✅ Angular Material UI Modules
     MatToolbarModule,

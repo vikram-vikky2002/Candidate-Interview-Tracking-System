@@ -1,0 +1,53 @@
+.evaluation-card {
+  max-width: 520px;
+  margin: 48px auto;
+  padding: 32px;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+  background: #fff;
+}
+
+  .evaluation-card h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #1976d2;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+p {
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.actions {
+  display: flex;
+  gap: 16px;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+.loading-block,
+.error-block {
+  text-align: center;
+  font-size: 16px;
+  padding: 30px 0;
+  color: #666;
+}
+
+.error-block {
+  color: #b71c1c;
+  font-weight: 600;
+}
+
+mat-form-field {
+  margin-bottom: 18px;
+}
+
+button[mat-button][color='accent'] {
+  color: #1976d2;
+}

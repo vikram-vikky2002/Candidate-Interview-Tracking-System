@@ -1,0 +1,53 @@
+<mat-card class="calendar-container">
+  <div class="calendar-navigation">
+    <button mat-icon-button class="nav-btn" (click)="goToPreviousMonth()">
+      <mat-icon class="big-icon">chevron_left</mat-icon>
+    </button>
+    <h3>{{ currentMonth | date: 'MMMM yyyy' }}</h3>
+    <button mat-icon-button class="nav-btn" (click)="goToNextMonth()">
+      <mat-icon class="big-icon">chevron_right</mat-icon>
+    </button>
+  </div>
+
+  <div class="weekday-headers">
+    <div class="weekday-header" *ngFor="let w of ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']">
+      {{ w }}
+    </div>
+  </div>
+
+  <div class="calendar-grid">
+    <ng-container *ngFor="let _ of emptyLeadingDays">
+      <div class="calendar-day empty"></div>
+    </ng-container>
+
+    <ng-container *ngFor="let day of daysInMonth">
+      <div class="calendar-day"
+           [ngClass]="{
+             'active-day': selectedDate && day.date.toDateString() === selectedDate.toDateString(),
+             today: day.date.toDateString() === today.toDateString(),
+             'no-interviews': day.interviews.length === 0
+           }"
+           (click)="onDayClick(day)">
+        <div class="day-label">{{ formatDate(day.date) }}</div>
+
+        <div *ngFor="let interview of day.interviews"
+             class="interview-card"
+             (click)="openEvaluation(interview.interviewId); $event.stopPropagation()">
+          <div class="interview-info">
+            <div><strong>Interviewer ID:</strong> {{ interview.interviewerId }}</div>
+            <div><strong>Mode:</strong> {{ interview.interviewMode }}</div>
+            <div><strong>Time:</strong> {{ interview.scheduledDateTime | date: 'shortTime' }}</div>
+          </div>
+          <span class="status-tag"
+                [ngClass]="{
+                  pending: interview.status === 'Pending',
+                  passed: interview.status === 'Passed',
+                  failed: interview.status === 'Failed'
+                }">
+            {{ interview.status }}
+          </span>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</mat-card>

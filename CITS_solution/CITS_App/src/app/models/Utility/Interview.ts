@@ -1,5 +1,5 @@
 // models/interview.model.ts
-export interface Interview {
+export interface Interview1 {
   interviewId: number;
   candidateId: number;
   interviewerName: string;
