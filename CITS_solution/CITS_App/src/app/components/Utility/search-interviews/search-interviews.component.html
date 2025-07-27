@@ -1,0 +1,24 @@
+<mat-card class="mat-elevation-z4 form-card">
+  <h2 class="form-title">Search Interviews</h2>
+
+  <form (ngSubmit)="search()" class="form-grid">
+    <mat-form-field appearance="fill">
+      <mat-label>From Date</mat-label>
+      <input matInput [(ngModel)]="from" name="from" type="date" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>To Date</mat-label>
+      <input matInput [(ngModel)]="to" name="to" type="date" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Interviewer Email</mat-label>
+      <input matInput [(ngModel)]="interviewerEmail" name="interviewerEmail" required>
+    </mat-form-field>
+
+    <div class="button-wrapper">
+      <button mat-raised-button color="primary" type="submit">Search</button>
+    </div>
+  </form>
+</mat-card>

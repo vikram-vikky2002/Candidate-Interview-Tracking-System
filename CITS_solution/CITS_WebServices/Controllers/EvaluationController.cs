@@ -1,5 +1,6 @@
 ﻿using CITS_DataAccessLayer;
 using CITS_DataAccessLayer.Models;
+using CITS_WebServices.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -52,7 +53,7 @@ namespace CITS_WebServices.Controllers
         }
         //Add Evaluation
         [HttpPost("AddEvaluation")]
-        public IActionResult AddEvaluation(Evaluation evaluation)
+        public IActionResult AddEvaluation(Models.Evaluation evaluation)
         {
             if (evaluation == null)
             {
@@ -60,7 +61,16 @@ namespace CITS_WebServices.Controllers
             }
             try
             {
-                var result = _repository.AddEvaluation(evaluation);
+                CITS_DataAccessLayer.Models.Evaluation newEvaluation = new CITS_DataAccessLayer.Models.Evaluation
+                {
+                    CandidateId = evaluation.CandidateId,
+                    InterviewId = evaluation.InterviewId,
+                    Score = evaluation.Score,
+                    Feedback = evaluation.Feedback,
+                    EvaluatedAt = DateTime.Now
+                };
+
+                var result = _repository.AddEvaluation(newEvaluation);
                 if (result)
                 {
                     return Ok("Evaluation added successfully.");

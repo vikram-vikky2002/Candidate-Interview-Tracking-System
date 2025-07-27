@@ -1,0 +1,24 @@
+<mat-card class="assign-card mat-elevation-z4">
+  <h2 class="form-title">Assign or Remove Skill</h2>
+
+  <form (ngSubmit)="assign()">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Candidate ID</mat-label>
+      <input matInput type="number" [(ngModel)]="candidateId" name="candidateId" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Select Skill</mat-label>
+      <mat-select [(ngModel)]="skillId" name="skillId" required>
+        <mat-option *ngFor="let skill of skills" [value]="skill.skillId">
+          {{ skill.skillName }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="button-group">
+      <button mat-raised-button color="primary" type="submit">Assign Skill</button>
+      <button mat-raised-button color="warn" type="button" (click)="remove()">Remove Skill</button>
+    </div>
+  </form>
+</mat-card>

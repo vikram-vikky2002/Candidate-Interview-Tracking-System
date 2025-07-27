@@ -1,68 +1,65 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CITS_DataAccessLayer.Models;
+﻿using CITS_DataAccessLayer.Models;
 
-namespace CITS_DataAccessLayer
+public class SkillsRepository
 {
-    public class SkillsRepository
+    public CitsdbContext _context { get; set; }
+
+    public SkillsRepository()
     {
-        public CitsdbContext _context { get; set; }
-        public SkillsRepository()
-        {
-            _context = new CitsdbContext();
-        }
-        public List<Skill> GetAllSkills()
-        {
-            return _context.Skills.ToList();
-        }
+        _context = new CitsdbContext();
+    }
 
-        // Add a new skill if not exists
-        public void AddSkill(string skillName)
+    public List<Skill> GetAllSkills()
+    {
+        return _context.Skills.ToList();
+    }
+
+    public Skill AddSkill(string skillName)
+    {
+        var existing = _context.Skills.FirstOrDefault(s => s.SkillName == skillName);
+        if (existing != null)
+            return existing;
+
+        var skill = new Skill { SkillName = skillName };
+        _context.Skills.Add(skill);
+        _context.SaveChanges();
+        return skill;
+    }
+
+    public bool AssignSkillToCandidate(int? candidateId, int? skillId)
+    {
+        if (!_context.CandidateSkills.Any(cs => cs.CandidateId == candidateId && cs.SkillId == skillId))
         {
-            if (!_context.Skills.Any(s => s.SkillName == skillName))
+            _context.CandidateSkills.Add(new CandidateSkill
             {
-                var skill = new Skill { SkillName = skillName };
-                _context.Skills.Add(skill);
-                _context.SaveChanges();
-            }
+                CandidateId = candidateId,
+                SkillId = skillId
+            });
+            _context.SaveChanges();
+            return true;
         }
+        return false;
+    }
 
-        // Assign skill to candidate
-        public void AssignSkillToCandidate(int candidateId, int skillId)
-        {
-            if (!_context.CandidateSkills.Any(cs => cs.CandidateId == candidateId && cs.SkillId == skillId))
-            {
-                _context.CandidateSkills.Add(new CandidateSkill
-                {
-                    CandidateId = candidateId,
-                    SkillId = skillId
-                });
-                _context.SaveChanges();
-            }
-        }
+    public bool RemoveSkillFromCandidate(int candidateId, int skillId)
+    {
+        var entry = _context.CandidateSkills
+            .FirstOrDefault(cs => cs.CandidateId == candidateId && cs.SkillId == skillId);
 
-        // Remove skill from candidate
-        public void RemoveSkillFromCandidate(int candidateId, int skillId)
+        if (entry != null)
         {
-            var entry = _context.CandidateSkills
-                .FirstOrDefault(cs => cs.CandidateId == candidateId && cs.SkillId == skillId);
-            if (entry != null)
-            {
-                _context.CandidateSkills.Remove(entry);
-                _context.SaveChanges();
-            }
+            _context.CandidateSkills.Remove(entry);
+            _context.SaveChanges();
+            return true;
         }
+        return false;
+    }
 
-        // Get all skills assigned to a candidate
-        public List<Skill> GetSkillsByCandidateId(int candidateId)
-        {
-            return _context.CandidateSkills
-                .Where(cs => cs.CandidateId == candidateId)
-                .Select(cs => cs.Skill)
-                .ToList();
-        }
+    public List<Skill> GetSkillsByCandidateId(int candidateId)
+    {
+        return _context.CandidateSkills
+            .Where(cs => cs.CandidateId == candidateId)
+            .Select(cs => cs.Skill)
+            .ToList();
     }
 }

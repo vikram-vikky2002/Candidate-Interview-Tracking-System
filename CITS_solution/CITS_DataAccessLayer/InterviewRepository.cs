@@ -25,8 +25,6 @@ namespace CITS_DataAccessLayer
             try
             {
                 interviews = Context.Interviews
-                                .Include(i => i.Stage)
-                                .Include(i => i.Interviewer)
                                 .Where(i => i.CandidateId == candidateId)
                                 .ToList();
             }
@@ -45,10 +43,24 @@ namespace CITS_DataAccessLayer
             try
             {
                 interviews = Context.Interviews
-                                .Include(i => i.Candidate)
-                                .Include(i => i.Stage)
                                 .Where(i => i.InterviewerId == userId)
                                 .ToList();
+            }
+            catch (Exception ex)
+            {
+                interviews = null;
+            }
+
+            return interviews;
+        }
+
+        public List<Interview> GetAllInterviews()
+        {
+            List<Interview> interviews = new List<Interview>();
+
+            try
+            {
+                interviews = Context.Interviews.ToList();
             }
             catch (Exception ex)
             {
