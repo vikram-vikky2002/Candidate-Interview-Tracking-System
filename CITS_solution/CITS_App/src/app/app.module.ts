@@ -4,9 +4,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Your Components
 import { CandidateProgressComponent } from './components/Utility/candidate-progress/candidate-progress.component';
@@ -29,7 +28,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { LayoutComponent } from './components/layout/layout.component'; // optional: for alerts
+import { LayoutComponent } from './components/layout/layout.component';
+import { LoginComponent } from './components/login/login.component';
+import { CandidateListComponent } from './components/Candidates/candidate-list/candidate-list.component'; // optional: for alerts
 
 @NgModule({
   declarations: [
@@ -41,7 +42,9 @@ import { LayoutComponent } from './components/layout/layout.component'; // optio
     AddEducationComponent,
     SkillsListComponent,
     AssignSkillComponent,
-    LayoutComponent
+    LayoutComponent,
+    LoginComponent,
+    CandidateListComponent
   ],
   imports: [
     BrowserModule,
@@ -49,6 +52,7 @@ import { LayoutComponent } from './components/layout/layout.component'; // optio
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
 
     // ✅ Angular Material UI Modules
     MatToolbarModule,

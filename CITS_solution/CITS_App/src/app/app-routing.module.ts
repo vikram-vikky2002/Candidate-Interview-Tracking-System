@@ -8,6 +8,8 @@ import { SkillsListComponent } from './components/Skills/skill-list/skill-list.c
 import { AssignSkillComponent } from './components/Skills/assign-skill/assign-skill.component';
 import { SearchInterviewsComponent } from './components/Utility/search-interviews/search-interviews.component';
 import { LayoutComponent } from './components/layout/layout.component';
+import { LoginComponent } from './components/login/login.component';
+import { CandidateListComponent } from './components/Candidates/candidate-list/candidate-list.component';
 
 
 const routes: Routes = [
@@ -15,6 +17,10 @@ const routes: Routes = [
     path: '',
     component: LayoutComponent,
     children: [
+      { path: 'login', component: LoginComponent },
+      { path: 'recruiter-dashboard', component: DashboardStatsComponent },
+      { path: 'interviewer-dashboard', component: DashboardStatsComponent },
+      { path: 'candidate-list', component: CandidateListComponent },
       { path: 'candidate-progress', component: CandidateProgressComponent },
       { path: 'dashboard-stats', component: DashboardStatsComponent },
       { path: 'search-interviews', component: SearchInterviewsComponent },

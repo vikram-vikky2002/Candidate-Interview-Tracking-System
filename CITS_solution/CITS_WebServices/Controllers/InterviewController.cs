@@ -57,7 +57,7 @@ namespace CITS_WebServices.Controllers
         }
 
         [HttpPost]
-        public IActionResult Schedule([FromBody] Models.Interview interview)
+        public IActionResult Schedule([FromBody] Interview interview)
         {
             try
             {

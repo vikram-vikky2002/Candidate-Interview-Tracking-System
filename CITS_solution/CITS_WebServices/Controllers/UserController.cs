@@ -1,4 +1,5 @@
 ﻿using CITS_DataAccessLayer;
+using CITS_WebServices.DTOs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -50,24 +51,25 @@ namespace CITS_WebServices.Controllers
         }
         //AuthenticateUser
         [HttpPost("AuthenticateUser")]
-        public IActionResult AuthenticateUser([FromBody] dynamic credentials)
+        public IActionResult AuthenticateUser([FromBody] LoginRequest credentials)
         {
             try
             {
-                string email = credentials.email;
-                string password = credentials.password;
-                var role = _repository.AuthenticateUser(email, password);
-                if (string.IsNullOrEmpty(role))
+                var user = _repository.AuthenticateUser(credentials.Email, credentials.Password);
+                if (user == null)
                 {
                     return Unauthorized("Invalid email or password");
                 }
-                return Ok(new { Role = role });
+
+                return Ok(user); // returns UserLogin DTO with FullName, Email, RoleId
             }
             catch (Exception ex)
             {
                 return StatusCode(500, "Internal server error: " + ex.Message);
             }
         }
+
+
         //AddUser
         [HttpPost("AddUser")]
         public IActionResult AddUser([FromBody] dynamic userData)

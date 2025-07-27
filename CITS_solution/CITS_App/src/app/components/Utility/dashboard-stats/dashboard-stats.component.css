@@ -40,3 +40,12 @@
 .bg-deep-purple {
   background-color: #673ab7;
 }
+
+.clickable {
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+  .clickable:hover {
+    transform: scale(1.02);
+  }

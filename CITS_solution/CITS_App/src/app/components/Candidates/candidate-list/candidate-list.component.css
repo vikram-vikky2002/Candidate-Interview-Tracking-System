@@ -1,0 +1,143 @@
+/* Root container */
+mat-card {
+  margin: 50px auto;
+  padding: 40px;
+  max-width: 1200px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+/* Section title */
+h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 30px;
+  letter-spacing: 0.5px;
+}
+
+/* Table container */
+table {
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Header row */
+th.mat-header-cell {
+  background: linear-gradient(to right, #f5f7fa, #e4ecf4);
+  font-size: 14px;
+  font-weight: 600;
+  color: #34495e;
+  padding: 16px 24px;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  border-bottom: 2px solid #dee2e6;
+}
+
+/* Data cells */
+td.mat-cell {
+  font-size: 15px;
+  color: #2d3436;
+  padding: 16px 24px;
+  border-bottom: 1px solid #ececec;
+  transition: background-color 0.2s ease-in-out, transform 0.15s ease;
+}
+
+/* Zebra striping */
+tr.mat-row:nth-child(even) td {
+  background-color: #fafbfc;
+}
+
+/* Hover effect */
+tr.mat-row:hover td {
+  background-color: #e8f0fe;
+  transform: scale(1.005);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+  border-radius: 8px;
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+/* Role badge styling */
+.role-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+  display: inline-block;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+  .role-badge.recruiter {
+    background-color: #42a5f5;
+  }
+
+  .role-badge.interviewer {
+    background-color: #7e57c2;
+  }
+
+  .role-badge.admin {
+    background-color: #ef5350;
+  }
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  mat-card {
+    padding: 20px;
+    margin: 20px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  th.mat-header-cell,
+  td.mat-cell {
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  table {
+    font-size: 13px;
+  }
+
+  th.mat-header-cell,
+  td.mat-cell {
+    padding: 10px 12px;
+  }
+
+  .role-badge {
+    font-size: 11px;
+    padding: 3px 8px;
+  }
+}
+
+/* Smooth fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -2,7 +2,7 @@
   <h2 class="dashboard-title">Dashboard Statistics</h2>
 
   <div *ngIf="stats" class="stats-grid">
-    <mat-card class="stat-tile mat-elevation-z2 bg-primary">
+    <mat-card class="stat-tile mat-elevation-z2 bg-primary clickable" (click)="goToCandidates()">
       <h3>Total Candidates</h3>
       <p>{{ stats.totalCandidates }}</p>
     </mat-card>
