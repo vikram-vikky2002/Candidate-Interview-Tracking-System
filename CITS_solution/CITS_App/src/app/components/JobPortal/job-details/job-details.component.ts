@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Job } from '../../../models/JobPortal/job';
-import { JobService } from '../../../services/job.service';
+import { JobService } from '../../../services/JobPortal/job.service';
 
 @Component({
   selector: 'app-job-details',

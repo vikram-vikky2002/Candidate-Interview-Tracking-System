@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Job, JobFilter } from '../../../models/JobPortal/job';
-import { JobService } from '../../../services/job.service';
+import { JobService } from '../../../services/JobPortal/job.service';
 
 @Component({
   selector: 'app-job-listing',

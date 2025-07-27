@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, FormArray, Validators, AbstractControl } from '
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Job, ApplicationFormData } from '../../../models/JobPortal/job';
-import { JobService } from '../../../services/job.service';
+import { JobService } from '../../../services/JobPortal/job.service';
 
 @Component({
   selector: 'app-job-application',
@@ -20,6 +20,7 @@ export class JobApplicationComponent implements OnInit {
   uploadedFile: File | null = null;
   fileError = '';
   isDragOver = false;
+  noExperience = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -41,12 +42,81 @@ export class JobApplicationComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       phone: ['', Validators.required],
       workExperience: this.formBuilder.array([this.createWorkExperienceGroup()]),
-      degree: ['', Validators.required],
-      school: ['', Validators.required],
-      graduationYear: ['', Validators.required],
+      degree: [''],
+      school: [''],
+      graduationYear: [''],
       technicalSkills: ['', Validators.required],
       yearsExperience: ['', Validators.required]
     });
+  }
+
+  toggleNoExperience(): void {
+    this.noExperience = !this.noExperience;
+  
+    const workExperienceArray = this.applicationForm.get('workExperience') as FormArray;
+  
+    if (this.noExperience) {
+      // Clear all work experience entries when "No Work Experience" is selected
+      while (workExperienceArray.length !== 0) {
+        workExperienceArray.removeAt(0);
+      }
+      this.disableWorkExperienceValidation();
+    } else {
+      // Add back one empty work experience group when toggled back
+      if (workExperienceArray.length === 0) {
+        workExperienceArray.push(this.createWorkExperienceGroup());
+      }
+      this.enableWorkExperienceValidation();
+    }
+  }
+
+  private disableWorkExperienceValidation(): void {
+    const workExpArray = this.applicationForm.get('workExperience') as FormArray;
+    
+    // Clear validators from the entire FormArray
+    workExpArray.clearValidators();
+    
+    // Also clear validators for each FormGroup inside (if any exist)
+    workExpArray.controls.forEach(group => {
+      group.clearValidators();
+      Object.values((group as FormGroup).controls).forEach(control => {
+        control.clearValidators();
+        control.updateValueAndValidity({ onlySelf: true });
+      });
+      group.updateValueAndValidity({ onlySelf: true });
+    });
+  
+    workExpArray.updateValueAndValidity();
+  }
+  
+  // Call this method when toggling back to "Has Experience"
+  private enableWorkExperienceValidation(): void {
+    const workExpArray = this.applicationForm.get('workExperience') as FormArray;
+    
+    // Set required validator on the FormArray itself (optional)
+    workExpArray.setValidators(Validators.required);
+  
+    // Restore validators for each FormGroup and controls inside
+    workExpArray.controls.forEach((group) => {
+      group.setValidators(Validators.required);
+      const fg = group as FormGroup;
+  
+      fg.get('company')?.setValidators(Validators.required);
+      fg.get('jobTitle')?.setValidators(Validators.required);
+      fg.get('startDate')?.setValidators(Validators.required);
+      // endDate is optional, so no validator
+      fg.get('responsibilities')?.setValidators(Validators.required);
+      // isCurrentJob is a boolean checkbox, typically no validator
+      
+      // Update validity for all controls
+      Object.values(fg.controls).forEach(control => {
+        control.updateValueAndValidity({ onlySelf: true });
+      });
+  
+      group.updateValueAndValidity({ onlySelf: true });
+    });
+  
+    workExpArray.updateValueAndValidity();
   }
 
   private createWorkExperienceGroup(): FormGroup {
@@ -193,7 +263,7 @@ export class JobApplicationComponent implements OnInit {
       // Reset submitting state after service handles submission
       setTimeout(() => {
         this.isSubmitting = false;
-      }, 2000);
+      }, 4000);
     } else {
       // Mark all fields as touched to show validation errors
       this.markFormGroupTouched(this.applicationForm);
@@ -211,18 +281,13 @@ export class JobApplicationComponent implements OnInit {
       fullName: formValue.fullName,
       email: formValue.email,
       phone: formValue.phone,
-      street: '', // Not in current form
-      city: '', // Not in current form
-      state: '', // Not in current form
-      zipCode: '', // Not in current form
       degree: formValue.degree,
       school: formValue.school,
       graduationYear: formValue.graduationYear,
       technicalSkills: formValue.technicalSkills,
       yearsExperience: formValue.yearsExperience,
       resumeUploaded: this.uploadedFile ? this.uploadedFile : null,
-      coverLetter: formValue.coverLetter,
-      workExperience: formValue.workExperience
+      workExperience: this.noExperience ? [] : formValue.workExperience,
     };
   }
 

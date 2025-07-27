@@ -10,7 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { JobListingComponent } from './components/JobPortal/job-listing/job-listing.component';
 import { JobDetailsComponent } from './components/JobPortal/job-details/job-details.component';
 import { JobApplicationComponent } from './components/JobPortal/job-application/job-application.component';
-import { JobService } from './services/job.service';
+import { JobService } from './services/JobPortal/job.service';
 
 // Your Components
 import { CandidateProgressComponent } from './components/Utility/candidate-progress/candidate-progress.component';

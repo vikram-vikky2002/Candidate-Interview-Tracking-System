@@ -1,7 +1,13 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { Job, JobFilter, ApplicationFormData } from '../models/JobPortal/job';
+import { BehaviorSubject, Observable, Subject, forkJoin, of } from 'rxjs';
+import { catchError, concatMap, switchMap, tap } from 'rxjs/operators';
+import { Job, JobFilter, ApplicationFormData } from '../../models/JobPortal/job';
 import { HttpClient } from '@angular/common/http';
+import { CandidateService } from '../Candidate/candidate.service';
+import { Candidate } from 'src/app/models/Candidate/candidate';
+import { Education } from 'src/app/models/Education/Education';
+import { Skill } from 'src/app/models/Skills/Skills';
+import { CandidateSkill } from 'src/app/models/Skills/CandidateSkill';
 
 @Injectable({
   providedIn: 'root'
@@ -233,7 +239,7 @@ export class JobService {
   private filteredJobsSubject = new BehaviorSubject<Job[]>(this.jobsData);
   public filteredJobs$ = this.filteredJobsSubject.asObservable();
 
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient, private candidateService: CandidateService) { }
 
   getAllJobs(): Job[] {
     return this.jobsData;
@@ -263,17 +269,124 @@ export class JobService {
   }
 
   submitApplication(applicationData: ApplicationFormData): void {
-    // Simulate API call
     console.log('Submitting application:', JSON.stringify(applicationData, null, 2));
-    
-    this.sendtoModel(applicationData.resumeUploaded!, JSON.stringify(this.jobsData[0]), JSON.stringify(applicationData)).subscribe(response => {
-      console.log(response);
+  
+    this.sendtoModel(
+      applicationData.resumeUploaded!, 
+      JSON.stringify(this.jobsData[0]), 
+      JSON.stringify(applicationData)
+    )
+    .pipe(
+      catchError((err) => {
+        console.error('Error in sendtoModel:', err);
+        return of(null); // handle error as needed
+      }),
+      switchMap(SuccessResponse => {
+        if (!SuccessResponse) {
+          throw new Error('Model response is null or failed');
+        }
+
+        console.log(SuccessResponse);
+  
+        const candidateData: Candidate = {
+          CandidateId: 0,
+          FullName: applicationData.fullName,
+          Email: applicationData.email,
+          Phone: applicationData.phone,
+          ExperienceYears: SuccessResponse.data.experience_years,
+          MatchPercentage: SuccessResponse.data.match_percentage,
+          Summary: SuccessResponse.data.summary,
+          CurrentStageId: 1,
+          AppliedFor: this.jobsData[0].title,
+          Status: "In Progress",
+          CreatedAt: new Date()
+        };
+
+        console.log(candidateData);
+  
+        return this.candidateService.addCandidate(candidateData).pipe(
+          catchError(err => {
+            console.error('Error adding candidate:', err);
+            return of(null);
+          }),
+          switchMap(SuccessResponse2 => {
+            if (!SuccessResponse2) {
+              throw new Error('Adding candidate failed');
+            }
+
+            console.log(SuccessResponse2);
+  
+            const educationData: Education = {
+              CandidateId: SuccessResponse2.candidateId,
+              Degree: SuccessResponse.data.education[0],
+              Institute: SuccessResponse.data.education[1],
+              Year: SuccessResponse.data.education[2]
+            };
+
+            console.log(educationData);
+  
+            return this.candidateService.addEducation(educationData).pipe(
+              catchError(err => {
+                console.error('Error adding education:', err);
+                return of(null);
+              }),
+              switchMap(SuccessResponse3 => {
+                if (!SuccessResponse3) {
+                  throw new Error('Adding education failed');
+                }
+
+                console.log(SuccessResponse3);
+  
+                // For skills: add each skill, then assign skill to candidate
+                const skillObservables = SuccessResponse.data.skills.map((skillName: string) => 
+                  this.candidateService.addSkill({ skillName }).pipe(
+                    catchError(err => {
+                      console.error(`Error adding skill ${skillName}:`, err);
+                      return of(null);
+                    }),
+                    switchMap(SuccessResponse4 => {
+                      if (!SuccessResponse4) {
+                        return of(null);
+                      }
+
+                      console.log(SuccessResponse4);
+
+                      const candidateSkill: CandidateSkill = {
+                        skillId: SuccessResponse4.skill.skillId,
+                        candidateId: SuccessResponse2.candidateId
+                      };
+
+                      console.log(candidateSkill);
+
+                      return this.candidateService.assignSkill(candidateSkill).pipe(
+                        catchError(err => {
+                          console.error('Error assigning skill:', err);
+                          return of(null);
+                        })
+                      );
+                    })
+                  )
+                );
+
+                console.log(skillObservables);
+  
+                // Wait for all skill adds+assigns to complete
+                return forkJoin(skillObservables);
+              })
+            );
+          })
+        );
+      })
+    )
+    .subscribe({
+      next: () => {
+        console.log('Candidate and related data added successfully.');
+        this.applicationSubmittedSubject.next();
+      },
+      error: err => {
+        console.error('Submit application process failed:', err);
+      }
     });
-    
-    // Emit event that application was submitted
-    setTimeout(() => {
-      this.applicationSubmittedSubject.next();
-    }, 2000);
   }
 
   sendtoModel(file: File, job_description: string, other_details: string) : Observable<any> {

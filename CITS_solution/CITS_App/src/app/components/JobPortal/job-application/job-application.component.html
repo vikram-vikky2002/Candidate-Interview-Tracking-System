@@ -59,7 +59,10 @@
         <!-- Work Experience Section -->
         <section class="form-section">
           <h3>Work Experience</h3>
-          <div formArrayName="workExperience">
+          <button type="button" class="btn btn--outline btn--sm" style="margin-bottom: 1rem;" (click)="toggleNoExperience()">
+            {{ noExperience ? 'I have Work Experience' : 'No Work Experience' }}
+          </button>
+          <div formArrayName="workExperience" *ngIf="!noExperience">
             <div 
               *ngFor="let experience of workExperienceControls; let i = index" 
               [formGroupName]="i" 
@@ -148,11 +151,14 @@
                 Remove
               </button>
             </div>
+            <button type="button" class="btn btn--outline" (click)="addWorkExperience()">
+                + Add Another Position
+            </button>
           </div>
           
-          <button type="button" class="btn btn--outline" (click)="addWorkExperience()">
+          <!-- <button type="button" class="btn btn--outline" (click)="addWorkExperience()">
             + Add Another Position
-          </button>
+          </button> -->
         </section>
   
         <!-- Education Section -->
@@ -160,33 +166,33 @@
           <h3>Education</h3>
           <div class="form-row">
             <div class="form-group">
-              <label class="form-label" for="degree">Degree *</label>
+              <label class="form-label" for="degree">Degree</label>
               <input 
                 type="text" 
                 id="degree" 
                 formControlName="degree" 
                 class="form-control"
                 [class.error]="isFieldInvalid('degree')">
-              <div class="error-message" [class.show]="isFieldInvalid('degree')">
+              <!-- <div class="error-message" [class.show]="isFieldInvalid('degree')">
                 Degree is required
-              </div>
+              </div> -->
             </div>
             <div class="form-group">
-              <label class="form-label" for="school">School/University *</label>
+              <label class="form-label" for="school">School/University</label>
               <input 
                 type="text" 
                 id="school" 
                 formControlName="school" 
                 class="form-control"
                 [class.error]="isFieldInvalid('school')">
-              <div class="error-message" [class.show]="isFieldInvalid('school')">
+              <!-- <div class="error-message" [class.show]="isFieldInvalid('school')">
                 School/University is required
-              </div>
+              </div> -->
             </div>
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label class="form-label" for="graduationYear">Graduation Year *</label>
+              <label class="form-label" for="graduationYear">Graduation Year</label>
               <input 
                 type="number" 
                 id="graduationYear" 
@@ -195,9 +201,9 @@
                 min="1950" 
                 max="2030"
                 [class.error]="isFieldInvalid('graduationYear')">
-              <div class="error-message" [class.show]="isFieldInvalid('graduationYear')">
+              <!-- <div class="error-message" [class.show]="isFieldInvalid('graduationYear')">
                 Graduation year is required
-              </div>
+              </div> -->
             </div>
           </div>
         </section>

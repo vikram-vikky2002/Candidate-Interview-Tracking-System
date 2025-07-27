@@ -26,6 +26,6 @@ export class EducationService {
     return this.http.delete<boolean>(`${this.baseUrl}/delete/${educationId}`);
   }
   updateEducation(education: Education): Observable<Education> {
-    return this.http.put<Education>(`${this.baseUrl}/update/${education.educationId}`, education);
+    return this.http.put<Education>(`${this.baseUrl}/update/${education.EducationId}`, education);
   }
 }

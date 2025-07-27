@@ -1,5 +1,5 @@
 // models/skill.model.ts
 export interface Skill {
-  skillId: number;
+  skillId?: number;
   skillName: string;
 }

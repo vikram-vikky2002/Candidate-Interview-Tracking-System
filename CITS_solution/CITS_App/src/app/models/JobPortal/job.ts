@@ -27,18 +27,13 @@ export interface Job {
     fullName: string;
     email: string;
     phone: string;
-    street: string;
-    city: string;
-    state: string;
-    zipCode: string;
     degree: string;
     school: string;
     graduationYear: string;
     technicalSkills: string;
     yearsExperience: string;
     resumeUploaded: File | null;
-    coverLetter: string;
-    workExperience: WorkExperience[];
+    workExperience?: WorkExperience[];
   }
   
   export interface JobFilter {

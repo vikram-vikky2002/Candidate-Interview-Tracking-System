@@ -66,13 +66,21 @@ namespace CITS_WebServices.Controllers
                     FullName = candidate.FullName,
                     Email = candidate.Email,
                     Phone = candidate.Phone,
+                    //ResumeLink = candidate.ResumeLink,
                     Status = candidate.Status,
+                    ExperienceYears = candidate.ExperienceYears,
+                    MatchPercentage = candidate.MatchPercentage,
+                    Summary = candidate.Summary,
+                    CurrentStageId = 1,
+                    AppliedFor = candidate.AppliedFor,
                     CreatedAt = DateTime.Now
                 };
 
                 var result = _repository.AddCandidate(newCandidate);
-                if (result)
+
+                if (result != -99)
                 {
+                    candidate.CandidateId = result;
                     return CreatedAtAction(nameof(GetCandidateById), new { candidateId = candidate.CandidateId }, candidate);
                 }
                 return BadRequest("Failed to add candidate.");
