@@ -1,0 +1,6 @@
+@CITS_APIGateway_HostAddress = http://localhost:5012
+
+GET {{CITS_APIGateway_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
