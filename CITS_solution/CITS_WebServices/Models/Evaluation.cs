@@ -18,8 +18,5 @@ public partial class Evaluation
     public string? Feedback { get; set; }
 
     public DateTime? EvaluatedAt { get; set; }
-
-    public virtual Candidate Candidate { get; set; } = null!;
-
-    public virtual Interview Interview { get; set; } = null!;
+    
 }

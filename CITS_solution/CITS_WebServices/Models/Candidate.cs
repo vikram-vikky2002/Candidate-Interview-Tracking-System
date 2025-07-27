@@ -28,14 +28,5 @@ public partial class Candidate
     public string? AppliedFor { get; set; }
 
     public DateTime? CreatedAt { get; set; }
-
-    public virtual ICollection<CandidateSkill> CandidateSkills { get; set; } = new List<CandidateSkill>();
-
-    public virtual InterviewStage? CurrentStage { get; set; }
-
-    public virtual ICollection<Education> Educations { get; set; } = new List<Education>();
-
-    public virtual ICollection<Evaluation> Evaluations { get; set; } = new List<Evaluation>();
-
-    public virtual ICollection<Interview> Interviews { get; set; } = new List<Interview>();
+    
 }

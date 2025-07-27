@@ -37,6 +37,16 @@ namespace CITS_WebServices.Controllers
         }
 
         [HttpGet]
+        public ActionResult<List<Interview>> GetAllInterviews()
+        {
+            var result = Repository.GetAllInterviews();
+            if (result == null)
+                return NotFound();
+
+            return Ok(result);
+        }
+
+        [HttpGet]
         public ActionResult<List<Interview>> GetUpcoming()
         {
             var result = Repository.GetUpcomingInterviewsByDate(DateTime.Now);
@@ -47,23 +57,52 @@ namespace CITS_WebServices.Controllers
         }
 
         [HttpPost]
-        public IActionResult Schedule([FromBody] Interview interview)
+        public IActionResult Schedule([FromBody] Models.Interview interview)
         {
-            bool isScheduled = Repository.ScheduleInterview(interview);
-            if (isScheduled)
-                return Ok("Interview scheduled successfully");
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    Interview interviewObj = new Interview();
+                    interviewObj.CandidateId = interview.CandidateId;
+                    interviewObj.ScheduledDateTime = interview.ScheduledDateTime;
+                    interviewObj.InterviewMode = interview.InterviewMode;
+                    interviewObj.InterviewerId = interview.InterviewerId;
+                    interviewObj.StageId = interview.StageId;
+                    interviewObj.Status = interview.Status;
 
-            return BadRequest("Failed to schedule interview");
+                    bool isScheduled = Repository.ScheduleInterview(interviewObj);
+                    
+                    if (isScheduled)
+                        return Ok("Interview scheduled successfully");
+
+                    return BadRequest("Interview unable to schedule..");
+                }
+
+                return BadRequest("Invalid input model");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Failed to schedule interview, Error : " + ex.Message);
+            }
         }
 
-        [HttpPut]
+        [HttpPost]
         public IActionResult UpdateStatus(int interviewId, string status)
         {
-            bool isUpdated = Repository.UpdateInterviewStatus(interviewId, status);
-            if (isUpdated)
-                return Ok("Status updated successfully");
+            try
+            {
+                bool isUpdated = Repository.UpdateInterviewStatus(interviewId, status);
 
-            return BadRequest("Failed to update interview status");
+                if (isUpdated)
+                    return Ok("Status updated successfully");
+
+                return BadRequest("Interview unable to update..");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Failed to update interview, Error : " + ex.Message);
+            }
         }
     }
 }

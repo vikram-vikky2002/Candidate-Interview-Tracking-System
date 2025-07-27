@@ -46,12 +46,14 @@ namespace CITS_DataAccessLayer
             }
             return user;
         }
-        public User GetUserByRole(string role)
+        public List<User> GetUserByRole(string role)
         {
-            User user = new User();
+            List<User> user = new List<User>();
             try
             {
-                user = Context.Users.FirstOrDefault(u => u.Role.RoleName == role);
+                user = Context.Users
+                    .Where(u => u.Role.RoleName == role)
+                    .ToList();
             }
             catch (Exception ex)
             {
