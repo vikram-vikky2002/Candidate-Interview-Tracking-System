@@ -317,10 +317,10 @@ export class JobService {
             console.log(SuccessResponse2);
   
             const educationData: Education = {
-              CandidateId: SuccessResponse2.candidateId,
-              Degree: SuccessResponse.data.education[0],
-              Institute: SuccessResponse.data.education[1],
-              Year: SuccessResponse.data.education[2]
+              candidateId: SuccessResponse2.candidateId,
+              degree: SuccessResponse.data.education[0],
+              institute: SuccessResponse.data.education[1],
+              year: SuccessResponse.data.education[2]
             };
 
             console.log(educationData);
