@@ -35,6 +35,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { LayoutComponent } from './components/layout/layout.component';
 import { InterviewEvaluationComponent } from './components/Interviewer/interview-evaluation/interview-evaluation.component'; // optional: for alerts
 import { InterviewCalendarComponent } from './components/Interviewer/interview-calendar/interview-calendar.component';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [
@@ -49,10 +50,9 @@ import { InterviewCalendarComponent } from './components/Interviewer/interview-c
     LayoutComponent,
     JobListingComponent,
     JobDetailsComponent,
-    JobApplicationComponent
-    LayoutComponent,
-    InterviewCalendarComponent,
-    InterviewEvaluationComponent
+    JobApplicationComponent,
+    InterviewEvaluationComponent,
+    InterviewCalendarComponent
   ],
   imports: [
     BrowserModule,
