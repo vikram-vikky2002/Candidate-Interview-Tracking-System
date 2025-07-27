@@ -1,6 +1,5 @@
 ﻿using CITS_DataAccessLayer;
 using CITS_DataAccessLayer.Models;
-using CITS_WebServices.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -53,7 +52,7 @@ namespace CITS_WebServices.Controllers
         }
         //Add Evaluation
         [HttpPost("AddEvaluation")]
-        public IActionResult AddEvaluation(Models.Evaluation evaluation)
+        public IActionResult AddEvaluation(Evaluation evaluation)
         {
             if (evaluation == null)
             {

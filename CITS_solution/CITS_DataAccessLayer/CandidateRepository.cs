@@ -1,4 +1,6 @@
-﻿using CITS_DataAccessLayer.Models;
+﻿using CITS_DataAccessLayer.DTOs;
+using CITS_DataAccessLayer.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,17 +17,18 @@ namespace CITS_DataAccessLayer
             _context = new CitsdbContext();
         }
         //GetAllCandidates
-        public List<Candidate> GetAllCandidates()
+        public List<CandidateListDTO> GetAllCandidates()
         {
-            List<Candidate> candidates = new List<Candidate>();
-            try
-            {
-                candidates = _context.Candidates.ToList();
-            }
-            catch (Exception ex)
-            {
-                candidates = null;
-            }
+            var candidates = _context.Users
+                .Include(u => u.Role) // Ensure Role is included
+                .Select(u => new CandidateListDTO
+                {
+                    FullName = u.FullName,
+                    Email = u.Email,
+                    RoleName = u.Role.RoleName
+                })
+                .ToList();
+
             return candidates;
         }
         //GetCandidateById
