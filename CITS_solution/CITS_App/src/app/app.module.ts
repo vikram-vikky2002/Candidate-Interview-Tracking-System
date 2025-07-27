@@ -1,11 +1,15 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+
+import { JobListingComponent } from './components/JobPortal/job-listing/job-listing.component';
+import { JobDetailsComponent } from './components/JobPortal/job-details/job-details.component';
+import { JobApplicationComponent } from './components/JobPortal/job-application/job-application.component';
+import { JobService } from './services/JobPortal/job.service';
 
 // Your Components
 import { CandidateProgressComponent } from './components/Utility/candidate-progress/candidate-progress.component';
@@ -31,6 +35,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { LayoutComponent } from './components/layout/layout.component';
 import { InterviewEvaluationComponent } from './components/Interviewer/interview-evaluation/interview-evaluation.component'; // optional: for alerts
 import { InterviewCalendarComponent } from './components/Interviewer/interview-calendar/interview-calendar.component';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [
@@ -43,8 +48,11 @@ import { InterviewCalendarComponent } from './components/Interviewer/interview-c
     SkillsListComponent,
     AssignSkillComponent,
     LayoutComponent,
-    InterviewCalendarComponent,
-    InterviewEvaluationComponent
+    JobListingComponent,
+    JobDetailsComponent,
+    JobApplicationComponent,
+    InterviewEvaluationComponent,
+    InterviewCalendarComponent
   ],
   imports: [
     BrowserModule,
@@ -52,6 +60,7 @@ import { InterviewCalendarComponent } from './components/Interviewer/interview-c
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
 
     // ✅ Angular Material UI Modules
     MatToolbarModule,

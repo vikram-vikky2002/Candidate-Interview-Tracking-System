@@ -46,17 +46,17 @@ namespace CITS_DataAccessLayer
             return candidate;
         }
         //AddCandidate
-        public bool AddCandidate(Candidate candidate)
+        public int AddCandidate(Candidate candidate)
         {
             try
             {
                 _context.Candidates.Add(candidate);
                 _context.SaveChanges();
-                return true;
+                return candidate.CandidateId;
             }
             catch (Exception ex)
             {
-                return false;
+                return -99;
             }
         }
         //UpdateCandidate

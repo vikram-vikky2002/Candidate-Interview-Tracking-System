@@ -32,15 +32,29 @@ namespace CITS_WebServices.Controllers
 
         // POST: api/education/add
         [HttpPost("add")]
-        public IActionResult AddEducation([FromBody] Education education)
+        public IActionResult AddEducation([FromBody] Models.Education education)
         {
             try
             {
-                var created = _repository.AddEducation(education);
+                if(ModelState.IsValid) 
+                {
+                    Education educationObj = new Education();
+                    educationObj.CandidateId = education.CandidateId;
+                    educationObj.Degree = education.Degree;
+                    educationObj.Institute = education.Institute;
+                    educationObj.Year = education.Year;
 
-                // Return 201 Created with the created record
-                return CreatedAtAction(nameof(GetEducationByCandidateId),
-                    new { candidateId = created.CandidateId }, created);
+                    var created = _repository.AddEducation(educationObj);
+
+                    // Return 201 Created with the created record
+                    return CreatedAtAction(nameof(GetEducationByCandidateId),
+                        new { candidateId = created.CandidateId }, created);
+                }
+                else
+                {
+                    return BadRequest("Invalid input");
+                }
+                
             }
             catch (Exception ex)
             {

@@ -50,7 +50,7 @@ CREATE TABLE Candidates (
     Match_Percentage FLOAT,
     Summary TEXT,
     CurrentStageID INT CONSTRAINT fk_Candidates_CurrentStageID FOREIGN KEY REFERENCES InterviewStages(StageID),
-    Status VARCHAR(50) NOT NULL CONSTRAINT chk_Candidates_Status CHECK (Status IN ('In Progress', 'Selected', 'Rejected')),
+    Status VARCHAR(50) NOT NULL CONSTRAINT chk_Candidates_Status CHECK (Status IN ('In Progress', 'Selected', 'Rejected', 'Applied')),
     AppliedFor VARCHAR(100),
     CreatedAt DATETIME CONSTRAINT def_Candidates_CreatedAt DEFAULT GETDATE()
 );

@@ -1,0 +1,70 @@
+<div class="job-details" *ngIf="job">
+    <div class="container">
+      <div class="back-nav">
+        <button class="btn btn--outline" (click)="goBack()">← Back to Jobs</button>
+      </div>
+      
+      <div class="job-details__content">
+        <div class="job-details__header">
+          <h1 class="job-details__title">{{ job.title }}</h1>
+          <div class="job-details__company">{{ job.company }}</div>
+          <div class="job-details__meta">
+            <span class="job-details__location">{{ job.location }}</span>
+            <span class="job-details__salary">{{ job.salary }}</span>
+            <span class="status job-details__type">{{ job.jobType }}</span>
+            <span class="status job-details__level">{{ job.experienceLevel }}</span>
+          </div>
+          <div class="job-details__posted">Posted: {{ formatDate(job.postedDate) }}</div>
+          <button class="btn btn--primary btn--lg" (click)="applyNow()">Apply Now</button>
+        </div>
+        
+        <div class="job-details__body">
+          <section class="job-section">
+            <h3>Job Description</h3>
+            <p class="job-details__description">{{ job.description }}</p>
+          </section>
+          
+          <section class="job-section">
+            <h3>Requirements</h3>
+            <ul class="job-details__requirements">
+              <li *ngFor="let requirement of job.requirements">{{ requirement }}</li>
+            </ul>
+          </section>
+          
+          <section class="job-section">
+            <h3>Responsibilities</h3>
+            <ul class="job-details__responsibilities">
+              <li *ngFor="let responsibility of job.responsibilities">{{ responsibility }}</li>
+            </ul>
+          </section>
+          
+          <section class="job-section">
+            <h3>Benefits</h3>
+            <ul class="job-details__benefits">
+              <li *ngFor="let benefit of job.benefits">{{ benefit }}</li>
+            </ul>
+          </section>
+          
+          <section class="job-section">
+            <h3>About the Company</h3>
+            <p class="job-details__company-overview">{{ job.companyOverview }}</p>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div *ngIf="!job && !loading" class="container">
+    <div class="job-not-found" style="text-align: center; padding: 2rem;">
+      <h2>Job Not Found</h2>
+      <p>The job you're looking for doesn't exist or has been removed.</p>
+      <button class="btn btn--primary" (click)="goBack()">Return to Job Listings</button>
+    </div>
+  </div>
+  
+  <div *ngIf="loading" class="container">
+    <div class="loading" style="text-align: center; padding: 2rem;">
+      <div class="loading-spinner"></div>
+      <p>Loading job details...</p>
+    </div>
+  </div>

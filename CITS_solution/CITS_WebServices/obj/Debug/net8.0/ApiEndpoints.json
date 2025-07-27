@@ -275,22 +275,6 @@
   },
   {
     "ContainingType": "CITS_WebServices.Controllers.InterviewController",
-    "Method": "GetInterviewById",
-    "RelativePath": "api/Interview/GetInterviewById/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "CITS_WebServices.Controllers.InterviewController",
     "Method": "GetUpcoming",
     "RelativePath": "api/Interview/GetUpcoming",
     "HttpMethod": "GET",
@@ -329,7 +313,7 @@
     "ContainingType": "CITS_WebServices.Controllers.InterviewController",
     "Method": "UpdateStatus",
     "RelativePath": "api/Interview/UpdateStatus",
-    "HttpMethod": "PUT",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [

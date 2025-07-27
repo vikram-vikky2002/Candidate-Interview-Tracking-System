@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { InterviewService } from './services/interview.service';
+import { InterviewService } from './services/Interview/interview.service';
 
 @Component({
   selector: 'app-root',

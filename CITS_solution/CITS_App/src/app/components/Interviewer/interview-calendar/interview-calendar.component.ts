@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Interview } from '../../../models/interview';
-import { InterviewService } from '../../../services/interview.service';
+import { InterviewService } from '../../../services/Interview/interview.service';
 
 @Component({
   selector: 'app-interview-calendar',

@@ -10,13 +10,11 @@ import { Router } from '@angular/router';
 })
 export class AddEducationComponent {
   education: Education = {
-    educationId: 0,
-    candidateId: 0,
-    degree: '',
-    university: '',
-    startDate: '', 
-    endDate: '',
-    grade:''
+    EducationId: 0,
+    CandidateId: 0,
+    Degree: '',
+    Institute: '',
+    Year: ''
   };
 
   constructor(private educationService: EducationService, private router: Router) { }

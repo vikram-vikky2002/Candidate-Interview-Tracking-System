@@ -1,0 +1,373 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/Candidate",
+      "UpstreamPathTemplate": "/cits/candidate",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7181
+        }
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Candidate/{candidateId}",
+      "UpstreamPathTemplate": "/cits/candidate/{candidateId}",
+      "UpstreamHttpMethod": [ "GET", "DELETE" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7181
+        }
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Candidate/GetCandidatesByStatus/{status}",
+      "UpstreamPathTemplate": "/cits/candidate/status/{status}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7181
+        }
+      ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/Education/candidate/{candidateId}",
+      "UpstreamPathTemplate": "/cits/education/candidate/{candidateId}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7181
+        }
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Education/add",
+      "UpstreamPathTemplate": "/cits/education/add",
+      "UpstreamHttpMethod": [ "POST" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7181
+        }
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Education/delete/{educationId}",
+      "UpstreamPathTemplate": "/cits/education/delete/{educationId}",
+      "UpstreamHttpMethod": [ "DELETE" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7181
+        }
+      ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/Evaluation/GetEvaluationsByCandidateId/{candidateId}",
+      "UpstreamPathTemplate": "/cits/evaluation/candidate/{candidateId}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7181
+        }
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Evaluation/GetEvaluationsByInterviewerId/{interviewerId}",
+      "UpstreamPathTemplate": "/cits/evaluation/interviewer/{interviewerId}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7181
+        }
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Evaluation/AddEvaluation",
+      "UpstreamPathTemplate": "/cits/evaluation/add",
+      "UpstreamHttpMethod": [ "POST" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7181
+        }
+      ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/Interview/GetByCandidateId",
+      "UpstreamPathTemplate": "/cits/interview/by-candidate",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7181
+        }
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Interview/GetByInterviewer",
+      "UpstreamPathTemplate": "/cits/interview/by-interviewer",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7181
+        }
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Interview/GetAllInterviews",
+      "UpstreamPathTemplate": "/cits/interview/all",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7181
+        }
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Interview/GetUpcoming",
+      "UpstreamPathTemplate": "/cits/interview/upcoming",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7181
+        }
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Interview/Schedule",
+      "UpstreamPathTemplate": "/cits/interview/schedule",
+      "UpstreamHttpMethod": [ "POST" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7181
+        }
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Interview/UpdateStatus",
+      "UpstreamPathTemplate": "/cits/interview/update-status",
+      "UpstreamHttpMethod": [ "POST" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7181
+        }
+      ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/Skills",
+      "UpstreamPathTemplate": "/cits/skills",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7181
+        }
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Skills/add",
+      "UpstreamPathTemplate": "/cits/skills/add",
+      "UpstreamHttpMethod": [ "POST" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7181
+        }
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Skills/assign",
+      "UpstreamPathTemplate": "/cits/skills/assign",
+      "UpstreamHttpMethod": [ "POST" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7181
+        }
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Skills/remove",
+      "UpstreamPathTemplate": "/cits/skills/remove",
+      "UpstreamHttpMethod": [ "DELETE" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7181
+        }
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Skills/candidate/{candidateId}",
+      "UpstreamPathTemplate": "/cits/skills/candidate/{candidateId}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7181
+        }
+      ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/User/GetUserById/{userId}",
+      "UpstreamPathTemplate": "/cits/user/{userId}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7181
+        }
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/User/GetUserByRole/{role}",
+      "UpstreamPathTemplate": "/cits/user/role/{role}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7181
+        }
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/User/AuthenticateUser",
+      "UpstreamPathTemplate": "/cits/user/authenticate",
+      "UpstreamHttpMethod": [ "POST" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7181
+        }
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/User/AddUser",
+      "UpstreamPathTemplate": "/cits/user/add",
+      "UpstreamHttpMethod": [ "POST" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7181
+        }
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/User/UpdateUser/{userId}",
+      "UpstreamPathTemplate": "/cits/user/update/{userId}",
+      "UpstreamHttpMethod": [ "PUT" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7181
+        }
+      ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/Utility/dashboard",
+      "UpstreamPathTemplate": "/cits/utility/dashboard",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7181
+        }
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Utility/progress/{candidateId}",
+      "UpstreamPathTemplate": "/cits/utility/progress/{candidateId}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7181
+        }
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Utility/search-interviews",
+      "UpstreamPathTemplate": "/cits/utility/search-interviews",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7181
+        }
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/health",
+      "UpstreamPathTemplate": "/cits/resume/check/health",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7183
+        }
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/parse",
+      "UpstreamPathTemplate": "/cits/resume/parse",
+      "UpstreamHttpMethod": [ "POST" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7183
+        }
+      ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:5000"
+  }
+}

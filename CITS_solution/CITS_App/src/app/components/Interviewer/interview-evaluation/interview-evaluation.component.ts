@@ -1,7 +1,7 @@
-  import { Component, OnInit } from '@angular/core';
-  import { ActivatedRoute, Router } from '@angular/router';
-  import { InterviewService } from '../../../services/interview.service';
-  import { Interview } from '../../../models/interview';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { InterviewService } from '../../../services/Interview/interview.service';
+import { Interview } from '../../../models/interview';
 import { Evaluation } from '../../../models/Evaluation/Evaluation';
 
   @Component({

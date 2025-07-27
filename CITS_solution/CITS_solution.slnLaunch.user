@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "CITS_WebServices\\CITS_WebServices.csproj",
+        "Action": "StartWithoutDebugging"
+      },
+      {
+        "Path": "CITS_APIGateway\\CITS_APIGateway.csproj",
+        "Action": "StartWithoutDebugging"
+      }
+    ]
+  }
+]
