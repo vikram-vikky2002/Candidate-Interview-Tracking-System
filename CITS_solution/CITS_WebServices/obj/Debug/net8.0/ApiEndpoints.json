@@ -19,7 +19,7 @@
     "Parameters": [
       {
         "Name": "candidate",
-        "Type": "CITS_WebServices.Models.Candidate",
+        "Type": "CITS_DataAccessLayer.Models.Candidate",
         "IsRequired": true
       }
     ],
@@ -35,7 +35,7 @@
     "Parameters": [
       {
         "Name": "candidate",
-        "Type": "CITS_WebServices.Models.Candidate",
+        "Type": "CITS_DataAccessLayer.Models.Candidate",
         "IsRequired": true
       }
     ],
@@ -147,7 +147,23 @@
     "Parameters": [
       {
         "Name": "evaluation",
-        "Type": "CITS_WebServices.Models.Evaluation",
+        "Type": "CITS_DataAccessLayer.Models.Evaluation",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CITS_WebServices.Controllers.EvaluationController",
+    "Method": "GetEvaluationByInterviewId",
+    "RelativePath": "api/Evaluation/GetEvaluationByInterviewId/{interviewId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "interviewId",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
@@ -287,7 +303,7 @@
     "Parameters": [
       {
         "Name": "interview",
-        "Type": "CITS_WebServices.Models.Interview",
+        "Type": "CITS_DataAccessLayer.Models.Interview",
         "IsRequired": true
       }
     ],
@@ -419,7 +435,7 @@
     "Parameters": [
       {
         "Name": "credentials",
-        "Type": "System.Object",
+        "Type": "CITS_WebServices.DTOs.LoginRequest",
         "IsRequired": true
       }
     ],

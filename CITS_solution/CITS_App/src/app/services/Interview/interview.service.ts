@@ -61,4 +61,23 @@ export class InterviewService {
     
     return this._http.post<any>(`https://localhost:7181/api/Evaluation/AddEvaluation`, evalue);
   }
+  getEvaluationByInterviewId(interviewId: number): Observable<Evaluation | null> {
+    return this._http.get<Evaluation>(`https://localhost:7181/api/Evaluation/GetEvaluationByInterviewId/${interviewId}`);
+  }
+
+
+
+  // 🔶 Get evaluations by candidateId
+  getEvaluationsByCandidateId(candidateId: number): Observable<Evaluation[]> {
+    return this._http.get<Evaluation[]>(
+      `https://localhost:7181/api/Evaluation/GetEvaluationsByCandidateId/${candidateId}`
+    );
+  }
+
+  // 🔶 Get evaluations by interviewerId
+  getEvaluationsByInterviewerId(interviewerId: number): Observable<Evaluation[]> {
+    return this._http.get<Evaluation[]>(
+      `https://localhost:7181/api/Evaluation/GetEvaluationsByInterviewerId/${interviewerId}`
+    );
+  }
 }

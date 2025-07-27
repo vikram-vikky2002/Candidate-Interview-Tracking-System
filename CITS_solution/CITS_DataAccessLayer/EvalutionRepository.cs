@@ -61,6 +61,10 @@ namespace CITS_DataAccessLayer
                 return new List<Evaluation>();
             }
         }
+        public Evaluation GetEvaluationByInterviewId(int interviewId)
+        {
+            return _context.Evaluations.FirstOrDefault(e => e.InterviewId == interviewId);
+        }
     }
 }
     
