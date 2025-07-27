@@ -32,4 +32,8 @@ export class InterviewService {
     return this._http.post<any>(`${this._apiUrl}/Schedule`, interview);
   }
 
+  updateInterview(interviewId: number, status: string) : Observable<any> {
+    return this._http.post<any>(`${this._apiUrl}/UpdateStatus?interviewId=${interviewId}&status=${status}`, null);
+  }
+
 }

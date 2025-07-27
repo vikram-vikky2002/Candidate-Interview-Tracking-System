@@ -21,6 +21,17 @@ namespace CITS_WebServices
                 }
             );
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAllOrigins",
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin()
+                               .AllowAnyMethod()
+                               .AllowAnyHeader();
+                    });
+            });
+
             builder.Services.AddTransient<InterviewRepository>();
 
             var app = builder.Build();
@@ -33,6 +44,8 @@ namespace CITS_WebServices
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors("AllowAllOrigins");
 
             app.UseAuthorization();
 

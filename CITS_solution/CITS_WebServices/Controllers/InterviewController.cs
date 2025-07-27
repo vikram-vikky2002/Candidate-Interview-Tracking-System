@@ -87,7 +87,7 @@ namespace CITS_WebServices.Controllers
             }
         }
 
-        [HttpPut]
+        [HttpPost]
         public IActionResult UpdateStatus(int interviewId, string status)
         {
             try
