@@ -173,17 +173,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Education"
+                "$ref": "#/components/schemas/CITS_WebServices.Models.Education"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Education"
+                "$ref": "#/components/schemas/CITS_WebServices.Models.Education"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Education"
+                "$ref": "#/components/schemas/CITS_WebServices.Models.Education"
               }
             }
           }
@@ -414,6 +414,29 @@
         }
       }
     },
+    "/api/Interview/GetInterviewById/{id}": {
+      "get": {
+        "tags": [
+          "Interview"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Interview/GetAllInterviews": {
       "get": {
         "tags": [
@@ -522,7 +545,7 @@
       }
     },
     "/api/Interview/UpdateStatus": {
-      "post": {
+      "put": {
         "tags": [
           "Interview"
         ],
@@ -1267,6 +1290,33 @@
           "skillId": {
             "type": "integer",
             "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CITS_WebServices.Models.Education": {
+        "type": "object",
+        "properties": {
+          "educationId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "candidateId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "degree": {
+            "type": "string",
+            "nullable": true
+          },
+          "institute": {
+            "type": "string",
+            "nullable": true
+          },
+          "year": {
+            "type": "string",
             "nullable": true
           }
         },

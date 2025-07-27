@@ -8,13 +8,25 @@ import { Router } from '@angular/router';
   styleUrls: ['./dashboard-stats.component.css']
 })
 export class DashboardStatsComponent implements OnInit {
-  stats: any;
-
+  stats: any = {
+    totalCandidates: 0,
+    interviewsScheduled: 0,
+    selectedCandidates: 0,
+    rejectedCandidates: 0
+  }
+//  "totalCandidates": 2,
+//  "interviewsScheduled": 0,
+//  "selectedCandidates": 0,
+//  "rejectedCandidates": 0
+//}
   constructor(private utilityService: UtilityService, private _router: Router) { }
 
   ngOnInit() {
     this.utilityService.getDashboardStats().subscribe({
-      next: data => this.stats = data,
+      next: data => {
+        this.stats = data
+        console.log(data)
+      },
       error: err => console.error('Error fetching stats', err)
     });
   }

@@ -36,10 +36,12 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { InterviewEvaluationComponent } from './components/Interviewer/interview-evaluation/interview-evaluation.component'; // optional: for alerts
 import { InterviewCalendarComponent } from './components/Interviewer/interview-calendar/interview-calendar.component';
 import { BrowserModule } from '@angular/platform-browser';
+import { CandidateListComponent } from './components/Candidates/candidate-list/candidate-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    CandidateListComponent,
     CandidateProgressComponent,
     DashboardStatsComponent,
     SearchInterviewsComponent,

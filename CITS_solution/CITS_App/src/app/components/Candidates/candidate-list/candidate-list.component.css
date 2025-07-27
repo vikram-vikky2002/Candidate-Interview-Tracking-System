@@ -3,7 +3,7 @@ mat-card {
   margin: 50px auto;
   padding: 40px;
   max-width: 1200px;
-  background: #ffffff;
+  background: #2d3436;
   border-radius: 16px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   overflow: hidden;
@@ -50,7 +50,7 @@ th.mat-header-cell {
 /* Data cells */
 td.mat-cell {
   font-size: 15px;
-  color: #2d3436;
+  color: #2c3e50;
   padding: 16px 24px;
   border-bottom: 1px solid #ececec;
   transition: background-color 0.2s ease-in-out, transform 0.15s ease;
@@ -58,7 +58,7 @@ td.mat-cell {
 
 /* Zebra striping */
 tr.mat-row:nth-child(even) td {
-  background-color: #fafbfc;
+  background-color: #42a5f5;
 }
 
 /* Hover effect */
