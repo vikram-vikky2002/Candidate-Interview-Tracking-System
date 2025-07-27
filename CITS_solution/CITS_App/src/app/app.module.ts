@@ -50,6 +50,7 @@ import { CandidateListComponent } from './components/Candidates/candidate-list/c
     SkillsListComponent,
     AssignSkillComponent,
     LayoutComponent,
+    CandidateListComponent,
     JobListingComponent,
     JobDetailsComponent,
     JobApplicationComponent,
