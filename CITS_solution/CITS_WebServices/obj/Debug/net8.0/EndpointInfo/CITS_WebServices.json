@@ -24,17 +24,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Candidate"
+                "$ref": "#/components/schemas/CITS_WebServices.Models.Candidate"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Candidate"
+                "$ref": "#/components/schemas/CITS_WebServices.Models.Candidate"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Candidate"
+                "$ref": "#/components/schemas/CITS_WebServices.Models.Candidate"
               }
             }
           }
@@ -53,17 +53,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Candidate"
+                "$ref": "#/components/schemas/CITS_WebServices.Models.Candidate"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Candidate"
+                "$ref": "#/components/schemas/CITS_WebServices.Models.Candidate"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Candidate"
+                "$ref": "#/components/schemas/CITS_WebServices.Models.Candidate"
               }
             }
           }
@@ -141,6 +141,83 @@
         }
       }
     },
+    "/api/Education/candidate/{candidateId}": {
+      "get": {
+        "tags": [
+          "Education"
+        ],
+        "parameters": [
+          {
+            "name": "candidateId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Education/add": {
+      "post": {
+        "tags": [
+          "Education"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Education"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Education"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Education"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Education/delete/{educationId}": {
+      "delete": {
+        "tags": [
+          "Education"
+        ],
+        "parameters": [
+          {
+            "name": "educationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Evaluation/GetEvaluationsByCandidateId/{candidateId}": {
       "get": {
         "tags": [
@@ -196,21 +273,380 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Evaluation"
+                "$ref": "#/components/schemas/CITS_WebServices.Models.Evaluation"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Evaluation"
+                "$ref": "#/components/schemas/CITS_WebServices.Models.Evaluation"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Evaluation"
+                "$ref": "#/components/schemas/CITS_WebServices.Models.Evaluation"
               }
             }
           }
         },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Interview/GetByCandidateId": {
+      "get": {
+        "tags": [
+          "Interview"
+        ],
+        "parameters": [
+          {
+            "name": "candidateId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Interview"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Interview"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Interview"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Interview/GetByInterviewer": {
+      "get": {
+        "tags": [
+          "Interview"
+        ],
+        "parameters": [
+          {
+            "name": "interviewerId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Interview"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Interview"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Interview"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Interview/GetAllInterviews": {
+      "get": {
+        "tags": [
+          "Interview"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Interview"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Interview"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Interview"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Interview/GetUpcoming": {
+      "get": {
+        "tags": [
+          "Interview"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Interview"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Interview"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Interview"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Interview/Schedule": {
+      "post": {
+        "tags": [
+          "Interview"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CITS_WebServices.Models.Interview"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CITS_WebServices.Models.Interview"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CITS_WebServices.Models.Interview"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Interview/UpdateStatus": {
+      "post": {
+        "tags": [
+          "Interview"
+        ],
+        "parameters": [
+          {
+            "name": "interviewId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Skills": {
+      "get": {
+        "tags": [
+          "Skills"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Skills/add": {
+      "post": {
+        "tags": [
+          "Skills"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CITS_WebServices.Models.Skill"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CITS_WebServices.Models.Skill"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CITS_WebServices.Models.Skill"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Skills/assign": {
+      "post": {
+        "tags": [
+          "Skills"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CITS_WebServices.Models.CandidateSkill"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CITS_WebServices.Models.CandidateSkill"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CITS_WebServices.Models.CandidateSkill"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Skills/remove": {
+      "delete": {
+        "tags": [
+          "Skills"
+        ],
+        "parameters": [
+          {
+            "name": "candidateId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "skillId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Skills/candidate/{candidateId}": {
+      "get": {
+        "tags": [
+          "Skills"
+        ],
+        "parameters": [
+          {
+            "name": "candidateId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -348,11 +784,83 @@
           }
         }
       }
+    },
+    "/api/Utility/dashboard": {
+      "get": {
+        "tags": [
+          "Utility"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Utility/progress/{candidateId}": {
+      "get": {
+        "tags": [
+          "Utility"
+        ],
+        "parameters": [
+          {
+            "name": "candidateId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Utility/search-interviews": {
+      "get": {
+        "tags": [
+          "Utility"
+        ],
+        "parameters": [
+          {
+            "name": "from",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "interviewerEmail",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
-      "Candidate": {
+      "CITS_DataAccessLayer.Models.Candidate": {
         "type": "object",
         "properties": {
           "candidateId": {
@@ -410,38 +918,38 @@
           "candidateSkills": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/CandidateSkill"
+              "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.CandidateSkill"
             },
             "nullable": true
           },
           "currentStage": {
-            "$ref": "#/components/schemas/InterviewStage"
+            "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.InterviewStage"
           },
           "educations": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Education"
+              "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Education"
             },
             "nullable": true
           },
           "evaluations": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Evaluation"
+              "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Evaluation"
             },
             "nullable": true
           },
           "interviews": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Interview"
+              "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Interview"
             },
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "CandidateSkill": {
+      "CITS_DataAccessLayer.Models.CandidateSkill": {
         "type": "object",
         "properties": {
           "id": {
@@ -459,15 +967,15 @@
             "nullable": true
           },
           "candidate": {
-            "$ref": "#/components/schemas/Candidate"
+            "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Candidate"
           },
           "skill": {
-            "$ref": "#/components/schemas/Skill"
+            "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Skill"
           }
         },
         "additionalProperties": false
       },
-      "Education": {
+      "CITS_DataAccessLayer.Models.Education": {
         "type": "object",
         "properties": {
           "educationId": {
@@ -492,12 +1000,12 @@
             "nullable": true
           },
           "candidate": {
-            "$ref": "#/components/schemas/Candidate"
+            "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Candidate"
           }
         },
         "additionalProperties": false
       },
-      "Evaluation": {
+      "CITS_DataAccessLayer.Models.Evaluation": {
         "type": "object",
         "properties": {
           "evaluationId": {
@@ -531,15 +1039,15 @@
             "nullable": true
           },
           "candidate": {
-            "$ref": "#/components/schemas/Candidate"
+            "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Candidate"
           },
           "interview": {
-            "$ref": "#/components/schemas/Interview"
+            "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Interview"
           }
         },
         "additionalProperties": false
       },
-      "Interview": {
+      "CITS_DataAccessLayer.Models.Interview": {
         "type": "object",
         "properties": {
           "interviewId": {
@@ -572,25 +1080,25 @@
             "nullable": true
           },
           "candidate": {
-            "$ref": "#/components/schemas/Candidate"
+            "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Candidate"
           },
           "evaluations": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Evaluation"
+              "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Evaluation"
             },
             "nullable": true
           },
           "interviewer": {
-            "$ref": "#/components/schemas/User"
+            "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.User"
           },
           "stage": {
-            "$ref": "#/components/schemas/InterviewStage"
+            "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.InterviewStage"
           }
         },
         "additionalProperties": false
       },
-      "InterviewStage": {
+      "CITS_DataAccessLayer.Models.InterviewStage": {
         "type": "object",
         "properties": {
           "stageId": {
@@ -604,21 +1112,21 @@
           "candidates": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Candidate"
+              "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Candidate"
             },
             "nullable": true
           },
           "interviews": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Interview"
+              "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Interview"
             },
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "Role": {
+      "CITS_DataAccessLayer.Models.Role": {
         "type": "object",
         "properties": {
           "roleId": {
@@ -632,14 +1140,14 @@
           "users": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/User"
+              "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.User"
             },
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "Skill": {
+      "CITS_DataAccessLayer.Models.Skill": {
         "type": "object",
         "properties": {
           "skillId": {
@@ -653,14 +1161,14 @@
           "candidateSkills": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/CandidateSkill"
+              "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.CandidateSkill"
             },
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "User": {
+      "CITS_DataAccessLayer.Models.User": {
         "type": "object",
         "properties": {
           "userId": {
@@ -691,12 +1199,175 @@
           "interviews": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Interview"
+              "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Interview"
             },
             "nullable": true
           },
           "role": {
-            "$ref": "#/components/schemas/Role"
+            "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Role"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CITS_WebServices.Models.Candidate": {
+        "type": "object",
+        "properties": {
+          "candidateId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "fullName": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true
+          },
+          "resumeLink": {
+            "type": "string",
+            "nullable": true
+          },
+          "experienceYears": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "matchPercentage": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "summary": {
+            "type": "string",
+            "nullable": true
+          },
+          "currentStageId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "appliedFor": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CITS_WebServices.Models.CandidateSkill": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "candidateId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "skillId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CITS_WebServices.Models.Evaluation": {
+        "type": "object",
+        "properties": {
+          "evaluationId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "candidateId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "interviewId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "evaluationType": {
+            "type": "string",
+            "nullable": true
+          },
+          "score": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "feedback": {
+            "type": "string",
+            "nullable": true
+          },
+          "evaluatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CITS_WebServices.Models.Interview": {
+        "type": "object",
+        "properties": {
+          "interviewId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "candidateId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "scheduledDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "interviewMode": {
+            "type": "string",
+            "nullable": true
+          },
+          "interviewerId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "stageId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CITS_WebServices.Models.Skill": {
+        "type": "object",
+        "properties": {
+          "skillId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "skillName": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
