@@ -1,12 +1,16 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+
+import { JobListingComponent } from './components/JobPortal/job-listing/job-listing.component';
+import { JobDetailsComponent } from './components/JobPortal/job-details/job-details.component';
+import { JobApplicationComponent } from './components/JobPortal/job-application/job-application.component';
+import { JobService } from './services/job.service';
 
 // Your Components
 import { CandidateProgressComponent } from './components/Utility/candidate-progress/candidate-progress.component';
@@ -29,7 +33,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { LayoutComponent } from './components/layout/layout.component'; // optional: for alerts
+import { LayoutComponent } from './components/layout/layout.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +45,10 @@ import { LayoutComponent } from './components/layout/layout.component'; // optio
     AddEducationComponent,
     SkillsListComponent,
     AssignSkillComponent,
-    LayoutComponent
+    LayoutComponent,
+    JobListingComponent,
+    JobDetailsComponent,
+    JobApplicationComponent
   ],
   imports: [
     BrowserModule,
@@ -49,6 +56,7 @@ import { LayoutComponent } from './components/layout/layout.component'; // optio
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
 
     // ✅ Angular Material UI Modules
     MatToolbarModule,

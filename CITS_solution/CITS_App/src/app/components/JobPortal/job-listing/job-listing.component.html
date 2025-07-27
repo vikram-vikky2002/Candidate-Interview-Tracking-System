@@ -1,0 +1,78 @@
+<div class="job-listing">
+    <div class="container">
+      <div class="search-section">
+        <h2>Find Your Next Career Opportunity</h2>
+        <div class="search-controls">
+          <div class="search-bar">
+            <input 
+              type="text" 
+              [(ngModel)]="searchFilter.searchTitle" 
+              (input)="onFilterChange()" 
+              class="form-control" 
+              placeholder="Search by job title...">
+            <input 
+              type="text" 
+              [(ngModel)]="searchFilter.searchLocation" 
+              (input)="onFilterChange()" 
+              class="form-control" 
+              placeholder="Search by location...">
+            <button class="btn btn--primary" (click)="onFilterChange()">Search</button>
+          </div>
+          <div class="filters">
+            <select 
+              [(ngModel)]="searchFilter.jobType" 
+              (change)="onFilterChange()" 
+              class="form-control">
+              <option value="">All Job Types</option>
+              <option value="Full-time">Full-time</option>
+              <option value="Part-time">Part-time</option>
+            </select>
+            <select 
+              [(ngModel)]="searchFilter.experienceLevel" 
+              (change)="onFilterChange()" 
+              class="form-control">
+              <option value="">All Experience Levels</option>
+              <option value="Entry-level">Entry-level</option>
+              <option value="Mid-level">Mid-level</option>
+              <option value="Senior">Senior</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      
+      <div class="jobs-grid">
+        <div 
+          *ngFor="let job of filteredJobs$ | async; trackBy: trackByJobId" 
+          class="job-card card" 
+          (click)="viewJobDetails(job.id)"
+          (keypress)="onJobCardKeyPress($event, job.id)"
+          tabindex="0"
+          role="button"
+          [attr.aria-label]="'View details for ' + job.title + ' at ' + job.company">
+          
+          <div class="card__body">
+            <div class="job-card__header">
+              <h3 class="job-card__title">{{ job.title }}</h3>
+              <div class="job-card__company">{{ job.company }}</div>
+              <div class="job-card__location">{{ job.location }}</div>
+            </div>
+            <div class="job-card__details">
+              <div class="job-card__salary">{{ job.salary }}</div>
+              <div class="job-card__meta">
+                <span class="status job-card__type">{{ job.jobType }}</span>
+                <span class="status job-card__level">{{ job.experienceLevel }}</span>
+              </div>
+              <div class="job-card__posted">Posted: {{ formatDate(job.postedDate) }}</div>
+            </div>
+          </div>
+        </div>
+        
+        <div 
+          *ngIf="(filteredJobs$ | async)?.length === 0" 
+          class="no-jobs" 
+          style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: var(--color-text-secondary);">
+          <p>No jobs found matching your criteria.</p>
+        </div>
+      </div>
+    </div>
+  </div>

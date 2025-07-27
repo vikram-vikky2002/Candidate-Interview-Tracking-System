@@ -69,17 +69,20 @@ def extract_text_from_docx(filepath: str) -> str:
         print(f"Error extracting text from DOCX: {e}")
         return ""
 
-def extract_skills_with_gemini(text: str, job_description: str = "") -> dict:
+def extract_skills_with_gemini(text: str, job_description: str = "", other_details: str = "") -> dict:
     """
     Use Gemini AI to extract skills and other relevant information from resume text.
     """
     try:
         prompt = """
-        Analyze the following resume text and extract the following information in JSON format:
+        Analyze the following resume text and other details 
+        """ + other_details + """
+        
+        and then extract the following information in JSON format:
         {
             "skills": ["list", "of", "technical", "skills"],
-            "experience_years": 0,
-            "education": ["degree", "institution", "year"],
+            "experience_years": 0 (related to the job description),
+            "education": ["highest degree", "institution", "year of passing"],
             "summary": "brief professional summary"
         }
         
@@ -93,7 +96,7 @@ def extract_skills_with_gemini(text: str, job_description: str = "") -> dict:
             """ + job_description[:5000]  # Limit job description length
         
         response = model.generate_content(prompt)
-        print("Gemini Response:", response.text)
+        # print("Gemini Response:", response.text)
         
         try:
             # Try to parse the response as JSON
@@ -168,6 +171,7 @@ async def parse_resume():
     
     file = request.files['file']
     job_description = request.form.get('job_description', '')
+    other_details = request.form.get('other_details', '')
     
     if file.filename == '':
         return jsonify({'error': 'No selected file'}), 400
@@ -201,9 +205,9 @@ async def parse_resume():
             print(f"Error removing file: {e}")
         
         # Extract information using Gemini AI
-        gemini_response = extract_skills_with_gemini(text, job_description)
+        gemini_response = extract_skills_with_gemini(text, job_description, other_details)
 
-        print("Gemini Response:", gemini_response)
+        # print("Gemini Response:", gemini_response)
         
         # Fallback to basic extraction if Gemini fails
         if not gemini_response or 'skills' not in gemini_response:

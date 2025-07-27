@@ -8,6 +8,9 @@ import { SkillsListComponent } from './components/Skills/skill-list/skill-list.c
 import { AssignSkillComponent } from './components/Skills/assign-skill/assign-skill.component';
 import { SearchInterviewsComponent } from './components/Utility/search-interviews/search-interviews.component';
 import { LayoutComponent } from './components/layout/layout.component';
+import { JobListingComponent } from './components/JobPortal/job-listing/job-listing.component';
+import { JobDetailsComponent } from './components/JobPortal/job-details/job-details.component';
+import { JobApplicationComponent } from './components/JobPortal/job-application/job-application.component';
 
 
 const routes: Routes = [
@@ -21,8 +24,20 @@ const routes: Routes = [
       { path: 'education-list', component: EducationListComponent },
       { path: 'add-education', component: AddEducationComponent },
       { path: 'skills-list', component: SkillsListComponent },
+      // { path: 'jobs', component: JobListingComponent },
+      // { path: 'job/:id', component: JobDetailsComponent },      // <-- This is important
+      // { path: 'apply/:id', component: JobApplicationComponent },
       { path: 'assign-skill', component: AssignSkillComponent },
       { path: '', redirectTo: 'dashboard-stats', pathMatch: 'full' } // default route
+    ]
+  },
+  {
+    path: '',
+    children: [
+      { path: 'jobs', component: JobListingComponent },
+      { path: 'job/:id', component: JobDetailsComponent },      // <-- This is important
+      { path: 'apply/:id', component: JobApplicationComponent },
+      { path: '', redirectTo: 'job', pathMatch: 'full' } // default route
     ]
   }
 ];
