@@ -21,4 +21,8 @@
     <ProjectReference Include="..\CITS_DataAccessLayer\CITS_DataAccessLayer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
 </Project>
