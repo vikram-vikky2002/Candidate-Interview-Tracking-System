@@ -11,6 +11,8 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { JobListingComponent } from './components/JobPortal/job-listing/job-listing.component';
 import { JobDetailsComponent } from './components/JobPortal/job-details/job-details.component';
 import { JobApplicationComponent } from './components/JobPortal/job-application/job-application.component';
+import { InterviewEvaluationComponent } from './components/Interviewer/interview-evaluation/interview-evaluation.component';
+import { InterviewCalendarComponent } from './components/Interviewer/interview-calendar/interview-calendar.component';
 
 
 const routes: Routes = [
@@ -28,6 +30,8 @@ const routes: Routes = [
       // { path: 'job/:id', component: JobDetailsComponent },      // <-- This is important
       // { path: 'apply/:id', component: JobApplicationComponent },
       { path: 'assign-skill', component: AssignSkillComponent },
+      { path: 'evaluate/:interviewId', component: InterviewEvaluationComponent },
+      { path: 'interviewer-calendar', component: InterviewCalendarComponent },
       { path: '', redirectTo: 'dashboard-stats', pathMatch: 'full' } // default route
     ]
   },

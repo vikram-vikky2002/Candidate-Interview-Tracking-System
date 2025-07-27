@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { JobListingComponent } from './components/JobPortal/job-listing/job-listing.component';
@@ -34,6 +33,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { LayoutComponent } from './components/layout/layout.component';
+import { InterviewEvaluationComponent } from './components/Interviewer/interview-evaluation/interview-evaluation.component'; // optional: for alerts
+import { InterviewCalendarComponent } from './components/Interviewer/interview-calendar/interview-calendar.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,9 @@ import { LayoutComponent } from './components/layout/layout.component';
     JobListingComponent,
     JobDetailsComponent,
     JobApplicationComponent
+    LayoutComponent,
+    InterviewCalendarComponent,
+    InterviewEvaluationComponent
   ],
   imports: [
     BrowserModule,

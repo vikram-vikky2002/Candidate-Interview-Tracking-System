@@ -1,6 +1,5 @@
 ﻿using CITS_DataAccessLayer;
 using CITS_DataAccessLayer.Models;
-using CITS_WebServices.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -53,7 +52,7 @@ namespace CITS_WebServices.Controllers
         }
         //AddCandidate
         [HttpPost]
-        public IActionResult AddCandidate(Models.Candidate candidate)
+        public IActionResult AddCandidate(Candidate candidate)
         {
             if (candidate == null)
             {
@@ -92,7 +91,7 @@ namespace CITS_WebServices.Controllers
         }
         //UpdateCandidate
         [HttpPut]
-        public IActionResult UpdateCandidate(Models.Candidate candidate)
+        public IActionResult UpdateCandidate(Candidate candidate)
         {
             bool result = false;
             try

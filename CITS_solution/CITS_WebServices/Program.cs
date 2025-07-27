@@ -1,4 +1,3 @@
-
 using CITS_DataAccessLayer;
 
 namespace CITS_WebServices
@@ -10,9 +9,9 @@ namespace CITS_WebServices
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+            // Enable CORS for Angular client
             builder.Services.AddCors(options =>
             {
                 options.AddPolicy("AllowAngularClient",
@@ -21,24 +20,10 @@ namespace CITS_WebServices
                                     .AllowAnyMethod());
             });
 
-
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen(
-                c =>
-                {
-                    c.CustomSchemaIds(type => type.FullName);
-                }
-            );
-
-            builder.Services.AddCors(options =>
+            builder.Services.AddSwaggerGen(c =>
             {
-                options.AddPolicy("AllowAllOrigins",
-                    builder =>
-                    {
-                        builder.AllowAnyOrigin()
-                               .AllowAnyMethod()
-                               .AllowAnyHeader();
-                    });
+                c.CustomSchemaIds(type => type.FullName);
             });
 
             builder.Services.AddTransient<InterviewRepository>();
@@ -51,15 +36,12 @@ namespace CITS_WebServices
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
+            // Enable CORS (must be before UseAuthorization)
             app.UseCors("AllowAngularClient");
 
-
             app.UseHttpsRedirection();
-
-            app.UseCors("AllowAllOrigins");
-
             app.UseAuthorization();
-
 
             app.MapControllers();
 

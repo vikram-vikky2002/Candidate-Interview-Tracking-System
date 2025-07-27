@@ -1,4 +1,5 @@
-﻿using CITS_DataAccessLayer.Models;
+﻿using CITS_DataAccessLayer.DTOs;
+using CITS_DataAccessLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,23 +16,22 @@ namespace CITS_DataAccessLayer
             Context = new CitsdbContext();
         }
 
-        public string AuthenticateUser(string email, string password)
+        public UserLoginDTO AuthenticateUser(string email, string password)
         {
-            string role = string.Empty;
-            try
+            var user = Context.Users.FirstOrDefault(u => u.Email == email && u.PasswordHash == password);
+            if (user != null)
             {
-                var user = Context.Users.FirstOrDefault(u => u.Email == email && u.PasswordHash == password);
-                if (user != null)
+                return new UserLoginDTO
                 {
-                    role = user.Role.RoleName;
-                }
+                    FullName = user.FullName,
+                    Email = user.Email,
+                    RoleId = user.RoleId
+                };
             }
-            catch (Exception ex)
-            {
-                role = string.Empty;
-            }
-            return role;
+
+            return null;
         }
+
 
         public User GetUserById(int userId)
         {

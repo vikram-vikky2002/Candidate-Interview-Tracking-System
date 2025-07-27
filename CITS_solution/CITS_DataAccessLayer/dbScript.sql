@@ -122,3 +122,68 @@ select * from CandidateSkills;
 select * from Interviews;
 select * from Evaluations;
     
+
+--    INSERT INTO Roles (RoleName) VALUES 
+--('Admin'),
+--('Recruiter'),
+--('Interviewer');
+
+--INSERT INTO Users (FullName, Email, PasswordHash, RoleID)
+--VALUES 
+--('Amit Sinha', 'amit@interview.com', 'hashed123', 3),
+--('Neha Rao', 'neha@interview.com', 'hashed123', 3),
+--('Admin User', 'admin@cits.com', 'adminpass', 1);
+
+--INSERT INTO InterviewStages (StageName)
+--VALUES 
+--('Resume Screening'),
+--('Technical Round 1'),
+--('Technical Round 2'),
+--('HR Interview');
+
+--INSERT INTO Candidates (FullName, Email, Phone, ResumeLink, Experience_Years, Match_Percentage, Summary, CurrentStageID, Status, AppliedFor)
+--VALUES 
+--('Raj Kumar', 'raj@example.com', '9876543210', 'https://example.com/resume-raj', 2, 85.5, 'Experienced Java Developer.', 2, 'In Progress', 'Java Developer'),
+--('Priya Mehta', 'priya@example.com', '9123456789', 'https://example.com/resume-priya', 1, 78.0, 'Enthusiastic frontend developer.', 1, 'In Progress', 'Angular Developer');
+
+--INSERT INTO Education (CandidateID, Degree, Institute, Year)
+--VALUES 
+--(1, 'B.Tech Computer Science', 'IIT Delhi', '2020'),
+--(2, 'B.Sc IT', 'Mumbai University', '2021');
+
+--INSERT INTO Skills (Skill_Name) VALUES 
+--('Java'),
+--('Spring Boot'),
+--('Angular'),
+--('HTML'),
+--('CSS');
+
+--INSERT INTO CandidateSkills (CandidateID, SkillID) VALUES 
+--(1, 1), -- Raj knows Java
+--(1, 2), -- Raj knows Spring Boot
+--(2, 3), -- Priya knows Angular
+--(2, 4), -- Priya knows HTML
+--(2, 5); -- Priya knows CSS
+
+---- Raj: Scheduled Technical Round 1 with Amit Sinha
+--INSERT INTO Interviews (CandidateID, ScheduledDateTime, InterviewMode, InterviewerID, StageID, Status)
+--VALUES (1, '2025-08-15 10:30:00', 'Online', 1, 2, 'Scheduled');
+
+---- Priya: Scheduled Resume Screening with Neha Rao
+--INSERT INTO Interviews (CandidateID, ScheduledDateTime, InterviewMode, InterviewerID, StageID, Status)
+--VALUES (2, '2025-08-16 11:00:00', 'Offline', 2, 1, 'Scheduled');
+
+---- Raj: Completed Technical Round 2 with Neha Rao
+--INSERT INTO Interviews (CandidateID, ScheduledDateTime, InterviewMode, InterviewerID, StageID, Status)
+--VALUES (1, '2025-08-17 14:00:00', 'Online', 2, 3, 'Completed');
+
+---- Raj's Technical Round 2
+--INSERT INTO Evaluations (CandidateID, InterviewID, EvaluationType, Score, Feedback)
+--VALUES 
+--(1, 3, 'Technical Knowledge', 7.5, 'Good grasp on Spring Boot and OOPs'),
+--(1, 3, 'Communication', 6.5, 'Needs to be more clear in explanation');
+
+---- Priya's Resume Screening
+--INSERT INTO Evaluations (CandidateID, InterviewID, EvaluationType, Score, Feedback)
+--VALUES 
+--(2, 2, 'Resume Score', 8.0, 'Strong resume with relevant skills');

@@ -18,8 +18,15 @@ namespace CITS_DataAccessLayer
         {
             try
             {
-                _context.Evaluations.Add(evaluation);
-                _context.SaveChanges();
+               var t = _context.Evaluations.Add(evaluation);
+                if (t != null)
+                {
+                    _context.SaveChanges();
+                }
+                else
+                {
+                    return false;
+                }
                 return true;
             }
             catch (Exception ex)
