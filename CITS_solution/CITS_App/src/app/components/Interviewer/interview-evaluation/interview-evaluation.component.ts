@@ -29,20 +29,36 @@ import { Evaluation } from '../../../models/Evaluation/Evaluation';
     score: number = 0;
     loading = true;
     errorMsg: string | null = null;
+    isCompleted: boolean = false;
 
     constructor(
       private route: ActivatedRoute,
       private interviewService: InterviewService,
       private router: Router
     ) { }
-
     ngOnInit(): void {
       this.interviewId = Number(this.route.snapshot.paramMap.get('interviewId'));
+
       this.interviewService.getInterviewById(this.interviewId).subscribe({
         next: (data) => {
           this.interview = data;
-          console.log('Interview data:', this.interview);
-          console.log('Interview ID:', this.interview.candidateId);
+          this.isCompleted = this.interview.status === 'Completed';
+
+          if (this.isCompleted) {
+            // Fetch the evaluation data if interview is already completed
+            this.interviewService.getEvaluationByInterviewId(this.interviewId).subscribe({
+              next: (evaluation) => {
+                console.log('Evaluation details:', evaluation);
+                this.feedback = evaluation?.feedback ?? '';
+                this.score = evaluation?.score ?? 0;
+              },
+              error: (err) => {
+                console.error('No evaluation found for this interview:', err);
+              }
+            });
+
+          }
+
           this.loading = false;
         },
         error: () => {

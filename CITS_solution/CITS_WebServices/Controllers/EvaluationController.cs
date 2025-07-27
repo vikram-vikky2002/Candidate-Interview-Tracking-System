@@ -50,6 +50,25 @@ namespace CITS_WebServices.Controllers
                 return StatusCode(500, "Internal server error: " + ex.Message);
             }
         }
+        // GET Evaluation by InterviewId
+        [HttpGet("GetEvaluationByInterviewId/{interviewId}")]
+        public IActionResult GetEvaluationByInterviewId(int interviewId)
+        {
+            try
+            {
+                var evaluation = _repository.GetEvaluationByInterviewId(interviewId);
+                if (evaluation == null)
+                {
+                    return NotFound("No evaluation found for the given interview ID.");
+                }
+                return Ok(evaluation);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Internal server error: " + ex.Message);
+            }
+        }
+
         //Add Evaluation
         [HttpPost("AddEvaluation")]
         public IActionResult AddEvaluation(Evaluation evaluation)
