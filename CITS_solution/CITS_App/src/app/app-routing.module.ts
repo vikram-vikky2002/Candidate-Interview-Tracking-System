@@ -27,7 +27,6 @@ const routes: Routes = [
       { path: 'search-interviews', component: SearchInterviewsComponent },
       { path: 'education-list', component: EducationListComponent },
       { path: 'add-education', component: AddEducationComponent },
-      { path: 'candidate-list', component: CandidateListComponent },
       { path: 'skills-list', component: SkillsListComponent },
       // { path: 'jobs', component: JobListingComponent },
       // { path: 'job/:id', component: JobDetailsComponent },      // <-- This is important

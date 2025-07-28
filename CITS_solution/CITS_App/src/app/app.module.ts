@@ -42,7 +42,6 @@ import { CandidatesListComponent } from './components/Candidates/candidate-list/
 @NgModule({
   declarations: [
     AppComponent,
-    CandidateListComponent,
     CandidateProgressComponent,
     DashboardStatsComponent,
     SearchInterviewsComponent,
