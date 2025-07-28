@@ -16,6 +16,7 @@ import { InterviewCalendarComponent } from './components/Interviewer/interview-c
 import { CandidatesListComponent } from './components/Candidates/candidate-list/candidate-list.component';
 import { ScheduleInterviewComponent } from './components/Interviewer/schedule-interview/schedule-interview.component';
 
+
 const routes: Routes = [
   {
     path: '',
@@ -26,7 +27,11 @@ const routes: Routes = [
       { path: 'search-interviews', component: SearchInterviewsComponent },
       { path: 'education-list', component: EducationListComponent },
       { path: 'add-education', component: AddEducationComponent },
+      { path: 'candidate-list', component: CandidateListComponent },
       { path: 'skills-list', component: SkillsListComponent },
+      // { path: 'jobs', component: JobListingComponent },
+      // { path: 'job/:id', component: JobDetailsComponent },      // <-- This is important
+      // { path: 'apply/:id', component: JobApplicationComponent },
       { path: 'assign-skill', component: AssignSkillComponent },
       { path: 'evaluate/:interviewId', component: InterviewEvaluationComponent },
       { path: 'interviewer-calendar', component: InterviewCalendarComponent },
