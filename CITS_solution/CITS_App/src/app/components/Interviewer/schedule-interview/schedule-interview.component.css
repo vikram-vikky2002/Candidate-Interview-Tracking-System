@@ -1,0 +1,129 @@
+/* Backdrop */
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    padding: 1rem;
+  }
+  
+  /* Modal dialog */
+  .modal {
+    background: #fff;
+    padding: 2rem 3rem;
+    border-radius: 12px;
+    width: 400px;
+    max-width: 100%;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #222;
+  }
+  
+  /* Title */
+  .modal-title {
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-bottom: 1.75rem;
+    text-align: center;
+  }
+  
+  /* Form layout */
+  .modal-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Form group */
+  .form-group {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Label */
+  .form-group label {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: #495057;
+  }
+  
+  /* Input & select */
+  .form-control {
+    padding: 0.6rem 0.75rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1.5px solid #ced4da;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    outline-offset: 2px;
+    box-sizing: border-box;
+  }
+  
+  .form-control:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 8px rgba(59, 130, 246, 0.6);
+    outline: none;
+  }
+  
+  /* Modal buttons container */
+  .modal-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  
+  /* Buttons */
+  .btn {
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    flex: 1;
+    text-align: center;
+  }
+  
+  .btn--primary {
+    background-color: #3b82f6;
+    color: white;
+  }
+  
+  .btn--primary:hover,
+  .btn--primary:focus {
+    background-color: #2563eb;
+    outline: none;
+  }
+  
+  .btn--outline {
+    background-color: transparent;
+    border: 2px solid #3b82f6;
+    color: #3b82f6;
+  }
+  
+  .btn--outline:hover,
+  .btn--outline:focus {
+    background-color: #3b82f6;
+    color: white;
+    outline: none;
+  }
+  
+  /* Responsive for very small devices */
+  @media (max-width: 420px) {
+    .modal {
+      padding: 1.25rem 1.5rem;
+    }
+    .modal-actions {
+      flex-direction: column;
+    }
+    .btn {
+      width: 100%;
+      flex: none;
+    }
+  }
+  

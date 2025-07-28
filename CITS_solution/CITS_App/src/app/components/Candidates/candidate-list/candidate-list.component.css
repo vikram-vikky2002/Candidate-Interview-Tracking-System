@@ -1,143 +1,250 @@
-/* Root container */
-mat-card {
-  margin: 50px auto;
-  padding: 40px;
-  max-width: 1200px;
+/* ====== Container ====== */
+.container {
+  max-width: 1300px;
+  margin: 2.5rem auto 2rem;
+  padding: 1.5rem 2rem;
   background: #ffffff;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  animation: fadeIn 0.4s ease-in-out;
-}
-
-/* Section title */
-h2 {
-  font-size: 28px;
-  font-weight: 700;
-  color: #2c3e50;
-  text-align: center;
-  margin-bottom: 30px;
-  letter-spacing: 0.5px;
-}
-
-/* Table container */
-table {
-  width: 100%;
-  border-spacing: 0;
-  border-collapse: collapse;
-  font-family: 'Segoe UI', Roboto, sans-serif;
-  background-color: #fff;
   border-radius: 12px;
-  overflow: hidden;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #212529;
+  display: flex;
+  flex-direction: column;
 }
 
-/* Header row */
-th.mat-header-cell {
-  background: linear-gradient(to right, #f5f7fa, #e4ecf4);
-  font-size: 14px;
+/* ====== Filter Bar ====== */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1.6rem;
+}
+
+/* Controls styling */
+.filter-bar .form-control {
+  height: 42px;
+  min-width: 200px;
+  max-width: 280px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1.5px solid #ced4da;
+  padding: 0 0.75rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box;
+}
+.filter-bar .form-control:focus {
+  border-color: #3b82f6; /* Soft blue */
+  box-shadow: 0 0 6px rgba(59, 130, 246, 0.5);
+  outline: none;
+}
+
+/* Buttons */
+.filter-bar button {
+  height: 42px;
+  padding: 0 1.2rem;
+  border-radius: 8px;
   font-weight: 600;
-  color: #34495e;
-  padding: 16px 24px;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.filter-bar button.btn--primary {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.filter-bar button.btn--primary:hover {
+  background-color: #2563eb;
+}
+
+.filter-bar button.btn--outline {
+  background-color: transparent;
+  border: 2px solid #3b82f6;
+  color: #3b82f6;
+}
+
+.filter-bar button.btn--outline:hover {
+  background-color: #3b82f6;
+  color: white;
+}
+
+/* ====== Column Chooser ====== */
+.column-chooser {
+  margin-bottom: 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+.column-chooser label {
+  user-select: none;
+  font-size: 0.95rem;
+  color: #495057;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.column-chooser input[type=checkbox] {
+  margin-right: 0.5rem;
+  cursor: pointer;
+  width: 17px;
+  height: 17px;
+}
+
+/* ====== Table Wrapper ====== */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 12px;
+  box-shadow: 0 2px 15px rgb(0 0 0 / 0.1);
+  background-color: #fff;
+  border: 1px solid #e2e8f0; /* Light border */
+  padding: 0.3rem;
+}
+
+/* ====== Table Styling ====== */
+.candidates-table {
+  min-width: 1400px;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 8px; /* Vertical spacing between rows */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 0.95rem;
+  color: #212529;
+}
+
+/* Header Styling */
+.candidates-table th {
+  font-weight: 700;
+  background-color: #f3f4f6;
+  color: #374151;
+  padding: 0.75rem 1rem;
   text-align: left;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  border-bottom: 3px solid #3b82f6;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
   position: sticky;
   top: 0;
-  z-index: 1;
-  border-bottom: 2px solid #dee2e6;
+  z-index: 10;
 }
 
-/* Data cells */
-td.mat-cell {
-  font-size: 15px;
-  color: #2d3436;
-  padding: 16px 24px;
-  border-bottom: 1px solid #ececec;
-  transition: background-color 0.2s ease-in-out, transform 0.15s ease;
+/* Cell Styling */
+.candidates-table td {
+  background-color: #fefefe;
+  padding: 0.75rem 1rem;
+  vertical-align: top;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.05);
+  max-width: 350px;
+  word-break: break-word;
+  white-space: normal;
+  transition: background-color 0.3s ease;
 }
 
-/* Zebra striping */
-tr.mat-row:nth-child(even) td {
-  background-color: #fafbfc;
+/* Column sizing */
+.candidates-table td.fullName-col,
+.candidates-table th.fullName-col,
+.candidates-table td.email-col,
+.candidates-table th.email-col,
+.candidates-table td.summary-col,
+.candidates-table th.summary-col,
+.candidates-table td.phone-col,
+.candidates-table th.phone-col,
+.candidates-table td.status-col,
+.candidates-table th.status-col {
+  min-width: 140px;
+  max-width: 280px;
 }
 
-/* Hover effect */
-tr.mat-row:hover td {
-  background-color: #e8f0fe;
-  transform: scale(1.005);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
-  border-radius: 8px;
-  transition: 0.2s ease-in-out;
+/* Row hover effect */
+.candidates-table tbody tr:hover td {
+  background-color: #dbf4ff;
   cursor: pointer;
 }
 
-/* Role badge styling */
-.role-badge {
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 600;
-  text-transform: capitalize;
+/* ====== Status Pills ====== */
+.status-pill {
   display: inline-block;
+  min-width: 90px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 6px 14px;
+  border-radius: 20px;
+  user-select: none;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.07);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.status-inprogress {
+  background-color: #dbeafe;
+  color: #0369a1;
+}
+.status-selected {
+  background-color: #dcfce7;
+  color: #166534;
+}
+.status-rejected {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
+
+/* ====== Action Buttons ====== */
+.action-col button {
+  margin-right: 0.5rem;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  min-width: 90px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.action-col button.btn--outline {
+  background-color: transparent;
+  border: 2px solid #3b82f6;
+  color: #3b82f6;
+}
+
+.action-col button.btn--outline:hover {
+  background-color: #3b82f6;
   color: white;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-  .role-badge.recruiter {
-    background-color: #42a5f5;
-  }
+.action-col button.btn--primary {
+  background-color: #3b82f6;
+  color: white;
+}
 
-  .role-badge.interviewer {
-    background-color: #7e57c2;
-  }
+.action-col button.btn--primary:hover {
+  background-color: #2563eb;
+}
 
-  .role-badge.admin {
-    background-color: #ef5350;
+/* ====== Responsive ====== */
+@media (max-width: 950px) {
+  .table-wrapper {
+    box-shadow: none;
+    border-radius: 0;
   }
-
-/* Responsive adjustments */
-@media screen and (max-width: 768px) {
-  mat-card {
-    padding: 20px;
-    margin: 20px;
-  }
-
-  h2 {
-    font-size: 22px;
-  }
-
-  th.mat-header-cell,
-  td.mat-cell {
-    padding: 12px 16px;
-    font-size: 14px;
+  .candidates-table {
+    min-width: 1000px;
   }
 }
 
-@media screen and (max-width: 480px) {
-  table {
-    font-size: 13px;
+@media (max-width: 660px) {
+  .filter-bar {
+    flex-direction: column;
   }
 
-  th.mat-header-cell,
-  td.mat-cell {
-    padding: 10px 12px;
+  .filter-bar .form-control,
+  .filter-bar button {
+    width: 100% !important;
+    max-width: none;
   }
 
-  .role-badge {
-    font-size: 11px;
-    padding: 3px 8px;
-  }
-}
-
-/* Smooth fade-in animation */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  .column-chooser {
+    justify-content: flex-start;
   }
 }

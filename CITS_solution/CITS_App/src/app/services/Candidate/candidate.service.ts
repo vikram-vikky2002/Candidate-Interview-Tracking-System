@@ -14,6 +14,10 @@ export class CandidateService {
 
   constructor(private http: HttpClient) { }
 
+  getAllCandidates(): Observable<any[]> {
+    return this.http.get<Candidate[]>(`${this._apiUrl}/candidate`);
+  }
+
   addCandidate(candidate: Candidate): Observable<any> {
     return this.http.post<any>(`${this._apiUrl}/candidate`, candidate);
   }
