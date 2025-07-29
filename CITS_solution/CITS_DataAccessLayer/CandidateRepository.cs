@@ -17,17 +17,9 @@ namespace CITS_DataAccessLayer
             _context = new CitsdbContext();
         }
         //GetAllCandidates
-        public List<CandidateListDTO> GetAllCandidates()
+        public List<Candidate> GetAllCandidates()
         {
-            var candidates = _context.Users
-                .Include(u => u.Role) // Ensure Role is included
-                .Select(u => new CandidateListDTO
-                {
-                    FullName = u.FullName,
-                    Email = u.Email,
-                    RoleName = u.Role.RoleName
-                })
-                .ToList();
+            var candidates = _context.Candidates.ToList();
 
             return candidates;
         }

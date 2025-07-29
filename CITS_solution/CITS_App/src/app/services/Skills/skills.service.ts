@@ -16,8 +16,8 @@ export class SkillsService {
     return this.http.get<Skill[]>(`${this.baseUrl}`);
   }
 
-  getSkillsByCandidateId(candidateId: number): Observable<Skill[]> {
-    return this.http.get<Skill[]>(`${this.baseUrl}/ByCandidate/${candidateId}`);
+  getSkillsByCandidateId(cid: number): Observable<Skill[]> {
+    return this.http.get<Skill[]>(`${this.baseUrl}/candidate/${cid}`);
   }
 
   addSkill(skillName: string): Observable<any> {

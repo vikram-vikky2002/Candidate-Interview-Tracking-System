@@ -5,9 +5,7 @@ export interface Interview {
     interviewMode: string;
     interviewerId: number;
     stageId: number;
-  status: string;
-
-
-  meetingLink?: string;
+    status: string;
+    meetingLink?: string;
 
 }
