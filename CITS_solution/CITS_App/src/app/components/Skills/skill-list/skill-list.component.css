@@ -11,14 +11,13 @@
 
 /* Title */
 .skills-title {
-  font-size: 22px;
-  font-weight: bold;
-  color: #00e5ff;
+  color: #00e5ff; /* Cyan accent */
+  font-size: 24px;
   margin-bottom: 24px;
-  text-align: center;
+  font-weight: 700;
 }
 
-/* Form Controls Section */
+/* Flex Layout Helpers */
 .d-flex {
   display: flex;
   align-items: center;
@@ -62,6 +61,17 @@
   color: #ffffff;
 }
 
+.mat-form-field-label,
+.text-label {
+  color: #80cbc4 !important; /* Soft teal */
+  font-weight: 500;
+}
+
+::placeholder {
+  color: #bbbbbb;
+  opacity: 0.6;
+}
+
 .mat-form-field.mat-focused .mat-form-field-ripple {
   background-color: #00e5ff;
 }
@@ -70,13 +80,24 @@
   color: #00e5ff !important;
 }
 
-/* Buttons */
-button {
-  font-weight: 600;
-  border-radius: 6px;
+.mat-form-field-appearance-outline .mat-form-field-outline-thick {
+  border-color: #00e5ff;
 }
 
-/* Table */
+/* Buttons */
+button.mat-raised-button {
+  font-weight: 600;
+  border-radius: 6px;
+  padding: 8px 16px;
+  text-transform: none;
+  transition: filter 0.2s ease;
+}
+
+  button.mat-raised-button:hover {
+    filter: brightness(1.1);
+  }
+
+/* Table Styles */
 .mat-table {
   background-color: #2a2a2a;
   color: #ffffff;
@@ -91,11 +112,40 @@ button {
 }
 
 .mat-row:hover {
-  background-color: #333333;
+  background-color: #383838;
+  transition: background-color 0.2s ease-in-out;
 }
 
-.mat-cell, .mat-header-cell {
+.mat-cell,
+.mat-header-cell {
   padding: 16px;
   font-size: 14px;
   border-bottom: 1px solid #444;
+}
+
+.table-header {
+  color: #000000; /* Ensured readability on cyan header background */
+  font-weight: 600;
+}
+
+.table-cell {
+  color: #ffffff;
+  font-weight: 400;
+}
+
+/* Responsive Adjustments (Optional) */
+@media (max-width: 768px) {
+  .d-flex {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .w-50 {
+    width: 100%;
+  }
+
+  .me-2 {
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
 }

@@ -43,6 +43,7 @@ import { Evaluation } from '../../../models/Evaluation/Evaluation';
         next: (data) => {
           this.interview = data;
           this.isCompleted = this.interview.status === 'Completed';
+          this.isCompleted = this.interview.status === 'Cancelled';
 
           if (this.isCompleted) {
             // Fetch the evaluation data if interview is already completed
@@ -66,6 +67,10 @@ import { Evaluation } from '../../../models/Evaluation/Evaluation';
           this.loading = false;
         }
       });
+    }
+
+    goBack(): void {
+      this.router.navigate(['/interviewer-calendar']);
     }
 
     submitEvaluation(): void {

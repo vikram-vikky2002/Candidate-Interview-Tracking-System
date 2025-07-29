@@ -1,3 +1,20 @@
+.go-back-btn {
+  background-color: #00e5ff;
+  border: none;
+  color: #000;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 20px;
+}
+
+  .go-back-btn:hover {
+    background-color: #ddd;
+  }
+
 .evaluation-card {
   background-color: #1e1e1e;
   color: #ffffff;
