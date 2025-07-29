@@ -13,7 +13,8 @@ import { JobDetailsComponent } from './components/JobPortal/job-details/job-deta
 import { JobApplicationComponent } from './components/JobPortal/job-application/job-application.component';
 import { InterviewEvaluationComponent } from './components/Interviewer/interview-evaluation/interview-evaluation.component';
 import { InterviewCalendarComponent } from './components/Interviewer/interview-calendar/interview-calendar.component';
-import { CandidateListComponent } from './components/Candidates/candidate-list/candidate-list.component';
+import { CandidatesListComponent } from './components/Candidates/candidate-list/candidate-list.component';
+import { ScheduleInterviewComponent } from './components/Interviewer/schedule-interview/schedule-interview.component';
 
 
 const routes: Routes = [
@@ -26,7 +27,6 @@ const routes: Routes = [
       { path: 'search-interviews', component: SearchInterviewsComponent },
       { path: 'education-list', component: EducationListComponent },
       { path: 'add-education', component: AddEducationComponent },
-      { path: 'candidate-list', component: CandidateListComponent },
       { path: 'skills-list', component: SkillsListComponent },
       // { path: 'jobs', component: JobListingComponent },
       // { path: 'job/:id', component: JobDetailsComponent },      // <-- This is important
@@ -41,6 +41,8 @@ const routes: Routes = [
     path: '',
     children: [
       { path: 'jobs', component: JobListingComponent },
+      { path: 'scheduleInterview', component: ScheduleInterviewComponent },
+      { path: 'candidate-list', component: CandidatesListComponent },
       { path: 'job/:id', component: JobDetailsComponent },      // <-- This is important
       { path: 'apply/:id', component: JobApplicationComponent },
       { path: '', redirectTo: 'job', pathMatch: 'full' } // default route
