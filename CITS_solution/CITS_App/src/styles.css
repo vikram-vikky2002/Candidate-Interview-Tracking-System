@@ -23,6 +23,22 @@
   --color-orange-400: rgba(230, 129, 97, 1);
   --color-orange-500: rgba(168, 75, 47, 1);
 
+  --bg-main: #121212;
+  --bg-card: #1e1e1e;
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+  --accent-blue: #00cfe8;
+  --accent-orange: #ff9800;
+  --accent-green: #4caf50;
+  --accent-yellow: #ffeb3b;
+  --status-fulltime: #ff7043;
+  --status-entry: #81c784;
+  --status-mid: #64b5f6;
+  --status-senior: #9575cd;
+  --border-soft: #2a2a2a;
+  --hover-bg: #1a1a1a;
+
+
   /* RGB versions for opacity control */
   --color-brown-600-rgb: 94, 82, 64;
   --color-teal-500-rgb: 33, 128, 141;
@@ -1377,6 +1393,75 @@ select.form-control {
   
   .job-details__meta {
     gap: var(--space-4);
+        /* Remove duplicate font-family at the end */
+        html, body { height: 100%; }
+        body { margin: 0; font-family: var(--font-family-base); }
+
+        /* Ensure all headings, paragraphs, and text use the same color and font */
+        h1, h2, h3, h4, h5, h6, p, label, span, div {
+          color: var(--color-text);
+          font-family: var(--font-family-base);
+        }
+
+        /* Make sure all cards, forms, and modals use the same border radius and shadow */
+        .card, .form-section, .modal-content, .work-experience-entry {
+          border-radius: var(--radius-lg);
+          box-shadow: var(--shadow-sm);
+          background: var(--color-surface);
+          border: 1px solid var(--color-card-border);
+        }
+
+        /* Standardize button appearance */
+        button, .btn {
+          font-family: var(--font-family-base);
+          border-radius: var(--radius-base);
+          font-size: var(--font-size-base);
+          font-weight: var(--font-weight-medium);
+          transition: all var(--duration-normal) var(--ease-standard);
+        }
+
+        /* Consistent input and select styling */
+        input, select, textarea, .form-control {
+          font-family: var(--font-family-base);
+          border-radius: var(--radius-base);
+          border: 1px solid var(--color-border);
+          background: var(--color-surface);
+          color: var(--color-text);
+          font-size: var(--font-size-base);
+          padding: var(--space-8) var(--space-12);
+          transition: border-color var(--duration-fast) var(--ease-standard);
+        }
+
+        input:focus, select:focus, textarea:focus, .form-control:focus {
+          border-color: var(--color-primary);
+          outline: var(--focus-outline);
+        }
+
+        /* Utility: Remove default list styles for all lists */
+        ul, ol {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+        }
+
+        /* Utility: Consistent spacing for all sections */
+        section, .section {
+          margin-bottom: var(--space-32);
+          padding: var(--space-16) 0;
+        }
+
+        /* Utility: Responsive container for all main content */
+        .container {
+          width: 100%;
+          max-width: var(--container-lg);
+          margin: 0 auto;
+          padding: 0 var(--space-16);
+        }
+
+        /* Ensure all components use box-sizing border-box */
+        *, *::before, *::after {
+          box-sizing: border-box;
+        }
   }
   
   .status {

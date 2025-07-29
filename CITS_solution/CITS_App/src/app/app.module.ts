@@ -38,6 +38,7 @@ import { InterviewCalendarComponent } from './components/Interviewer/interview-c
 import { ScheduleInterviewComponent } from './components/Interviewer/schedule-interview/schedule-interview.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { CandidatesListComponent } from './components/Candidates/candidate-list/candidate-list.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { CandidatesListComponent } from './components/Candidates/candidate-list/
     SkillsListComponent,
     AssignSkillComponent,
     LayoutComponent,
+    LoginComponent,
     CandidatesListComponent,
     JobListingComponent,
     JobDetailsComponent,

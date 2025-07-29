@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from "@angular/core";
+import { MatSidenav } from "@angular/material/sidenav";
 
 @Component({
   selector: 'app-layout',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./layout.component.css']
 })
 export class LayoutComponent {
+  @ViewChild('sidenav') sidenav!: MatSidenav;
 
+  toggleSidenav() {
+    this.sidenav.toggle();
+  }
 }

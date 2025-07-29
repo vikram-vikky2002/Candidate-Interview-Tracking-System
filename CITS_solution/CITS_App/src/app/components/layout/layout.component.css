@@ -1,36 +1,100 @@
+/* Full viewport height */
 .sidenav-container {
   height: 100vh;
+  background-color: #121212;
 }
 
+/* Sidebar */
 .sidenav {
-  width: 220px;
-  background-color: #1e1e2f;
-  color: white;
+  width: 240px;
+  background-color: #292929;
+  color: #00e5ff;
+  border-right: 1px solid #2a2a2a;
 }
 
-mat-nav-list a {
-  color: #ffffff;
-  font-weight: 500;
+/* Sidebar Toolbar */
+.mat-toolbar.text-white {
+  color: #00e5ff;
+  background-color: #1a1a1a;
+  font-weight: bold;
+  font-size: 18px;
+  text-transform: uppercase;
 }
 
-  mat-nav-list a:hover {
-    background-color: #383854;
-    color: #ffcc00;
+/* Sidebar links - base styling */
+.mat-nav-list a.mat-list-item {
+  font-size: 15px;
+  padding: 10px 16px;
+  color: #00e5ff !important; /* Neon blue */
+  border-radius: 6px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+  /* Hover effect */
+  .mat-nav-list a.mat-list-item:hover {
+    background-color: #292929;
+    color: #ffffff !important;
+    text-decoration: none;
   }
 
+/* Active link */
+.mat-nav-list a.active-link {
+  background-color: #00e5ff !important;
+  color: #000000 !important;
+  font-weight: bold;
+  border-left: 4px solid #00e5ff;
+}
+
+/* Top Toolbar */
 .toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  padding: 0 16px;
+  height: 64px;
+  background-color: #121212;
+  color: #ffffff;
+  border-bottom: 1px solid #2a2a2a;
 }
 
+.menu-button {
+  color: #00e5ff;
+  margin-right: 12px;
+}
+
+.mat-icon {
+  font-size: 24px;
+}
+
+/* Toolbar Title */
 .toolbar-title {
-  font-size: 18px;
-  font-weight: bold;
+  font-size: 20px;
+  font-weight: 600;
+  color: #00e5ff;
 }
 
+/* Main content area */
 .main-content {
   padding: 24px;
-  background-color: #f4f6f8;
-  min-height: 100vh;
+  background-color: #181818;
+  color: #ffffff;
+  min-height: calc(100vh - 64px);
+  overflow-y: auto;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .sidenav {
+    width: 200px;
+  }
+
+  .toolbar-title {
+    font-size: 16px;
+  }
+
+  .main-content {
+    padding: 16px;
+  }
 }
