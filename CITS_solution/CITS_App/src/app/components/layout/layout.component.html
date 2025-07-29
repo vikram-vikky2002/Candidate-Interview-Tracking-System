@@ -1,7 +1,38 @@
+<!-- Topbar -->
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="menu-icon" (click)="toggleSidebar()">☰</div>
+    <div class="topbar-title">Candidate Interview Tracking System (CITS)</div>
+  </div>
+
+  <div class="topbar-nav">
+    <a routerLink="/dashboard-stats" routerLinkActive="active-link">Dashboard</a>
+    <a routerLink="/candidate-list" routerLinkActive="active-link">Candidates</a>
+    <a routerLink="/interviewer-calendar" routerLinkActive="active-link">Interviews</a>
+    <a routerLink="/jobs" routerLinkActive="active-link">Jobs</a>
+    <a routerLink="/education-list" routerLinkActive="active-link">Education</a>
+    <a routerLink="/skills-list" routerLinkActive="active-link">Skills</a>
+    <a routerLink="/dashboard-stats" routerLinkActive="active-link">Analytics</a>
+    <a routerLink="/settings" routerLinkActive="active-link">Settings</a>
+  </div>
+
+  <div class="topbar-actions">
+    <span class="icon">🔔</span>
+    <span class="icon">🌙</span>
+    <div class="user-dropdown">
+      <span class="user-name">Admin ⏷</span>
+      <div class="dropdown-menu">
+        <a routerLink="/settings">Settings</a>
+        <a routerLink="/login">Logout</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Layout Container -->
 <div class="layout-container">
   <!-- Sidebar -->
-  <div class="sidebar">
-    <div class="sidebar-title">CITS</div>
+  <div class="sidebar" #sidebar [class.sidebar-collapsed]="!isSidebarVisible">
     <nav class="nav-links">
       <a routerLink="/dashboard-stats" routerLinkActive="active-link">📊 Dashboard</a>
       <a routerLink="/candidate-list" routerLinkActive="active-link">👤 Candidates</a>
@@ -14,27 +45,8 @@
     </nav>
   </div>
 
-  <!-- Main Area -->
-  <div class="main">
-    <!-- Topbar -->
-    <div class="topbar">
-      <div class="topbar-title">Candidate Interview Tracking System</div>
-      <div class="topbar-actions">
-        <span class="icon">🔔</span>
-        <span class="icon">🌙</span>
-        <div class="user-dropdown">
-          <span class="user-name">Admin User ⏷</span>
-          <div class="dropdown-menu">
-            <a routerLink="/settings">Settings</a>
-            <a routerLink="/login">Logout</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Content -->
-    <div class="main-content">
-      <router-outlet></router-outlet>
-    </div>
+  <!-- Main Content -->
+  <div class="main-content">
+    <router-outlet></router-outlet>
   </div>
 </div>

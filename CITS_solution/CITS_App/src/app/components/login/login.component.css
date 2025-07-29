@@ -1,10 +1,17 @@
 /* Container centers everything */
+/* Container centers everything */
 .login-container {
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #121212;
+  /* 🔽 Add image background (as-is, not scaled) */
+  background-image: url('./../../../assets/pexels-alancabello-1291515.jpg'); /* Update path as needed */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed; /* keeps it fixed when scrolling */
+  background-size: auto; /* keeps original image size */
 }
 
 /* Login card */

@@ -1,5 +1,4 @@
-import { Component, ViewChild } from "@angular/core";
-import { MatSidenav } from "@angular/material/sidenav";
+import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-layout',
@@ -7,9 +6,21 @@ import { MatSidenav } from "@angular/material/sidenav";
   styleUrls: ['./layout.component.css']
 })
 export class LayoutComponent {
-  @ViewChild('sidenav') sidenav!: MatSidenav;
+  isSidebarVisible = false;
 
-  toggleSidenav() {
-    this.sidenav.toggle();
+  @ViewChild('sidebar') sidebarRef!: ElementRef;
+
+  toggleSidebar(): void {
+    this.isSidebarVisible = !this.isSidebarVisible;
+  }
+
+  @HostListener('document:click', ['$event'])
+  handleOutsideClick(event: MouseEvent): void {
+    const clickedInsideSidebar = this.sidebarRef?.nativeElement.contains(event.target);
+    const clickedToggleBtn = (event.target as HTMLElement).classList.contains('menu-icon');
+
+    if (!clickedInsideSidebar && !clickedToggleBtn) {
+      this.isSidebarVisible = false;
+    }
   }
 }
