@@ -1,4 +1,4 @@
-/* Card styling */
+/* Container Card */
 .assign-card {
   background-color: #1e1e1e;
   color: #ffffff;
@@ -12,19 +12,19 @@
 /* Title */
 .form-title {
   font-size: 22px;
-  font-weight: bold;
+  font-weight: 700;
   color: #00e5ff;
   margin-bottom: 24px;
   text-align: center;
 }
 
-/* Full-width form fields */
+/* Full Width Fields */
 .full-width {
   width: 100%;
   margin-bottom: 20px;
 }
 
-/* Material input field background */
+/* Material Field Styling */
 .mat-form-field-appearance-outline .mat-form-field-flex {
   background-color: #2c2c2c;
   border-radius: 6px;
@@ -34,11 +34,12 @@
   color: #00e5ff;
 }
 
-.mat-input-element, .mat-select-value {
+.mat-input-element,
+.mat-select-value {
   color: #ffffff;
 }
 
-/* Focus ripple and label */
+/* Label and Ripple Focus Color */
 .mat-form-field.mat-focused .mat-form-field-ripple {
   background-color: #00e5ff;
 }
@@ -47,7 +48,7 @@
   color: #00e5ff !important;
 }
 
-/* Button group */
+/* Button Group */
 .button-group {
   display: flex;
   justify-content: space-between;
@@ -60,4 +61,40 @@ button {
   flex: 1;
   font-weight: 600;
   border-radius: 6px;
+}
+
+  /* Primary Button */
+  button[color="primary"] {
+    background-color: #00e5ff;
+    color: #000;
+  }
+
+    button[color="primary"]:hover {
+      background-color: #00c6e0;
+    }
+
+  /* Warn Button */
+  button[color="warn"] {
+    background-color: #f44336;
+    color: #fff;
+  }
+
+    button[color="warn"]:hover {
+      background-color: #d32f2f;
+    }
+
+/* Responsive */
+@media (max-width: 600px) {
+  .assign-card {
+    margin: 20px;
+    padding: 24px;
+  }
+
+  .button-group {
+    flex-direction: column;
+  }
+
+  button {
+    width: 100%;
+  }
 }

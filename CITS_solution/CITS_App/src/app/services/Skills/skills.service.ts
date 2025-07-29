@@ -27,7 +27,7 @@ export class SkillsService {
   }
 
   assignSkillToCandidate(candidateId: number, skillId: number): Observable<any> {
-    return this.http.post(`${this.baseUrl}/assign`, { candidateId, skillId });
+    return this.http.post(`https://localhost:7181/api/Skills/assign`, { candidateId, skillId });
   }
 
 

@@ -1,6 +1,6 @@
 export interface Candidate {
-    CandidateId: number;
-    FullName: string;
+    candidateId: number;
+    fullName: string;
     Email: string;
     Phone: string;
     ExperienceYears: string;

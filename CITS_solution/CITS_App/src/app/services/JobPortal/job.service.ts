@@ -289,8 +289,8 @@ export class JobService {
         console.log(SuccessResponse);
   
         const candidateData: Candidate = {
-          CandidateId: 0,
-          FullName: applicationData.fullName,
+          candidateId: 0,
+          fullName: applicationData.fullName,
           Email: applicationData.email,
           Phone: applicationData.phone,
           ExperienceYears: SuccessResponse.data.experience_years,
