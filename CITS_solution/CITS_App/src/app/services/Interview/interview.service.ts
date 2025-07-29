@@ -58,7 +58,7 @@ export class InterviewService {
       feedback: evaluet.feedback,
       evaluatedAt: new Date().toISOString() // Current date and time
     };
-    
+    console.log('Submitting evaluation:', evalue);
     return this._http.post<any>(`https://localhost:7181/api/Evaluation/AddEvaluation`, evalue);
   }
   getEvaluationByInterviewId(interviewId: number): Observable<Evaluation | null> {

@@ -1,53 +1,114 @@
-.evaluation-card {
-  max-width: 520px;
-  margin: 48px auto;
-  padding: 32px;
-  border-radius: 12px;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.10);
-  background: #fff;
+.go-back-btn {
+  background-color: #00e5ff;
+  border: none;
+  color: #000;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 20px;
 }
 
-  .evaluation-card h2 {
-    text-align: center;
-    margin-bottom: 25px;
-    color: #1976d2;
-    font-weight: 700;
-    letter-spacing: 0.5px;
+  .go-back-btn:hover {
+    background-color: #ddd;
   }
 
-p {
-  font-size: 15px;
-  margin-bottom: 8px;
+.evaluation-card {
+  background-color: #1e1e1e;
+  color: #ffffff;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 229, 255, 0.1);
+  max-width: 600px;
+  margin: 40px auto;
+  border: 1px solid #00e5ff;
 }
 
-.w-100 {
-  width: 100%;
+  /* Heading */
+  .evaluation-card h2 {
+    color: #00e5ff;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  /* Paragraphs */
+  .evaluation-card p {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  /* Mat Form Fields */
+  .evaluation-card .mat-form-field {
+    margin-bottom: 16px;
+  }
+
+  .evaluation-card .mat-form-field-appearance-outline .mat-form-field-outline {
+    color: #00e5ff;
+  }
+
+  .evaluation-card .mat-form-field-appearance-outline .mat-form-field-outline-thick {
+    border-color: #00e5ff;
+  }
+
+  .evaluation-card .mat-form-field-label {
+    color: #00e5ff !important;
+  }
+
+  .evaluation-card input,
+  .evaluation-card textarea {
+    color: #ffffff;
+    background-color: #2a2a2a;
+  }
+
+/* Error & Loading Blocks */
+.loading-block,
+.error-block {
+  margin-bottom: 16px;
+  font-size: 14px;
+  padding: 12px;
+  border-radius: 8px;
 }
 
-.actions {
+.loading-block {
+  background-color: #2e2e2e;
+  color: #00e5ff;
+}
+
+.error-block {
+  background-color: #ff4c4c;
+  color: #fff;
+}
+
+/* Action Buttons */
+.evaluation-card .actions {
   display: flex;
-  gap: 16px;
-  justify-content: flex-end;
+  justify-content: space-between;
   margin-top: 24px;
 }
 
-.loading-block,
-.error-block {
-  text-align: center;
-  font-size: 16px;
-  padding: 30px 0;
-  color: #666;
+.evaluation-card button {
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 6px;
 }
 
-.error-block {
-  color: #b71c1c;
-  font-weight: 600;
-}
+  .evaluation-card button[color='primary'] {
+    background-color: #00e5ff;
+    color: #000;
+  }
 
-mat-form-field {
-  margin-bottom: 18px;
-}
+    .evaluation-card button[color='primary']:hover {
+      background-color: #00bcd4;
+    }
 
-button[mat-button][color='accent'] {
-  color: #1976d2;
-}
+  .evaluation-card button[color='accent'] {
+    color: #00e5ff;
+  }
+
+    .evaluation-card button[color='accent']:hover {
+      background-color: #121212;
+    }

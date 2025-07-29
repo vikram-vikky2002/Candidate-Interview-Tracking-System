@@ -1,11 +1,11 @@
 <mat-card class="calendar-container">
   <div class="calendar-navigation">
     <button mat-icon-button class="nav-btn" (click)="goToPreviousMonth()">
-      <mat-icon class="big-icon">chevron_left</mat-icon>
+      <mat-icon class="big-icon"><</mat-icon>
     </button>
     <h3>{{ currentMonth | date: 'MMMM yyyy' }}</h3>
     <button mat-icon-button class="nav-btn" (click)="goToNextMonth()">
-      <mat-icon class="big-icon">chevron_right</mat-icon>
+      <mat-icon class="big-icon">></mat-icon>
     </button>
   </div>
 

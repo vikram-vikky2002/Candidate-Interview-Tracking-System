@@ -1,40 +1,103 @@
-.app-container {
-  height: 100vh;
+:root {
+  --color-bg: #ffffff;
+  --color-text: #000000;
+  --color-border: #ccc;
+  --color-accent: #000000;
+  --color-primary: #000000;
+  --color-error: #ff4d4f;
+  --font-size-base: 16px;
+  --radius: 4px;
 }
 
+/* Reset */
+body, html {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Mat Toolbar */
+mat-toolbar {
+  background-color: var(--color-primary) !important;
+  color: var(--color-bg) !important;
+}
+
+/* Sidebar */
 .sidenav {
-  width: 240px;
-  background-color: #1e2a38;
-  color: white;
-}
-
-.logo {
-  padding: 20px;
-  text-align: center;
-  font-size: 24px;
-  font-weight: bold;
-  color: #ffffff;
-  background-color: #263238;
+  background-color: #000;
+  color: #fff;
 }
 
 mat-nav-list a {
-  color: white;
-  font-weight: 500;
+  color: #fff;
 }
 
   mat-nav-list a.active-link {
-    background-color: #37474f;
+    background-color: #333;
   }
 
-.main-content {
-  background-color: #f5f7fa;
+/* Card Styling */
+mat-card {
+  background-color: #fff !important;
+  color: #000 !important;
+  border: 1px solid var(--color-border);
+  box-shadow: none;
+  border-radius: var(--radius);
 }
 
-mat-toolbar {
-  background-color: #1976d2;
-  color: white;
+/* Buttons */
+.mat-raised-button {
+  background-color: #000 !important;
+  color: #fff !important;
+  border-radius: var(--radius);
 }
 
-.content-wrapper {
-  padding: 30px;
+  .mat-raised-button.mat-accent {
+    background-color: #000 !important;
+    color: #fff !important;
+  }
+
+/* Input Fields */
+.mat-form-field {
+  color: #000 !important;
+}
+
+.mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: #f0f0f0;
+}
+
+.mat-input-element {
+  color: #000 !important;
+}
+
+/* Table */
+.mat-table {
+  background-color: #fff;
+  color: #000;
+}
+
+.mat-header-cell {
+  font-weight: bold;
+  background: #f4f4f4;
+  color: #000;
+}
+
+.mat-cell, .mat-row {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* Status Colors */
+.status-pending {
+  color: #999;
+}
+
+.status-completed {
+  color: #000;
+  font-weight: bold;
+}
+
+.status-other {
+  color: #444;
 }

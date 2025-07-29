@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SkillsService } from '../../../services/Skills/skills.service';
 import { Skill } from '../../../models/Skills/Skills';
+import { CandidateService } from '../../../services/Candidate/candidate.service'; // ← Import this
+import { Candidate } from '../../../models/Candidate/candidate';
 
 @Component({
   selector: 'app-skill-list',
@@ -13,23 +15,33 @@ export class SkillsListComponent implements OnInit {
   newSkillName: string = '';
   candidateId: number | null = null;
 
-  constructor(private skillsService: SkillsService) { }
+  candidates: Candidate[] = []; // ← Holds dropdown data
+
+  constructor(
+    private skillsService: SkillsService,
+    private candidateService: CandidateService // ← Inject service
+  ) { }
 
   ngOnInit(): void {
     this.loadSkills();
+    this.loadCandidates(); // ← Load candidate options
   }
 
   loadSkills(): void {
     this.skillsService.getAllSkills().subscribe(res => {
       this.skills = res;
-      console.log(res)
+    });
+  }
+
+  loadCandidates(): void {
+    this.candidateService.getAllCandidates().subscribe(res => {
+      this.candidates = res;
     });
   }
 
   addSkill(): void {
     if (this.newSkillName.trim()) {
-      this.skillsService.addSkill(this.newSkillName).subscribe((res) => {
-        console.log(res)
+      this.skillsService.addSkill(this.newSkillName).subscribe(() => {
         alert('Skill added successfully');
         this.newSkillName = '';
         this.loadSkills();

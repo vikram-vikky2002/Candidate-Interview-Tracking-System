@@ -13,19 +13,15 @@ export class DashboardStatsComponent implements OnInit {
     interviewsScheduled: 0,
     selectedCandidates: 0,
     rejectedCandidates: 0
-  }
-//  "totalCandidates": 2,
-//  "interviewsScheduled": 0,
-//  "selectedCandidates": 0,
-//  "rejectedCandidates": 0
-//}
+  };
+
   constructor(private utilityService: UtilityService, private _router: Router) { }
 
   ngOnInit() {
     this.utilityService.getDashboardStats().subscribe({
       next: data => {
-        this.stats = data
-        console.log(data)
+        this.stats = data;
+        console.log(data);
       },
       error: err => console.error('Error fetching stats', err)
     });
@@ -33,5 +29,9 @@ export class DashboardStatsComponent implements OnInit {
 
   goToCandidates() {
     this._router.navigate(['/candidate-list']);
+  }
+
+  getPercentage(value: number): number {
+    return this.stats.totalCandidates ? Math.round((value / this.stats.totalCandidates) * 100) : 0;
   }
 }

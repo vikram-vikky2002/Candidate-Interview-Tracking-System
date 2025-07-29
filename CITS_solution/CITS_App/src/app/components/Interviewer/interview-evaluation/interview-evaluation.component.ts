@@ -43,6 +43,7 @@ import { Evaluation } from '../../../models/Evaluation/Evaluation';
         next: (data) => {
           this.interview = data;
           this.isCompleted = this.interview.status === 'Completed';
+          this.isCompleted = this.interview.status === 'Cancelled';
 
           if (this.isCompleted) {
             // Fetch the evaluation data if interview is already completed
@@ -68,6 +69,10 @@ import { Evaluation } from '../../../models/Evaluation/Evaluation';
       });
     }
 
+    goBack(): void {
+      this.router.navigate(['/interviewer-calendar']);
+    }
+
     submitEvaluation(): void {
       if (this.score < 0 || this.score > 10) {
         alert('Score must be between 0 and 10');
@@ -86,6 +91,7 @@ import { Evaluation } from '../../../models/Evaluation/Evaluation';
         feedback: this.feedback,
         evaluatedAt: new Date().toISOString() // Current date and time
       };
+      console.log('Submitting evaluation:', evalue);
       this.interviewService.submitEvaluation(evalue).subscribe({
         next: (ere) => {
           console.log('Evaluation submitted:', ere);

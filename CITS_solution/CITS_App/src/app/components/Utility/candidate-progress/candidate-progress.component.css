@@ -1,42 +1,94 @@
+/* Container card */
 .progress-card {
-  max-width: 600px;
-  margin: 40px auto;
+  background-color: #1e1e1e;
+  color: #ffffff;
   padding: 32px;
   border-radius: 12px;
-  background-color: #ffffff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 40px auto;
+  box-shadow: 0 4px 20px rgba(0, 229, 255, 0.2);
 }
 
+/* Title */
 .form-title {
-  text-align: center;
-  color: #3f51b5;
+  font-size: 22px;
+  font-weight: bold;
+  color: #00e5ff;
   margin-bottom: 24px;
+  text-align: center;
 }
 
+/* Full width input/button */
 .full-width {
   width: 100%;
   margin-bottom: 20px;
 }
 
-.progress-section {
-  margin-top: 20px;
+/* Input field styling */
+.mat-form-field-appearance-outline .mat-form-field-flex {
+  background-color: #2c2c2c;
+  border-radius: 6px;
 }
 
+.mat-input-element {
+  color: #ffffff;
+}
+
+.mat-form-field-label {
+  color: #bbbbbb;
+}
+
+.mat-form-field.mat-focused .mat-form-field-label {
+  color: #00e5ff !important;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: #00e5ff;
+}
+
+.mat-form-field.mat-focused .mat-form-field-ripple {
+  background-color: #00e5ff;
+}
+
+/* Section title */
+.section-title {
+  color: #00e5ff;
+  font-size: 18px;
+  margin-bottom: 12px;
+  text-align: left;
+}
+
+/* List items */
+.progress-item {
+  padding: 12px;
+  background-color: #2b2b2b;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Status styles */
 .status-completed {
-  color: green;
-  font-weight: 500;
+  color: #00e676;
+  font-weight: 600;
 }
 
 .status-pending {
-  color: orange;
-  font-weight: 500;
+  color: #ffc107;
+  font-weight: 600;
 }
 
 .status-other {
-  color: gray;
+  color: #ff5252;
+  font-weight: 600;
 }
 
+/* No data */
 .no-data {
   text-align: center;
-  color: #888;
+  color: #bbbbbb;
+  font-style: italic;
 }

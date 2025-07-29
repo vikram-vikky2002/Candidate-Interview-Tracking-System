@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="form-header">
+    <h1>Add Education</h1>
+    <p class="form-subtitle">Fill in the education details below.</p>
+  </div>
+
+  <form class="education-form" (ngSubmit)="addEducation()">
+    <div class="form-group">
+      <label for="candidateId" class="form-label">Candidate ID</label>
+      <input id="candidateId"
+             type="number"
+             class="form-control"
+             [(ngModel)]="education.candidateId"
+             name="candidateId"
+             required />
+    </div>
+
+    <div class="form-group">
+      <label for="degree" class="form-label">Degree</label>
+      <input id="degree"
+             type="text"
+             class="form-control"
+             [(ngModel)]="education.degree"
+             name="degree"
+             required />
+    </div>
+
+    <div class="form-group">
+      <label for="institute" class="form-label">Institute</label>
+      <input id="institute"
+             type="text"
+             class="form-control"
+             [(ngModel)]="education.institute"
+             name="institute"
+             required />
+    </div>
+
+    <div class="form-group">
+      <label for="year" class="form-label">Year</label>
+      <input id="year"
+             type="text"
+             class="form-control"
+             [(ngModel)]="education.year"
+             name="year"
+             required />
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn--primary">Add</button>
+      <button type="button" class="btn btn--outline" (click)="cancel()">Cancel</button>
+    </div>
+  </form>
+</div>

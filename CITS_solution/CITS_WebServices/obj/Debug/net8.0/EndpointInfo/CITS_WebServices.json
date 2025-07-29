@@ -296,17 +296,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Evaluation"
+                "$ref": "#/components/schemas/CITS_WebServices.Models.Evaluation"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Evaluation"
+                "$ref": "#/components/schemas/CITS_WebServices.Models.Evaluation"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Evaluation"
+                "$ref": "#/components/schemas/CITS_WebServices.Models.Evaluation"
               }
             }
           }
@@ -1317,6 +1317,42 @@
           },
           "year": {
             "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CITS_WebServices.Models.Evaluation": {
+        "type": "object",
+        "properties": {
+          "evaluationId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "candidateId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "interviewId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "evaluationType": {
+            "type": "string",
+            "nullable": true
+          },
+          "score": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "feedback": {
+            "type": "string",
+            "nullable": true
+          },
+          "evaluatedAt": {
+            "type": "string",
+            "format": "date-time",
             "nullable": true
           }
         },

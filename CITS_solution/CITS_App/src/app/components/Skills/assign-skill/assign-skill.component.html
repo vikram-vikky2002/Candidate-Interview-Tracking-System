@@ -2,11 +2,17 @@
   <h2 class="form-title">Assign or Remove Skill</h2>
 
   <form (ngSubmit)="assign()">
+    <!-- Candidate Name Dropdown -->
     <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Candidate ID</mat-label>
-      <input matInput type="number" [(ngModel)]="candidateId" name="candidateId" required />
+      <mat-label>Select Candidate</mat-label>
+      <mat-select [(ngModel)]="candidateId" name="candidateId" required>
+        <mat-option *ngFor="let c of candidates" [value]="c.candidateId">
+          {{ c.fullName }}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
 
+    <!-- Skill Dropdown -->
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Select Skill</mat-label>
       <mat-select [(ngModel)]="skillId" name="skillId" required>
@@ -16,6 +22,7 @@
       </mat-select>
     </mat-form-field>
 
+    <!-- Action Buttons -->
     <div class="button-group">
       <button mat-raised-button color="primary" type="submit">Assign Skill</button>
       <button mat-raised-button color="warn" type="button" (click)="remove()">Remove Skill</button>

@@ -56,7 +56,7 @@
       <tr *ngFor="let c of filteredCandidates">
         <td *ngFor="let col of displayedColumns" [ngClass]="col.key + '-col'">
           <ng-container [ngSwitch]="col.key">
-            <span *ngSwitchCase="'status'" [ngClass]="statusClass(c.status)" class="status-pill">
+            <span *ngSwitchCase="'status'" [ngClass]="statusClass(c.status)" class="status-pill" style="color:aliceblue">
               {{ c.status }}
             </span>
             <span *ngSwitchCase="'skills'">{{ c.skills?.join(', ') }}</span>

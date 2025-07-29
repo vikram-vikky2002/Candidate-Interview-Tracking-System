@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+
+import { LayoutComponent } from './components/layout/layout.component';
 import { DashboardStatsComponent } from './components/Utility/dashboard-stats/dashboard-stats.component';
 import { CandidateProgressComponent } from './components/Utility/candidate-progress/candidate-progress.component';
-import { RouterModule, Routes } from '@angular/router';
 import { EducationListComponent } from './components/Education/education-list/education-list.component';
 import { AddEducationComponent } from './components/Education/add-education/add-education.component';
 import { SkillsListComponent } from './components/Skills/skill-list/skill-list.component';
 import { AssignSkillComponent } from './components/Skills/assign-skill/assign-skill.component';
 import { SearchInterviewsComponent } from './components/Utility/search-interviews/search-interviews.component';
-import { LayoutComponent } from './components/layout/layout.component';
 import { JobListingComponent } from './components/JobPortal/job-listing/job-listing.component';
 import { JobDetailsComponent } from './components/JobPortal/job-details/job-details.component';
 import { JobApplicationComponent } from './components/JobPortal/job-application/job-application.component';
@@ -15,9 +16,11 @@ import { InterviewEvaluationComponent } from './components/Interviewer/interview
 import { InterviewCalendarComponent } from './components/Interviewer/interview-calendar/interview-calendar.component';
 import { CandidatesListComponent } from './components/Candidates/candidate-list/candidate-list.component';
 import { ScheduleInterviewComponent } from './components/Interviewer/schedule-interview/schedule-interview.component';
-
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
+  { path: 'login', component: LoginComponent },  // 🔥 Separate login outside layout
+
   {
     path: '',
     component: LayoutComponent,
@@ -28,26 +31,19 @@ const routes: Routes = [
       { path: 'education-list', component: EducationListComponent },
       { path: 'add-education', component: AddEducationComponent },
       { path: 'skills-list', component: SkillsListComponent },
-      // { path: 'jobs', component: JobListingComponent },
-      // { path: 'job/:id', component: JobDetailsComponent },      // <-- This is important
-      // { path: 'apply/:id', component: JobApplicationComponent },
       { path: 'assign-skill', component: AssignSkillComponent },
-      { path: 'evaluate/:interviewId', component: InterviewEvaluationComponent },
-      { path: 'interviewer-calendar', component: InterviewCalendarComponent },
-      { path: '', redirectTo: 'dashboard-stats', pathMatch: 'full' } // default route
-    ]
-  },
-  {
-    path: '',
-    children: [
       { path: 'jobs', component: JobListingComponent },
       { path: 'scheduleInterview', component: ScheduleInterviewComponent },
       { path: 'candidate-list', component: CandidatesListComponent },
-      { path: 'job/:id', component: JobDetailsComponent },      // <-- This is important
+      { path: 'job/:id', component: JobDetailsComponent },
       { path: 'apply/:id', component: JobApplicationComponent },
-      { path: '', redirectTo: 'job', pathMatch: 'full' } // default route
+      { path: 'evaluate/:interviewId', component: InterviewEvaluationComponent },
+      { path: 'interviewer-calendar', component: InterviewCalendarComponent },
+      { path: '', redirectTo: 'dashboard-stats', pathMatch: 'full' } // 👈 Default after login
     ]
-  }
+  },
+
+  { path: '**', redirectTo: 'login' } // Wildcard redirect
 ];
 
 @NgModule({

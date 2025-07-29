@@ -1,37 +1,78 @@
 .education-card {
-  max-width: 1000px;
-  margin: 40px auto;
-  padding: 32px;
+  background-color: #1e1e1e;
+  color: #ffffff;
+  padding: 24px;
   border-radius: 12px;
-  background-color: #ffffff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin: 32px auto;
+  max-width: 1000px;
 }
 
+/* Header row */
 .header-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .education-title {
-  color: #3f51b5;
-  margin: 0;
+  font-size: 22px;
+  font-weight: bold;
+  color: #00e5ff;
 }
 
+/* Table styles */
 .custom-education-table {
   width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse;
+  background-color: #2a2a2a;
   border-radius: 8px;
   overflow: hidden;
-  background: #f9f9f9;
+}
+
+.mat-header-row {
+  background-color: #00e5ff;
+  color: #000000;
+  font-weight: bold;
 }
 
 .mat-header-cell {
-  background-color: #3f51b5;
-  color: #fff;
-  font-weight: 500;
+  padding: 12px;
+  font-size: 14px;
+  text-align: left;
 }
+
+.mat-row {
+  background-color: #1e1e1e;
+  transition: background-color 0.3s;
+}
+
+  .mat-row:hover {
+    background-color: #292929;
+  }
 
 .mat-cell {
   padding: 12px;
+  font-size: 14px;
+  border-bottom: 1px solid #444;
+  color: #ffffff;
 }
+
+/* Elevation override for dark theme */
+.mat-elevation-z2,
+.mat-elevation-z4 {
+  box-shadow: 0 2px 10px rgba(0, 229, 255, 0.1);
+}
+
+/* Button override */
+button[mat-raised-button] {
+  background-color: #00e5ff;
+  color: #000000;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+  button[mat-raised-button]:hover {
+    background-color: #00bcd4;
+  }

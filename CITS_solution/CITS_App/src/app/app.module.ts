@@ -21,6 +21,7 @@ import { SkillsListComponent } from './components/Skills/skill-list/skill-list.c
 import { AssignSkillComponent } from './components/Skills/assign-skill/assign-skill.component';
 
 // ✅ Angular Material Modules
+
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -38,7 +39,8 @@ import { InterviewCalendarComponent } from './components/Interviewer/interview-c
 import { ScheduleInterviewComponent } from './components/Interviewer/schedule-interview/schedule-interview.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { CandidatesListComponent } from './components/Candidates/candidate-list/candidate-list.component';
-
+import { LoginComponent } from './components/login/login.component';
+import { MatMenuModule } from '@angular/material/menu';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,6 +52,7 @@ import { CandidatesListComponent } from './components/Candidates/candidate-list/
     SkillsListComponent,
     AssignSkillComponent,
     LayoutComponent,
+    LoginComponent,
     CandidatesListComponent,
     JobListingComponent,
     JobDetailsComponent,
@@ -63,10 +66,9 @@ import { CandidatesListComponent } from './components/Candidates/candidate-list/
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    MatMenuModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-
-    // ✅ Angular Material UI Modules
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
@@ -77,7 +79,7 @@ import { CandidatesListComponent } from './components/Candidates/candidate-list/
     MatInputModule,
     MatTableModule,
     MatSelectModule,
-    MatSnackBarModule
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
