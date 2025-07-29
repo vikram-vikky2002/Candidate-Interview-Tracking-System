@@ -1,50 +1,40 @@
-<mat-sidenav-container class="sidenav-container">
-
+<div class="layout-container">
   <!-- Sidebar -->
-  <mat-sidenav #sidenav class="sidenav" mode="side" [opened]="true">
-    <mat-toolbar class="text-white">CITS Menu</mat-toolbar>
-    <mat-nav-list>
+  <div class="sidebar">
+    <div class="sidebar-title">CITS</div>
+    <nav class="nav-links">
+      <a routerLink="/dashboard-stats" routerLinkActive="active-link">📊 Dashboard</a>
+      <a routerLink="/candidate-list" routerLinkActive="active-link">👤 Candidates</a>
+      <a routerLink="/interviewer-calendar" routerLinkActive="active-link">📅 Interviews</a>
+      <a routerLink="/jobs" routerLinkActive="active-link">💼 Jobs</a>
+      <a routerLink="/education-list" routerLinkActive="active-link">🎓 Education</a>
+      <a routerLink="/skills-list" routerLinkActive="active-link">🛠 Skills</a>
+      <a routerLink="/dashboard-stats" routerLinkActive="active-link">📈 Analytics</a>
+      <a routerLink="/settings" routerLinkActive="active-link">⚙️ Settings</a>
+    </nav>
+  </div>
 
-      <!-- Utility -->
-      <a mat-list-item routerLink="/dashboard-stats" routerLinkActive="active-link">Dashboard Stats</a>
-      <a mat-list-item routerLink="/candidate-progress" routerLinkActive="active-link">Candidate Progress</a>
-      <a mat-list-item routerLink="/search-interviews" routerLinkActive="active-link">Search Interviews</a>
+  <!-- Main Area -->
+  <div class="main">
+    <!-- Topbar -->
+    <div class="topbar">
+      <div class="topbar-title">Candidate Interview Tracking System</div>
+      <div class="topbar-actions">
+        <span class="icon">🔔</span>
+        <span class="icon">🌙</span>
+        <div class="user-dropdown">
+          <span class="user-name">Admin User ⏷</span>
+          <div class="dropdown-menu">
+            <a routerLink="/settings">Settings</a>
+            <a routerLink="/login">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
 
-      <!-- Education -->
-      <a mat-list-item routerLink="/education-list" routerLinkActive="active-link">Education List</a>
-      <a mat-list-item routerLink="/add-education" routerLinkActive="active-link">Add Education</a>
-
-      <!-- Skills -->
-      <a mat-list-item routerLink="/skills-list" routerLinkActive="active-link">Skills List</a>
-      <a mat-list-item routerLink="/assign-skill" routerLinkActive="active-link">Assign Skill</a>
-
-      <!-- Interviewer -->
-      <a mat-list-item routerLink="/interviewer-calendar" routerLinkActive="active-link">Interviewer Calendar</a>
-      <a mat-list-item routerLink="/scheduleInterview" routerLinkActive="active-link">Schedule Interview</a>
-      <a mat-list-item routerLink="/evaluate/1" routerLinkActive="active-link">Evaluate Interview</a> <!-- Example ID -->
-      <!-- Candidates -->
-      <a mat-list-item routerLink="/candidate-list" routerLinkActive="active-link">Candidate List</a>
-
-      <!-- Job Portal -->
-      <a mat-list-item routerLink="/jobs" routerLinkActive="active-link">Job Listings</a>
-      <a mat-list-item routerLink="/job/1" routerLinkActive="active-link">Job Details</a> <!-- Example ID -->
-      <a mat-list-item routerLink="/apply/1" routerLinkActive="active-link">Job Application</a> <!-- Example ID -->
-
-    </mat-nav-list>
-  </mat-sidenav>
-
-  <!-- Main Content -->
-  <mat-sidenav-content>
-    <mat-toolbar class="toolbar">
-      <button mat-icon-button (click)="toggleSidenav()">
-        <mat-icon>#</mat-icon>
-      </button>
-      <span class="toolbar-title">🎓 Candidate Interview Tracking System</span>
-    </mat-toolbar>
-
+    <!-- Content -->
     <div class="main-content">
       <router-outlet></router-outlet>
     </div>
-  </mat-sidenav-content>
-
-</mat-sidenav-container>
+  </div>
+</div>

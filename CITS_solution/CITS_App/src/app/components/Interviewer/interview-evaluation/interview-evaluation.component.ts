@@ -86,6 +86,7 @@ import { Evaluation } from '../../../models/Evaluation/Evaluation';
         feedback: this.feedback,
         evaluatedAt: new Date().toISOString() // Current date and time
       };
+      console.log('Submitting evaluation:', evalue);
       this.interviewService.submitEvaluation(evalue).subscribe({
         next: (ere) => {
           console.log('Evaluation submitted:', ere);

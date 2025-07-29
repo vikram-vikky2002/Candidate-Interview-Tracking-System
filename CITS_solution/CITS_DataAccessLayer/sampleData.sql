@@ -58,16 +58,16 @@ GO
 
 INSERT INTO Interviews (CandidateID, ScheduledDateTime, InterviewMode, InterviewerID, StageID, Status)
 VALUES
-(1, '2025-07-27 10:00:00', 'Online', 2, 2, 'Completed'),
-(2, '2025-07-28 11:00:00', 'Offline', 2, 3, 'Scheduled'),
-(3, '2025-07-25 15:30:00', 'Online', 2, 1, 'Cancelled');
+(1004, '2025-07-27 10:00:00', 'Online', 2, 2, 'Completed'),
+(1002, '2025-07-28 11:00:00', 'Offline', 2, 3, 'Scheduled'),
+(1003, '2025-07-25 15:30:00', 'Online', 2, 1, 'Cancelled');
 GO
 
 INSERT INTO Evaluations (CandidateID, InterviewID, EvaluationType, Score, Feedback)
 VALUES
-(1, 1, 'Technical Score', 82.0, 'Good knowledge of core Java concepts'),
-(2, 2, 'Technical Score', 90.5, 'Excellent in full-stack problem solving'),
-(3, 3, 'Resume Score', 70.0, 'Decent resume but lacks clarity on projects');
+(1004, 1, 'Technical Score', 82.0, 'Good knowledge of core Java concepts'),
+(1002, 2, 'Technical Score', 90.5, 'Excellent in full-stack problem solving'),
+(1003, 3, 'Resume Score', 70.0, 'Decent resume but lacks clarity on projects');
 GO
 
 SELECT * FROM Roles;

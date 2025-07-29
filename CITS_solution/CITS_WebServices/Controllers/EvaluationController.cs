@@ -2,6 +2,7 @@
 using CITS_DataAccessLayer.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace CITS_WebServices.Controllers
 {
@@ -71,7 +72,7 @@ namespace CITS_WebServices.Controllers
 
         //Add Evaluation
         [HttpPost("AddEvaluation")]
-        public IActionResult AddEvaluation(Evaluation evaluation)
+        public IActionResult AddEvaluation(Models.Evaluation evaluation)
         {
             if (evaluation == null)
             {
@@ -79,6 +80,13 @@ namespace CITS_WebServices.Controllers
             }
             try
             {
+            //evaluationId: number;
+            //candidateId: number;
+            //interviewId: number;
+            //    evaluationType ?: string | null;
+            //score: number | null;
+            //feedback: string | null;
+            //    evaluatedAt ?: Date | string | null;
                 CITS_DataAccessLayer.Models.Evaluation newEvaluation = new CITS_DataAccessLayer.Models.Evaluation
                 {
                     CandidateId = evaluation.CandidateId,

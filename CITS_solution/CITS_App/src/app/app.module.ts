@@ -21,6 +21,7 @@ import { SkillsListComponent } from './components/Skills/skill-list/skill-list.c
 import { AssignSkillComponent } from './components/Skills/assign-skill/assign-skill.component';
 
 // ✅ Angular Material Modules
+
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -39,7 +40,7 @@ import { ScheduleInterviewComponent } from './components/Interviewer/schedule-in
 import { BrowserModule } from '@angular/platform-browser';
 import { CandidatesListComponent } from './components/Candidates/candidate-list/candidate-list.component';
 import { LoginComponent } from './components/login/login.component';
-
+import { MatMenuModule } from '@angular/material/menu';
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,6 +66,7 @@ import { LoginComponent } from './components/login/login.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    MatMenuModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     MatToolbarModule,
@@ -77,7 +79,7 @@ import { LoginComponent } from './components/login/login.component';
     MatInputModule,
     MatTableModule,
     MatSelectModule,
-    MatSnackBarModule
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
