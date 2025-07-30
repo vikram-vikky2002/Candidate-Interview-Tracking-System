@@ -389,7 +389,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Interview"
+                    "$ref": "#/components/schemas/CITS_WebServices.Models.Interview"
                   }
                 }
               },
@@ -397,7 +397,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Interview"
+                    "$ref": "#/components/schemas/CITS_WebServices.Models.Interview"
                   }
                 }
               },
@@ -405,7 +405,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Interview"
+                    "$ref": "#/components/schemas/CITS_WebServices.Models.Interview"
                   }
                 }
               }
@@ -794,6 +794,28 @@
             }
           }
         },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/User/GetUserByEmail/{email}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -1353,6 +1375,45 @@
           "evaluatedAt": {
             "type": "string",
             "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CITS_WebServices.Models.Interview": {
+        "type": "object",
+        "properties": {
+          "interviewId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "candidateId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "scheduledDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "interviewMode": {
+            "type": "string",
+            "nullable": true
+          },
+          "interviewerId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "stageId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "meetingLink": {
+            "type": "string",
             "nullable": true
           }
         },

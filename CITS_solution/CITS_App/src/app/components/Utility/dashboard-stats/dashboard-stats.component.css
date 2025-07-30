@@ -118,6 +118,24 @@
     text-align: center;
     line-height: 20px; /* match the height of your bar */
   }
+.interview-card {
+  background-color: #2a2a2a;
+  color: #00e5ff;
+  padding: 16px;
+  margin-bottom: 16px;
+  border-left: 4px solid #00e5ff;
+  border-radius: 8px;
+  font-size: 16px;
+  box-shadow: 0 0 8px rgba(0, 229, 255, 0.2);
+}
+
+  .interview-card strong {
+    color: #ffffff;
+  }
+.interviewer-panel {
+  background-color: #121212;
+  border-left: 6px solid #00e5ff;
+}
 
 /* Responsive */
 @media (max-width: 768px) {

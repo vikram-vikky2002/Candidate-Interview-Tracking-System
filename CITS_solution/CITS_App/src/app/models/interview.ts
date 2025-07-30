@@ -6,6 +6,15 @@ export interface Interview {
     interviewerId: number;
     stageId: number;
     status: string;
-    meetingLink?: string;
+  meetingLink?: string;
+
 
 }
+//"interviewId": 2,
+//  "candidateId": 2,
+//    "scheduledDateTime": "2025-08-16T11:00:00",
+//      "interviewMode": "Offline",
+//        "interviewerId": 2,
+//          "stageId": 1,
+//            "status": "Completed"
+//  },

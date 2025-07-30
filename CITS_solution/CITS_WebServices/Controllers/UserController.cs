@@ -96,6 +96,25 @@ namespace CITS_WebServices.Controllers
                 return StatusCode(500, "Internal server error: " + ex.Message);
             }
         }
+        // Get user by email
+        [HttpGet("GetUserByEmail/{email}")]
+        public IActionResult GetUserByEmail(string email)
+        {
+            try
+            {
+                var user = _repository.GetUserByEmail(email);
+                if (user == null)
+                {
+                    return NotFound("User not found");
+                }
+                return Ok(user);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Internal server error: " + ex.Message);
+            }
+        }
+
         //UpdateUser
         [HttpPut("UpdateUser/{userId}")]
         public IActionResult UpdateUser(int userId, [FromBody] dynamic userData)
