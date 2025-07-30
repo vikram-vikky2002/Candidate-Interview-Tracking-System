@@ -1,13 +1,14 @@
 <div class="dashboard-wrapper">
   <!-- Interviewer Notification Panel -->
   <ng-container *ngIf="isInterviewer; else statsDashboard">
-    <div class="dashboard-card" [ngClass]="{ 'interviewer-panel': isInterviewer }">
-
+    <div class="dashboard-card interviewer-panel">
       <h2 class="dashboard-title">Today's Interviews</h2>
 
       <div *ngIf="todayInterviews.length > 0; else noInterviews">
         <div class="interview-card" *ngFor="let interview of todayInterviews">
-          <strong>{{ interview.time }}</strong> – {{ interview.candidate }} ({{ interview.position }})
+          <strong>{{ interview.scheduledDateTime | date: 'shortTime' }}</strong>
+          – Candidate ID: {{ interview.candidateId }}
+          ({{ interview.interviewMode }}, Status: {{ interview.status }})
         </div>
       </div>
 
@@ -38,9 +39,7 @@
             <div class="progress-bar">
               <div class="fill" [style.width.%]="getPercentage(stats.interviewsScheduled)"></div>
             </div>
-            <small>
-              {{ getPercentage(stats.interviewsScheduled) }}% ({{ stats.interviewsScheduled }})
-            </small>
+            <small>{{ getPercentage(stats.interviewsScheduled) }}% ({{ stats.interviewsScheduled }})</small>
           </div>
 
           <div class="stat-item">
@@ -48,9 +47,7 @@
             <div class="progress-bar success">
               <div class="fill" [style.width.%]="getPercentage(stats.selectedCandidates)"></div>
             </div>
-            <small>
-              {{ getPercentage(stats.selectedCandidates) }}% ({{ stats.selectedCandidates }})
-            </small>
+            <small>{{ getPercentage(stats.selectedCandidates) }}% ({{ stats.selectedCandidates }})</small>
           </div>
 
           <div class="stat-item">
@@ -58,9 +55,7 @@
             <div class="progress-bar danger">
               <div class="fill" [style.width.%]="getPercentage(stats.rejectedCandidates)"></div>
             </div>
-            <small>
-              {{ getPercentage(stats.rejectedCandidates) }}% ({{ stats.rejectedCandidates }})
-            </small>
+            <small>{{ getPercentage(stats.rejectedCandidates) }}% ({{ stats.rejectedCandidates }})</small>
           </div>
         </div>
       </div>

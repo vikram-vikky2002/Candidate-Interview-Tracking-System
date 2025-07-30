@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UtilityService } from '../../../services/Utility/utility.service';
 import { Router } from '@angular/router';
 import { InterviewService } from '../../../services/Interview/interview.service';
+import { Interview } from '../../../models/interview';
 
 @Component({
   selector: 'app-dashboard-stats',
@@ -18,7 +19,7 @@ export class DashboardStatsComponent implements OnInit {
 
   roleId: number = 0;
   isInterviewer: boolean = false;
-  todayInterviews: any[] = [];
+  todayInterviews: Interview[] = [];
 
   constructor(private utilityService: UtilityService, private _router: Router, private interviewService: InterviewService) { }
 
@@ -29,11 +30,12 @@ export class DashboardStatsComponent implements OnInit {
     if (this.isInterviewer) {
       const interviewerId = Number(localStorage.getItem('userId'));
       this.loadTodaySchedule(interviewerId);
+      console.log('Interviewer ID:', interviewerId)
     } else {
       this.loadStats();
     }
+    console.log(this.isInterviewer, this.roleId)
   }
-
 
   loadStats() {
     this.utilityService.getDashboardStats().subscribe({
@@ -43,25 +45,33 @@ export class DashboardStatsComponent implements OnInit {
       error: err => console.error('Error fetching stats', err)
     });
   }
-
   loadTodaySchedule(interviewerId: number) {
     this.interviewService.getInterviewByInterviewerId(interviewerId).subscribe({
       next: (interviews) => {
-        console.log('Interviews for today:', interviews);
         const today = new Date();
-        const todayDateOnly = today.toISOString().split('T')[0]; // 'YYYY-MM-DD'
+        const todayYear = today.getFullYear();
+        const todayMonth = today.getMonth();
+        const todayDate = today.getDate();
 
         this.todayInterviews = interviews.filter(interview => {
-          if (!interview.scheduledDateTime) return false;
-          const scheduledDate = new Date(interview.scheduledDateTime).toISOString().split('T')[0];
-          return scheduledDate === todayDateOnly;
-        });
+          const dateVal = interview.scheduledDateTime;
+          if (!dateVal) return false;
 
+          const scheduled = new Date(dateVal);
+          return (
+            scheduled.getFullYear() === todayYear &&
+            scheduled.getMonth() === todayMonth &&
+            scheduled.getDate() === todayDate
+          );
+        });
+        console.log(interviews)
         console.log('Today\'s Interviews:', this.todayInterviews);
       },
       error: err => console.error('Error loading today’s schedule', err)
     });
   }
+
+
 
 
   goToCandidates() {

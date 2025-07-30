@@ -15,11 +15,16 @@ export class AuthService {
   }
 
   // Store session info including role
-  storeSession(fullName: string, email: string, roleId: number) {
+  storeSession(fullName: string, email: string, roleId: number, userId: number) {
     localStorage.setItem('fullName', fullName);
     localStorage.setItem('email', email);
     localStorage.setItem('roleId', roleId.toString());
+    localStorage.setItem('userId', userId.toString());
   }
+  getUserByEmail(email: string) {
+    return this.http.get<any>(`${this.baseUrl}/User/GetUserByEmail/${email}`);
+  }
+
 
   // Unified redirect after login
   redirectAfterLogin() {

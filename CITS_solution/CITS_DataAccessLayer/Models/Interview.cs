@@ -18,7 +18,6 @@ public partial class Interview
     public int StageId { get; set; }
 
     public string Status { get; set; } = null!;
-    public string? meetingLink { get; set; } = null!;
 
     public virtual Candidate Candidate { get; set; } = null!;
 

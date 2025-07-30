@@ -801,6 +801,28 @@
         }
       }
     },
+    "/api/User/GetUserByEmail/{email}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/User/UpdateUser/{userId}": {
       "put": {
         "tags": [
@@ -1128,10 +1150,6 @@
             "format": "int32"
           },
           "status": {
-            "type": "string",
-            "nullable": true
-          },
-          "meetingLink": {
             "type": "string",
             "nullable": true
           },

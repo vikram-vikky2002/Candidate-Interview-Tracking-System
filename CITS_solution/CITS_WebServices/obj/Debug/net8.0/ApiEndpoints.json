@@ -459,6 +459,22 @@
   },
   {
     "ContainingType": "CITS_WebServices.Controllers.UserController",
+    "Method": "GetUserByEmail",
+    "RelativePath": "api/User/GetUserByEmail/{email}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "email",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CITS_WebServices.Controllers.UserController",
     "Method": "GetUserById",
     "RelativePath": "api/User/GetUserById/{userId}",
     "HttpMethod": "GET",
