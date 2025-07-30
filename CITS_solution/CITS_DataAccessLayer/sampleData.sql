@@ -58,7 +58,7 @@ GO
 
 INSERT INTO Interviews (CandidateID, ScheduledDateTime, InterviewMode, InterviewerID, StageID, Status)
 VALUES
-(1004, '2025-07-30 10:00:00', 'Online', 2, 2, 'Scheduled'),
+(1004, '2025-07-30 23:00:00', 'Online', 2, 2, 'Scheduled'),
 (1002, '2025-07-31 11:00:00', 'Offline', 2, 3, 'Scheduled'),
 (1003, '2025-07-31 15:30:00', 'Online', 2, 1, 'Cancelled');
 GO
@@ -77,5 +77,9 @@ SELECT * FROM Candidates;
 SELECT * FROM Education;
 SELECT * FROM Skills;
 SELECT * FROM CandidateSkills;
-SELECT * FROM Interviews;
+	
 SELECT * FROM Evaluations;
+INSERT INTO Interviews (CandidateID, ScheduledDateTime, InterviewMode, InterviewerID, StageID, Status)
+VALUES
+(1004, '2025-07-30 23:00:00', 'Online', 2, 2, 'Scheduled')
+GO

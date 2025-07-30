@@ -163,6 +163,10 @@ public partial class CitsdbContext : DbContext
             entity.Property(e => e.InterviewerId).HasColumnName("InterviewerID");
             entity.Property(e => e.ScheduledDateTime).HasColumnType("datetime");
             entity.Property(e => e.StageId).HasColumnName("StageID");
+            entity.Property(e => e.meetingLink)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("Meeting_Link");
             entity.Property(e => e.Status)
                 .HasMaxLength(50)
                 .IsUnicode(false);

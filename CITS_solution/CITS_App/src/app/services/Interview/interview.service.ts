@@ -22,7 +22,9 @@ export class InterviewService {
   }
 
   getInterviewByInterviewerId(interviewerId: number): Observable<Interview[]> {
-    return this._http.get<Interview[]>(`${this._apiUrl}/GetByInterviewer?interviewerId=${interviewerId}`);
+    var idd =this._http.get<Interview[]>(`https://localhost:7181/api/Interview/GetByInterviewer?interviewerId=${interviewerId}`);
+    console.log('this is ', idd)
+    return idd;
   }
 
   getInterviewByCandidateId(candidateId: number): Observable<Interview[]> {

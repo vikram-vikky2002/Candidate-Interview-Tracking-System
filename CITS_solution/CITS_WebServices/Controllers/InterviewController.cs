@@ -28,13 +28,24 @@ namespace CITS_WebServices.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<Interview>> GetByInterviewer(int interviewerId)
+        public ActionResult<List<Models.Interview>> GetByInterviewer(int interviewerId)
         {
-            var result = Repository.GetInterviewsByInterviewer(interviewerId);
+            List<Interview> result = Repository.GetInterviewsByInterviewer(interviewerId);
+           
+            List<Models.Interview> interviews = result.Select(i => new Models.Interview
+            {
+                InterviewId = i.InterviewId,
+                CandidateId = i.CandidateId,
+                ScheduledDateTime = i.ScheduledDateTime,
+                InterviewMode = i.InterviewMode,
+                InterviewerId = i.InterviewerId,
+                StageId = i.StageId,
+                Status = i.Status
+            }).ToList();
             if (result == null) 
                 return NotFound();
 
-            return Ok(result);
+            return Ok(interviews);
         }
         [HttpGet("{id}")]
         public IActionResult GetInterviewById(int id)
