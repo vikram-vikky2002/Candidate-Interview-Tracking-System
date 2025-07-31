@@ -25,6 +25,18 @@
       ]
     },
     {
+      "DownstreamPathTemplate": "/api/Candidate/skills/{candidateId}",
+      "UpstreamPathTemplate": "/cits/candidate/skills/{candidateId}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7181
+        }
+      ]
+    },
+    {
       "DownstreamPathTemplate": "/api/Candidate/GetCandidatesByStatus/{status}",
       "UpstreamPathTemplate": "/cits/candidate/status/{status}",
       "UpstreamHttpMethod": [ "GET" ],
@@ -36,7 +48,18 @@
         }
       ]
     },
-
+    {
+      "DownstreamPathTemplate": "/api/Candidate/status",
+      "UpstreamPathTemplate": "/cits/candidate/status",
+      "UpstreamHttpMethod": [ "PUT" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7181
+        }
+      ]
+    },
     {
       "DownstreamPathTemplate": "/api/Education/candidate/{candidateId}",
       "UpstreamPathTemplate": "/cits/education/candidate/{candidateId}",
@@ -89,6 +112,18 @@
     {
       "DownstreamPathTemplate": "/api/Evaluation/GetEvaluationsByInterviewerId/{interviewerId}",
       "UpstreamPathTemplate": "/cits/evaluation/interviewer/{interviewerId}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7181
+        }
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Evaluation/GetEvaluationByInterviewId/{interviewerId}",
+      "UpstreamPathTemplate": "/cits/evaluation/interview/{interviewerId}",
       "UpstreamHttpMethod": [ "GET" ],
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
@@ -183,7 +218,30 @@
         }
       ]
     },
-
+    {
+      "DownstreamPathTemplate": "/api/Interview/GetInterviewStageName",
+      "UpstreamPathTemplate": "/cits/interview/getInterviewStageName",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7181
+        }
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/InterviewStage",
+      "UpstreamPathTemplate": "/cits/interviewstage",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7181
+        }
+      ]
+    },
     {
       "DownstreamPathTemplate": "/api/Skills",
       "UpstreamPathTemplate": "/cits/skills",
@@ -244,7 +302,18 @@
         }
       ]
     },
-
+    {
+      "DownstreamPathTemplate": "/api/User/GetUserNameById/{userId}",
+      "UpstreamPathTemplate": "/cits/username/{userId}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7181
+        }
+      ]
+    },
     {
       "DownstreamPathTemplate": "/api/User/GetUserById/{userId}",
       "UpstreamPathTemplate": "/cits/user/{userId}",

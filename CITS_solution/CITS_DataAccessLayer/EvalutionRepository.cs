@@ -22,6 +22,12 @@ namespace CITS_DataAccessLayer
                 if (t != null)
                 {
                     _context.SaveChanges();
+                    var interview = _context.Interviews.Find(evaluation.InterviewId);
+                    if (interview != null)
+                    {
+                        interview.Status = "Completed";
+                        _context.SaveChanges();
+                    }
                 }
                 else
                 {

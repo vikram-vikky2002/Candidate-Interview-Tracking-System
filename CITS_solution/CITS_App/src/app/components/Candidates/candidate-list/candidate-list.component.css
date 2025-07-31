@@ -128,28 +128,48 @@ h2 {
 }
 
 /* Status pill */
+/* Enhanced Status Pills with your theme */
 .status-pill {
   display: inline-block;
-  padding: 4px 8px;
-  border-radius: 6px;
+  padding: 6px 12px;
+  border-radius: 20px;
   font-size: 12px;
-  font-weight: bold;
-  color: #000;
-  text-transform: capitalize;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  min-width: 80px;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
 }
 
-  .status-pill.Pending {
-    background-color: #ffc107;
-  }
+.status-pill.applied {
+  background-color: #444;
+  color: #ffffff;
+  border-color: #666;
+}
 
-  .status-pill.Selected {
-    background-color: #4caf50;
-  }
+.status-pill.in-progress {
+  background-color: #00e5ff;
+  color: #000000;
+  border-color: #00bcd4;
+}
 
-  .status-pill.Rejected {
-    background-color: #f44336;
-  }
+.status-pill.selected {
+  background-color: #4caf50;
+  color: #ffffff;
+  border-color: #45a049;
+}
 
-  .status-pill.OnHold {
-    background-color: #9c27b0;
-  }
+.status-pill.rejected {
+  background-color: #f44336;
+  color: #ffffff;
+  border-color: #da190b;
+}
+
+/* Hover effects */
+.status-pill:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 229, 255, 0.2);
+}
+

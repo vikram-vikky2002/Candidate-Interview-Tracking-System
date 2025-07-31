@@ -56,7 +56,9 @@
       <tr *ngFor="let c of filteredCandidates">
         <td *ngFor="let col of displayedColumns" [ngClass]="col.key + '-col'">
           <ng-container [ngSwitch]="col.key">
-            <span *ngSwitchCase="'status'" [ngClass]="statusClass(c.status)" class="status-pill" style="color:aliceblue">
+            <span *ngSwitchCase="'status'" 
+                  [ngClass]="'status-pill ' + (c.status | lowercase).replace(' ', '-')"
+                  class="status-pill">
               {{ c.status }}
             </span>
             <span *ngSwitchCase="'skills'">{{ c.skills?.join(', ') }}</span>
@@ -67,9 +69,8 @@
         <td class="action-col">
           <button
             class="btn btn--sm btn--outline"
-            (click)="viewCandidate(c)"
-            title="View details"
-          >
+            [routerLink]="['/candidates', c.candidateId]"
+            title="View details">
             View
           </button>
 
@@ -100,6 +101,5 @@
 <app-schedule-interview
   *ngIf="showDialog"
   [candidate]="selectedCandidate!"
-  [editMode]="editInterview"
   (closed)="closeDialog($event)"
 ></app-schedule-interview>

@@ -41,6 +41,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CandidatesListComponent } from './components/Candidates/candidate-list/candidate-list.component';
 import { LoginComponent } from './components/login/login.component';
 import { MatMenuModule } from '@angular/material/menu';
+import { CandidateDetailsComponent } from './components/Candidates/candidate-details/candidate-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,7 +60,8 @@ import { MatMenuModule } from '@angular/material/menu';
     JobApplicationComponent,
     InterviewEvaluationComponent,
     InterviewCalendarComponent,
-    ScheduleInterviewComponent
+    ScheduleInterviewComponent,
+    CandidateDetailsComponent
   ],
   imports: [
     BrowserModule,

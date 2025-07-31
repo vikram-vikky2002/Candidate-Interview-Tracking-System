@@ -10,9 +10,11 @@ namespace CITS_WebServices.Controllers
     public class CandidateController : ControllerBase
     {
         public CandidateRepository _repository { get; set; }
+        public SkillsRepository _skillsRepository { get; set; }
         public CandidateController()
         {
             _repository = new CandidateRepository();
+            _skillsRepository = new SkillsRepository();
         }
         //GetAllCandidates
         [HttpGet]
@@ -50,6 +52,26 @@ namespace CITS_WebServices.Controllers
                 return StatusCode(500, "Internal server error: " + ex.Message);
             }
         }
+
+        [HttpGet("skills/{candidateId}")]
+        public IActionResult GetSkillsByCandidate(int candidateId)
+        {
+            try
+            {
+                var skills = _skillsRepository.GetSkillsByCandidateId(candidateId);
+                if(skills == null)
+                {
+                    return NotFound("No Skills found.");
+                }
+
+                return Ok(skills);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Internal server error: " + ex.Message);
+            }
+        }
+
         //AddCandidate
         [HttpPost]
         public IActionResult AddCandidate(Candidate candidate)
@@ -151,6 +173,32 @@ namespace CITS_WebServices.Controllers
             catch (Exception ex)
             {
                 return StatusCode(500, "Internal server error: " + ex.Message);
+            }
+        }
+
+        public class UpdateDTO
+        {
+            public int candidateId { get; set; }
+            public string status { get; set; }
+        }
+
+        [HttpPut("status")]
+        public IActionResult UpdateCandidate([FromBody] UpdateDTO data)
+        {
+            bool result = false;
+            try
+            {
+                result = _repository.UpdateCandidateStatus(data.candidateId, data.status);
+                if (result)
+                {
+                    return Ok(new { message = "Status updated successfully" });
+                }
+                return BadRequest(new { message = "Failed to update candidate." });
+            }
+            catch (Exception ex)
+            {
+                result = false;
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
     }

@@ -31,6 +31,23 @@ namespace CITS_WebServices.Controllers
                 return StatusCode(500, "Internal server error: " + ex.Message);
             }
         }
+        [HttpGet("GetUserNameById/{userId}")]
+        public IActionResult GetUserNameById(int userId)
+        {
+            try
+            {
+                var user = _repository.GetUserNameById(userId);
+                if (user == null)
+                {
+                    return NotFound("User not found");
+                }
+                return Ok(new { name = user });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Internal server error: " + ex.Message);
+            }
+        }
         //GetUserByRole
         [HttpGet("GetUserByRole/{role}")]
         public IActionResult GetUserByRole(string role)

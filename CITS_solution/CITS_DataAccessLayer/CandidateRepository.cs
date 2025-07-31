@@ -113,5 +113,25 @@ namespace CITS_DataAccessLayer
             }
             return candidates;
         }
+
+        public bool UpdateCandidateStatus(int candidateId, string status)
+        {
+            bool result = false;
+            try
+            {
+                var candidate = _context.Candidates.Find(candidateId);
+                candidate.Status = status;
+
+                _context.SaveChanges();
+
+                result = true;
+            }
+            catch (Exception)
+            {
+                result = false;
+            }
+
+            return result;
+        }
     }
 }

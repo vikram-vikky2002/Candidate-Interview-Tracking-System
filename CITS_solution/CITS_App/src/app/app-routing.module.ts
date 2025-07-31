@@ -17,6 +17,7 @@ import { InterviewCalendarComponent } from './components/Interviewer/interview-c
 import { CandidatesListComponent } from './components/Candidates/candidate-list/candidate-list.component';
 import { ScheduleInterviewComponent } from './components/Interviewer/schedule-interview/schedule-interview.component';
 import { LoginComponent } from './components/login/login.component';
+import { CandidateDetailsComponent } from './components/Candidates/candidate-details/candidate-details.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },  // 🔥 Separate login outside layout
@@ -35,6 +36,7 @@ const routes: Routes = [
       { path: 'jobs', component: JobListingComponent },
       { path: 'scheduleInterview', component: ScheduleInterviewComponent },
       { path: 'candidate-list', component: CandidatesListComponent },
+      { path: 'candidates/:id', component: CandidateDetailsComponent },
       { path: 'job/:id', component: JobDetailsComponent },
       { path: 'apply/:id', component: JobApplicationComponent },
       { path: 'evaluate/:interviewId', component: InterviewEvaluationComponent },

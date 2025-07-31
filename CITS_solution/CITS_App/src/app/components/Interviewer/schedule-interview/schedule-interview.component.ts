@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { InterviewService } from 'src/app/services/Interview/interview.service';
 import { Candidate } from 'src/app/models/Candidate/candidate';
 import { Interview } from 'src/app/models/interview';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-schedule-interview',
@@ -10,24 +11,42 @@ import { Interview } from 'src/app/models/interview';
 })
 export class ScheduleInterviewComponent implements OnInit {
   @Input() candidate!: any;
-  @Input() editMode = false;
+  // @Input() editMode = false;
   @Output() closed = new EventEmitter<boolean>(); // emit true if saved
 
   formData = {
     scheduledDateTime: '',
+    stageId: 0,
     interviewMode: 'Online',
     interviewer: '',
   };
+  stages: any[] = [];
 
-  constructor(private interviewSrv: InterviewService) {}
+  constructor(private interviewSrv: InterviewService, private http: HttpClient) {}
 
   ngOnInit(): void {
-    if (this.editMode && (this.candidate as any).interview) {
+    this.http.get<any[]>('https://localhost:5000/cits/interviewstage')
+    .subscribe({
+      next: (data) => this.stages = data,
+      error: (e) => {
+        console.warn('Could not load stages, using default.');
+        // fallback to hardcoded
+        this.stages = [
+          { stageId: 1, stageName: 'Resume Screening' },
+          { stageId: 2, stageName: 'Technical Round 1' },
+          { stageId: 3, stageName: 'Technical Round 2' },
+          { stageId: 4, stageName: 'HR Round' },
+          { stageId: 5, stageName: 'Final Decision' },
+        ];
+      }
+    });
+    if ((this.candidate as any).interview) {
       const i = (this.candidate as any).interview as Interview;
       this.formData = {
         scheduledDateTime: this.toLocalISO(i.scheduledDateTime!),
         interviewMode: i.interviewMode,
         interviewer: i.interviewerId.toString(),
+        stageId: i.stageId,
       };
     }
   }
@@ -41,21 +60,24 @@ export class ScheduleInterviewComponent implements OnInit {
 
   saveInterview() {
     const payload: Interview = {
-      candidateId: this.candidate.CandidateId!,
+      candidateId: this.candidate.candidateId,
       scheduledDateTime: new Date(this.formData.scheduledDateTime),
       interviewMode: this.formData.interviewMode,
       interviewerId: Number(this.formData.interviewer),
-      stageId: 2, // “Interview Scheduled”
+      stageId: this.formData.stageId,
       status: 'Scheduled',
       interviewId: 0,
     };
 
-    const req$ = this.editMode
-      ? this.interviewSrv.updateInterview(payload.interviewId, payload.status)
-      : this.interviewSrv.scheduleInterview(payload);
+    const req$ = this.interviewSrv.scheduleInterview(payload);
+
+    console.log(payload);
 
     req$.subscribe({
-      next: () => this.close(true),
+      next: () => {
+        alert("Interview Scheduled Successfully");
+        this.close(true);
+      },
       error: (e) => {
         console.error('Interview save failed', e);
         this.close(false);

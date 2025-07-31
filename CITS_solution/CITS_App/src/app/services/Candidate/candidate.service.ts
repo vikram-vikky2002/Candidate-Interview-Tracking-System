@@ -18,6 +18,16 @@ export class CandidateService {
     return this.http.get<Candidate[]>(`${this._apiUrl}/candidate`);
   }
 
+  getCandidateById(id: number): Observable<any> {
+    return this.http.get<any>(`${this._apiUrl}/candidate/${id}`);
+  }
+
+  updateCandidateStatus(id: number, status: string): Observable<any> {
+    var body = { "candidateId": id, "status": status };
+    console.log(body);
+    return this.http.put<any>(`${this._apiUrl}/candidate/status`, body);
+  }
+
   addCandidate(candidate: Candidate): Observable<any> {
     return this.http.post<any>(`${this._apiUrl}/candidate`, candidate);
   }
@@ -32,6 +42,30 @@ export class CandidateService {
 
   assignSkill(CandidateSkill: CandidateSkill): Observable<  any> {
     return this.http.post<any>(`${this._apiUrl}/skills/assign`, CandidateSkill);
+  }
+
+  getSkillsByCandidateId(id: number): Observable<any> {
+    return this.http.get<any>(`${this._apiUrl}/candidate/skills/${id}`);
+  }
+
+  getEducationByCandidateId(id: number): Observable<any> {
+    return this.http.get<any>(`${this._apiUrl}/education/candidate/${id}`);
+  }
+
+  getInterviewByCandidateId(id: number): Observable<any> {
+    return this.http.get<any>(`${this._apiUrl}/interview/by-candidate?candidateId=${id}`);
+  }
+
+  getInterviewStage(id: number): Observable<any> {
+    return this.http.get<any>(`${this._apiUrl}/interview/getInterviewStageName?stageId=${id}`);
+  }
+
+  getEvaluationByInterviewId(id: number): Observable<any> {
+    return this.http.get<any>(`${this._apiUrl}/evaluation/interview/${id}`);
+  }
+
+  getInterviewerName(id: number): Observable<any> {
+    return this.http.get<any>(`${this._apiUrl}/username/${id}`);
   }
 
 }

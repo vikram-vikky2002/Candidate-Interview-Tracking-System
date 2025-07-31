@@ -32,6 +32,22 @@ namespace CITS_DataAccessLayer
             return interviewStages;
         }
 
+        public string GetStageNameFromId(int id)
+        {
+            string result = "";
+
+            try
+            {
+                result = Context.InterviewStages.Find(id).StageName;
+            }
+            catch (Exception ex)
+            {
+                result = null;
+            }
+
+            return result;
+        }
+
         public bool AddInterviewStage(InterviewStage stage)
         {
             try

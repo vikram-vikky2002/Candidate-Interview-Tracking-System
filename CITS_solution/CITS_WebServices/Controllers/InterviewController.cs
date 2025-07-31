@@ -11,10 +11,12 @@ namespace CITS_WebServices.Controllers
     public class InterviewController : Controller
     {
         public InterviewRepository Repository { get; set; }
+        public InterviewStagesRepository _InterviewStagesRepository { get; set; }
 
         public InterviewController(InterviewRepository interviewRepository)
         {
             Repository = interviewRepository;
+            _InterviewStagesRepository = new InterviewStagesRepository();
         }
 
         [HttpGet]
@@ -28,6 +30,20 @@ namespace CITS_WebServices.Controllers
         }
 
         [HttpGet]
+        public IActionResult GetInterviewStageName(int stageId)
+        {
+            var result = _InterviewStagesRepository.GetStageNameFromId(stageId);
+            if(result == null)
+                return NotFound();
+
+            var res = new
+            {
+                name = result
+            };
+            return Ok(res);
+        }
+
+        [HttpGet]
         public ActionResult<List<Interview>> GetByInterviewer(int interviewerId)
         {
             var result = Repository.GetInterviewsByInterviewer(interviewerId);
@@ -36,6 +52,7 @@ namespace CITS_WebServices.Controllers
 
             return Ok(result);
         }
+
         [HttpGet("{id}")]
         public IActionResult GetInterviewById(int id)
         {
@@ -66,7 +83,7 @@ namespace CITS_WebServices.Controllers
         }
 
         [HttpPost]
-        public IActionResult Schedule([FromBody] Interview interview)
+        public IActionResult Schedule([FromBody] Models.Interview interview)
         {
             try
             {
@@ -83,7 +100,7 @@ namespace CITS_WebServices.Controllers
                     bool isScheduled = Repository.ScheduleInterview(interviewObj);
                     
                     if (isScheduled)
-                        return Ok("Interview scheduled successfully");
+                        return Ok(new { message = "Interview scheduled successfully"});
 
                     return BadRequest("Interview unable to schedule..");
                 }

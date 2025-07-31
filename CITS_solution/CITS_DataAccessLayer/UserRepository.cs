@@ -46,6 +46,22 @@ namespace CITS_DataAccessLayer
             }
             return user;
         }
+
+        public string GetUserNameById(int userId)
+        {
+            string userName = null;
+            try
+            {
+                userName = Context.Users.Find(userId).FullName;
+            }
+            catch (Exception)
+            {
+                userName = null;
+            }
+
+            return userName;
+        }
+
         public List<User> GetUserByRole(string role)
         {
             List<User> user = new List<User>();

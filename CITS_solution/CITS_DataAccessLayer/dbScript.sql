@@ -116,9 +116,9 @@ select * from Roles;
 select * from Users;
 select * from InterviewStages;
 select * from Candidates;
-select * from Education;
+select * from Education  where CandidateID = 16;
 select * from Skills;
-select * from CandidateSkills;
+select * from CandidateSkills where CandidateID = 16;
 select * from Interviews;
 select * from Evaluations;
     
