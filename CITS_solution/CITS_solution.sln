@@ -9,9 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CITS_ConsoleApp", "EUS\CITS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CITS_WebServices", "CITS_WebServices\CITS_WebServices.csproj", "{7BF499EA-67CD-498D-999B-1C312C6D789C}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "CITS_App(1)", "CITS_App\", "{92B14C97-4F6D-829E-6D7D-04059790C82E}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "CITS_App", "CITS_App\", "{92B14C97-4F6D-829E-6D7D-04059790C82E}"
 	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.8"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_50942"
 		Debug.AspNetCompiler.PhysicalPath = "CITS_App\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_50942\"

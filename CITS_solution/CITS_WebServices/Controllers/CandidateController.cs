@@ -193,25 +193,56 @@ namespace CITS_WebServices.Controllers
             public int candidateId { get; set; }
             public string status { get; set; }
         }
-
         [HttpPut("status")]
-        public IActionResult UpdateCandidate([FromBody] UpdateDTO data)
+        public async Task<IActionResult> UpdateCandidate([FromBody] UpdateDTO data)
         {
-            bool result = false;
             try
             {
-                result = _repository.UpdateCandidateStatus(data.candidateId, data.status);
+                bool result = _repository.UpdateCandidateStatus(data.candidateId, data.status);
+
                 if (result)
                 {
-                    return Ok(new { message = "Status updated successfully" });
+                    // Get candidate details
+                    var candidate = _repository.GetCandidateById(data.candidateId);
+                    if (candidate == null)
+                        return NotFound("Candidate not found.");
+
+                    string subject = "";
+                    string body = "";
+
+                    // Determine the email content based on status
+                    if (data.status.ToLower() == "selected")
+                    {
+                        subject = "Congratulations! You have been selected";
+                        body = $"Dear {candidate.FullName},<br/><br/>" +
+                               $"We are pleased to inform you that you have been <b>selected</b> for the position of <b>{candidate.AppliedFor}</b>.<br/><br/>" +
+                               "Our team will be in touch with you shortly with further steps.<br/><br/>Best regards,<br/>CITS Recruitment Team";
+                    }
+                    else if (data.status.ToLower() == "rejected")
+                    {
+                        subject = "Application Status - Not Selected";
+                        body = $"Dear {candidate.FullName},<br/><br/>" +
+                               $"Thank you for taking the time to apply for the position of <b>{candidate.AppliedFor}</b>.<br/>" +
+                               "We regret to inform you that you were <b>not selected</b> at this time.<br/><br/>" +
+                               "We appreciate your interest and wish you all the best in your job search.<br/><br/>Regards,<br/>CITS Recruitment Team";
+                    }
+
+                    // Only send email if status is handled
+                    if (!string.IsNullOrEmpty(subject))
+                    {
+                        await _emailService.SendEmailAsync(candidate.Email, subject, body);
+                    }
+
+                    return Ok(new { message = "Status updated and email sent successfully." });
                 }
+
                 return BadRequest(new { message = "Failed to update candidate." });
             }
             catch (Exception ex)
             {
-                result = false;
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
+
     }
 }

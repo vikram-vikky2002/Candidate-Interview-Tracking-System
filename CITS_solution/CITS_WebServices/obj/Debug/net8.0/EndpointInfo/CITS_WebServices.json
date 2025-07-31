@@ -24,17 +24,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Candidate"
+                "$ref": "#/components/schemas/CITS_WebServices.Models.Candidate"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Candidate"
+                "$ref": "#/components/schemas/CITS_WebServices.Models.Candidate"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Candidate"
+                "$ref": "#/components/schemas/CITS_WebServices.Models.Candidate"
               }
             }
           }
@@ -119,6 +119,29 @@
         }
       }
     },
+    "/api/Candidate/skills/{candidateId}": {
+      "get": {
+        "tags": [
+          "Candidate"
+        ],
+        "parameters": [
+          {
+            "name": "candidateId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Candidate/GetCandidatesByStatus/{status}": {
       "get": {
         "tags": [
@@ -134,6 +157,37 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Candidate/status": {
+      "put": {
+        "tags": [
+          "Candidate"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CITS_WebServices.Controllers.CandidateController+UpdateDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CITS_WebServices.Controllers.CandidateController+UpdateDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CITS_WebServices.Controllers.CandidateController+UpdateDTO"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK"
@@ -378,6 +432,28 @@
         }
       }
     },
+    "/api/Interview/GetInterviewStageName": {
+      "get": {
+        "tags": [
+          "Interview"
+        ],
+        "parameters": [
+          {
+            "name": "stageId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Interview/GetByInterviewer": {
       "get": {
         "tags": [
@@ -401,7 +477,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/CITS_WebServices.Models.Interview"
+                    "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Interview"
                   }
                 }
               },
@@ -409,7 +485,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/CITS_WebServices.Models.Interview"
+                    "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Interview"
                   }
                 }
               },
@@ -417,7 +493,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/CITS_WebServices.Models.Interview"
+                    "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Interview"
                   }
                 }
               }
@@ -585,6 +661,18 @@
         }
       }
     },
+    "/api/InterviewStage": {
+      "get": {
+        "tags": [
+          "InterviewStage"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Skills": {
       "get": {
         "tags": [
@@ -713,6 +801,29 @@
       }
     },
     "/api/User/GetUserById/{userId}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/User/GetUserNameById/{userId}": {
       "get": {
         "tags": [
           "User"
@@ -1161,6 +1272,10 @@
             "type": "integer",
             "format": "int32"
           },
+          "meetingLink": {
+            "type": "string",
+            "nullable": true
+          },
           "status": {
             "type": "string",
             "nullable": true
@@ -1295,6 +1410,20 @@
         },
         "additionalProperties": false
       },
+      "CITS_WebServices.Controllers.CandidateController+UpdateDTO": {
+        "type": "object",
+        "properties": {
+          "candidateId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "CITS_WebServices.DTOs.LoginRequest": {
         "type": "object",
         "properties": {
@@ -1304,6 +1433,64 @@
           },
           "password": {
             "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CITS_WebServices.Models.Candidate": {
+        "type": "object",
+        "properties": {
+          "candidateId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "fullName": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true
+          },
+          "resumeLink": {
+            "type": "string",
+            "nullable": true
+          },
+          "experienceYears": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "matchPercentage": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "summary": {
+            "type": "string",
+            "nullable": true
+          },
+          "currentStageId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "appliedFor": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
             "nullable": true
           }
         },

@@ -3,7 +3,7 @@ GO
 
 IF (EXISTS (SELECT name FROM master.dbo.sysdatabases 
 WHERE ('[' + name + ']' = N'CITSDB'OR name = N'CITSDB')))
-DROP DATABASE CITSDB2
+DROP DATABASE CITSDB
 GO
 
 -- Create Database
