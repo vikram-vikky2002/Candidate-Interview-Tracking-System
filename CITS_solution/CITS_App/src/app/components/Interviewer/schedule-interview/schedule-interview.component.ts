@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { InterviewService } from 'src/app/services/Interview/interview.service';
-import { Candidate } from 'src/app/models/Candidate/candidate';
 import { Interview } from 'src/app/models/interview';
 import { HttpClient } from '@angular/common/http';
 
@@ -11,8 +10,9 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ScheduleInterviewComponent implements OnInit {
   @Input() candidate!: any;
-  // @Input() editMode = false;
-  @Output() closed = new EventEmitter<boolean>(); // emit true if saved
+  @Input() editMode = false;
+  @Output() closed = new EventEmitter<boolean>();
+  interviewers: any[] = [];
 
   formData = {
     scheduledDateTime: '',
@@ -41,6 +41,14 @@ export class ScheduleInterviewComponent implements OnInit {
       }
     });
     if ((this.candidate as any).interview) {
+    console.log('Received candidate in modal:', this.candidate);
+
+    this.interviewSrv.getInterviewers().subscribe({
+      next: res => this.interviewers = res,
+      error: err => console.error('Failed to load interviewers', err)
+    });
+
+    if (this.editMode && (this.candidate as any).interview) {
       const i = (this.candidate as any).interview as Interview;
       this.formData = {
         scheduledDateTime: this.toLocalISO(i.scheduledDateTime!),
@@ -67,6 +75,7 @@ export class ScheduleInterviewComponent implements OnInit {
       stageId: this.formData.stageId,
       status: 'Scheduled',
       interviewId: 0,
+      meetingLink:''
     };
 
     const req$ = this.interviewSrv.scheduleInterview(payload);

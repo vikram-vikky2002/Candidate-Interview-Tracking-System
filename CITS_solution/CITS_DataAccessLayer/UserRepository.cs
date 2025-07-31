@@ -1,5 +1,6 @@
 ﻿using CITS_DataAccessLayer.DTOs;
 using CITS_DataAccessLayer.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +33,10 @@ namespace CITS_DataAccessLayer
             return null;
         }
 
+        public User GetUserByEmail(string email)
+        {
+            return Context.Users.FirstOrDefault(u => u.Email == email);
+        }
 
         public User GetUserById(int userId)
         {

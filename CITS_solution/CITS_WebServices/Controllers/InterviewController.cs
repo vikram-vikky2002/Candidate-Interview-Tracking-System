@@ -1,5 +1,7 @@
 ﻿using CITS_DataAccessLayer;
 using CITS_DataAccessLayer.Models;
+using CITS_WebServices.Models;
+using CITS_WebServices.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,15 +14,21 @@ namespace CITS_WebServices.Controllers
     {
         public InterviewRepository Repository { get; set; }
         public InterviewStagesRepository _InterviewStagesRepository { get; set; }
+        private readonly InterviewRepository Repository;
+        private readonly CandidateRepository _repository = new CandidateRepository();
+        private readonly IEmailService _emailService;
 
-        public InterviewController(InterviewRepository interviewRepository)
+        public InterviewController(IEmailService emailService)
         {
+            Repository = new InterviewRepository();
+            _emailService = emailService;
             Repository = interviewRepository;
             _InterviewStagesRepository = new InterviewStagesRepository();
         }
 
+
         [HttpGet]
-        public ActionResult<List<Interview>> GetByCandidateId(int candidateId)
+        public ActionResult<List<Models.Interview>> GetByCandidateId(int candidateId)
         {
             var result = Repository.GetInterviewsByCandidateId(candidateId);
             if (result == null) 
@@ -63,7 +71,7 @@ namespace CITS_WebServices.Controllers
             return Ok(interview); // 👈 Not Ok([interview])
         }
         [HttpGet]
-        public ActionResult<List<Interview>> GetAllInterviews()
+        public ActionResult<List<Models.Interview>> GetAllInterviews()
         {
             var result = Repository.GetAllInterviews();
             if (result == null)
@@ -73,7 +81,7 @@ namespace CITS_WebServices.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<Interview>> GetUpcoming()
+        public ActionResult<List<Models.Interview>> GetUpcoming()
         {
             var result = Repository.GetUpcomingInterviewsByDate(DateTime.Now);
             if (result == null) 
@@ -89,7 +97,7 @@ namespace CITS_WebServices.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    Interview interviewObj = new Interview();
+                   CITS_DataAccessLayer.Models. Interview interviewObj = new CITS_DataAccessLayer.Models.Interview();
                     interviewObj.CandidateId = interview.CandidateId;
                     interviewObj.ScheduledDateTime = interview.ScheduledDateTime;
                     interviewObj.InterviewMode = interview.InterviewMode;
@@ -98,11 +106,19 @@ namespace CITS_WebServices.Controllers
                     interviewObj.Status = interview.Status;
 
                     bool isScheduled = Repository.ScheduleInterview(interviewObj);
-                    
-                    if (isScheduled)
-                        return Ok(new { message = "Interview scheduled successfully"});
 
-                    return BadRequest("Interview unable to schedule..");
+                    if (isScheduled)
+                    {
+                        var candidate = _repository.GetCandidateById(interview.CandidateId);
+                        await _emailService.SendEmailAsync(
+                            candidate.Email,
+                        "Interview Scheduled",
+                            $"Dear {candidate.FullName},<br/>Your interview is scheduled on {interview.ScheduledDateTime:dddd, dd MMMM yyyy HH:mm}.<br/>Mode: {interview.InterviewMode}."
+                        );
+
+                        return Ok(new { message = "Interview scheduled successfully" });
+                    }
+                    return BadRequest(new { message = "Interview unable to schedule.." });
                 }
 
                 return BadRequest("Invalid input model");

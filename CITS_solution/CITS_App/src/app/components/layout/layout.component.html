@@ -6,24 +6,26 @@
   </div>
 
   <div class="topbar-nav">
+    <!-- Topbar Navigation Links -->
     <a routerLink="/dashboard-stats" routerLinkActive="active-link">Dashboard</a>
-    <a routerLink="/candidate-list" routerLinkActive="active-link">Candidates</a>
-    <a routerLink="/interviewer-calendar" routerLinkActive="active-link">Interviews</a>
-    <a routerLink="/jobs" routerLinkActive="active-link">Jobs</a>
-    <a routerLink="/education-list" routerLinkActive="active-link">Education</a>
-    <a routerLink="/skills-list" routerLinkActive="active-link">Skills</a>
-    <a routerLink="/dashboard-stats" routerLinkActive="active-link">Analytics</a>
+    <a *ngIf="roleId === 2 || roleId === 1" routerLink="/candidate-list" routerLinkActive="active-link">Candidates</a>
+    <a *ngIf="roleId === 3 || roleId === 1" routerLink="/interviewer-calendar" routerLinkActive="active-link">Interviews</a>
+    <a *ngIf="roleId === 2 || roleId === 1" routerLink="/jobs" routerLinkActive="active-link">Jobs</a>
+    <a *ngIf="roleId === 1" routerLink="/education-list" routerLinkActive="active-link">Education</a>
+    <a *ngIf="roleId === 1" routerLink="/skills-list" routerLinkActive="active-link">Skills</a>
+    <a *ngIf="roleId === 1" routerLink="/dashboard-stats" routerLinkActive="active-link">Analytics</a>
     <a routerLink="/settings" routerLinkActive="active-link">Settings</a>
+
   </div>
 
   <div class="topbar-actions">
     <span class="icon">🔔</span>
     <span class="icon">🌙</span>
     <div class="user-dropdown">
-      <span class="user-name">Admin ⏷</span>
+      <span class="user-name">{{ fullName }} ⏷</span>
       <div class="dropdown-menu">
         <a routerLink="/settings">Settings</a>
-        <a routerLink="/login">Logout</a>
+        <a (click)="logout()">Logout</a>
       </div>
     </div>
   </div>
@@ -34,14 +36,16 @@
   <!-- Sidebar -->
   <div class="sidebar" #sidebar [class.sidebar-collapsed]="!isSidebarVisible">
     <nav class="nav-links">
+      <!-- Sidebar Navigation -->
       <a routerLink="/dashboard-stats" routerLinkActive="active-link">📊 Dashboard</a>
-      <a routerLink="/candidate-list" routerLinkActive="active-link">👤 Candidates</a>
-      <a routerLink="/interviewer-calendar" routerLinkActive="active-link">📅 Interviews</a>
-      <a routerLink="/jobs" routerLinkActive="active-link">💼 Jobs</a>
-      <a routerLink="/education-list" routerLinkActive="active-link">🎓 Education</a>
-      <a routerLink="/skills-list" routerLinkActive="active-link">🛠 Skills</a>
-      <a routerLink="/dashboard-stats" routerLinkActive="active-link">📈 Analytics</a>
+      <a *ngIf="roleId === 2 || roleId === 1" routerLink="/candidate-list" routerLinkActive="active-link">👤 Candidates</a>
+      <a *ngIf="roleId === 3 || roleId === 1" routerLink="/interviewer-calendar" routerLinkActive="active-link">📅 Interviews</a>
+      <a *ngIf="roleId === 2 || roleId === 1" routerLink="/jobs" routerLinkActive="active-link">💼 Jobs</a>
+      <a *ngIf="roleId === 1" routerLink="/education-list" routerLinkActive="active-link">🎓 Education</a>
+      <a *ngIf="roleId === 1" routerLink="/skills-list" routerLinkActive="active-link">🛠 Skills</a>
+      <a *ngIf="roleId === 1" routerLink="/dashboard-stats" routerLinkActive="active-link">📈 Analytics</a>
       <a routerLink="/settings" routerLinkActive="active-link">⚙️ Settings</a>
+
     </nav>
   </div>
 

@@ -1,48 +1,65 @@
+{{roleId}}
 <div class="dashboard-wrapper">
-  <div class="dashboard-card">
-    <h2 class="dashboard-title">Dashboard Statistics</h2>
+  <!-- Interviewer Notification Panel -->
+  <ng-container *ngIf="isInterviewer; else statsDashboard">
+    <div class="dashboard-card interviewer-panel">
+      <h2 class="dashboard-title">Today's Interviews</h2>
 
-    <div class="dashboard-columns">
-      <!-- Left Column: Cards -->
-      <div class="card-column">
-        <div class="stat-tile clickable bg-deep-purple mdc-theme--primary-bg mat-button-toggle-group" style="background-color:darkcyan" (click)="goToCandidates()">
-          <h3>Total Candidates</h3>
-          <p>{{ stats.totalCandidates }}</p>
+      <div *ngIf="todayInterviews.length > 0; else noInterviews">
+        <div class="interview-card" *ngFor="let interview of todayInterviews">
+          <strong>{{ interview.scheduledDateTime | date: 'shortTime' }}</strong>
+          – Candidate ID: {{ interview.candidateId }}
+          ({{ interview.interviewMode }}, Status: {{ interview.status }})
         </div>
       </div>
 
-      <!-- Right Column: Progress Bars -->
-      <div class="progress-column">
-        <div class="stat-item">
-          <label>Interviews Scheduled</label>
-          <div class="progress-bar">
-            <div class="fill" [style.width.%]="getPercentage(stats.interviewsScheduled)"></div>
+      <ng-template #noInterviews>
+        <p>No interviews scheduled for today.</p>
+      </ng-template>
+    </div>
+  </ng-container>
+
+  <!-- Default Dashboard for Other Roles -->
+  <ng-template #statsDashboard>
+    <div class="dashboard-card">
+      <h2 class="dashboard-title">Dashboard Statistics</h2>
+
+      <div class="dashboard-columns">
+        <!-- Left Column: Cards -->
+        <div class="card-column">
+          <div class="stat-tile clickable" style="background-color:darkcyan" (click)="goToCandidates()">
+            <h3>Total Candidates</h3>
+            <p>{{ stats.totalCandidates }}</p>
           </div>
-          <small>
-            {{ getPercentage(stats.interviewsScheduled) }}% ({{ stats.interviewsScheduled }})
-          </small>
         </div>
 
-        <div class="stat-item">
-          <label>Selected Candidates</label>
-          <div class="progress-bar success">
-            <div class="fill" [style.width.%]="getPercentage(stats.selectedCandidates)"></div>
+        <!-- Right Column: Progress Bars -->
+        <div class="progress-column">
+          <div class="stat-item">
+            <label>Interviews Scheduled</label>
+            <div class="progress-bar">
+              <div class="fill" [style.width.%]="getPercentage(stats.interviewsScheduled)"></div>
+            </div>
+            <small>{{ getPercentage(stats.interviewsScheduled) }}% ({{ stats.interviewsScheduled }})</small>
           </div>
-          <small>
-            {{ getPercentage(stats.selectedCandidates) }}% ({{ stats.selectedCandidates }})
-          </small>
-        </div>
 
-        <div class="stat-item">
-          <label>Rejected Candidates</label>
-          <div class="progress-bar danger">
-            <div class="fill" [style.width.%]="getPercentage(stats.rejectedCandidates)"></div>
+          <div class="stat-item">
+            <label>Selected Candidates</label>
+            <div class="progress-bar success">
+              <div class="fill" [style.width.%]="getPercentage(stats.selectedCandidates)"></div>
+            </div>
+            <small>{{ getPercentage(stats.selectedCandidates) }}% ({{ stats.selectedCandidates }})</small>
           </div>
-          <small>
-            {{ getPercentage(stats.rejectedCandidates) }}% ({{ stats.rejectedCandidates }})
-          </small>
+
+          <div class="stat-item">
+            <label>Rejected Candidates</label>
+            <div class="progress-bar danger">
+              <div class="fill" [style.width.%]="getPercentage(stats.rejectedCandidates)"></div>
+            </div>
+            <small>{{ getPercentage(stats.rejectedCandidates) }}% ({{ stats.rejectedCandidates }})</small>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </ng-template>
 </div>

@@ -1,4 +1,5 @@
 import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-layout',
@@ -7,9 +8,21 @@ import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 })
 export class LayoutComponent {
   isSidebarVisible = false;
+  roleId: number | null = null;
+  fullName: string = '';
 
   @ViewChild('sidebar') sidebarRef!: ElementRef;
+  constructor(private authService: AuthService) { }
 
+  ngOnInit(): void {
+    this.roleId = this.authService.getUserRoleId();
+    this.fullName = this.authService.getFullName() || 'User';
+  }
+
+
+  logout() {
+    this.authService.logout();
+  }
   toggleSidebar(): void {
     this.isSidebarVisible = !this.isSidebarVisible;
   }

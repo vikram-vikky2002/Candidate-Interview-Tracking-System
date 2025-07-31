@@ -14,26 +14,21 @@ export class AuthService {
     return this.http.post<any>(`${this.baseUrl}/User/AuthenticateUser`, credentials);
   }
 
-  storeSession(fullName: string, email: string, roleId: number) {
+  // Store session info including role
+  storeSession(fullName: string, email: string, roleId: number, userId: number) {
     localStorage.setItem('fullName', fullName);
     localStorage.setItem('email', email);
     localStorage.setItem('roleId', roleId.toString());
+    localStorage.setItem('userId', userId.toString());
+  }
+  getUserByEmail(email: string) {
+    return this.http.get<any>(`${this.baseUrl}/User/GetUserByEmail/${email}`);
   }
 
-  redirectUserByRole(roleId: number) {
-    switch (roleId) {
-      case 1:
-        this.router.navigate(['/recruiter-dashboard']);
-        break;
-      case 2:
-        this.router.navigate(['/interviewer-dashboard']);
-        break;
-      case 3:
-        this.router.navigate(['/admin-dashboard']);
-        break;
-      default:
-        this.router.navigate(['/login']);
-    }
+
+  // Unified redirect after login
+  redirectAfterLogin() {
+    this.router.navigate(['/dashboard-stats']);
   }
 
   logout() {
@@ -43,5 +38,28 @@ export class AuthService {
 
   isLoggedIn(): boolean {
     return !!localStorage.getItem('email');
+  }
+
+  getUserRoleId(): number | null {
+    const role = localStorage.getItem('roleId');
+    return role ? +role : null;
+  }
+
+  getUserRoleName(): string {
+    const roleId = this.getUserRoleId();
+    switch (roleId) {
+      case 2: return 'Recruiter';
+      case 3: return 'Interviewer';
+      case 1: return 'Admin';
+      default: return 'Unknown';
+    }
+  }
+
+  getUserEmail(): string | null {
+    return localStorage.getItem('email');
+  }
+
+  getFullName(): string | null {
+    return localStorage.getItem('fullName');
   }
 }

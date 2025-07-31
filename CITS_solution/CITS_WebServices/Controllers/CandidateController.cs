@@ -1,7 +1,9 @@
 ﻿using CITS_DataAccessLayer;
 using CITS_DataAccessLayer.Models;
+using CITS_WebServices.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CITS_WebServices.Controllers
 {
@@ -9,13 +11,16 @@ namespace CITS_WebServices.Controllers
     [ApiController]
     public class CandidateController : ControllerBase
     {
-        public CandidateRepository _repository { get; set; }
-        public SkillsRepository _skillsRepository { get; set; }
-        public CandidateController()
+        private readonly CandidateRepository _repository;
+        private readonly IEmailService _emailService;
+
+        public CandidateController(IEmailService emailService)
         {
             _repository = new CandidateRepository();
             _skillsRepository = new SkillsRepository();
+            _emailService = emailService;
         }
+
         //GetAllCandidates
         [HttpGet]
         public IActionResult GetAllCandidates()
@@ -74,7 +79,7 @@ namespace CITS_WebServices.Controllers
 
         //AddCandidate
         [HttpPost]
-        public IActionResult AddCandidate(Candidate candidate)
+        public async Task<IActionResult> AddCandidate(Candidate candidate)
         {
             if (candidate == null)
             {
@@ -102,6 +107,12 @@ namespace CITS_WebServices.Controllers
                 if (result != -99)
                 {
                     candidate.CandidateId = result;
+                    await _emailService.SendEmailAsync(
+                            candidate.Email,
+                            "Application Received",
+                            $"Dear {candidate.FullName},<br/>Thank you for applying for {candidate.AppliedFor}. We will contact you soon."
+                        );
+
                     return CreatedAtAction(nameof(GetCandidateById), new { candidateId = candidate.CandidateId }, candidate);
                 }
                 return BadRequest("Failed to add candidate.");
