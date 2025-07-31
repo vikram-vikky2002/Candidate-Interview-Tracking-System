@@ -218,6 +218,18 @@
         }
       }
     },
+    "/api/EmailTest/SendTestEmail": {
+      "get": {
+        "tags": [
+          "EmailTest"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Evaluation/GetEvaluationsByCandidateId/{candidateId}": {
       "get": {
         "tags": [
@@ -341,7 +353,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Interview"
+                    "$ref": "#/components/schemas/CITS_WebServices.Models.Interview"
                   }
                 }
               },
@@ -349,7 +361,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Interview"
+                    "$ref": "#/components/schemas/CITS_WebServices.Models.Interview"
                   }
                 }
               },
@@ -357,7 +369,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Interview"
+                    "$ref": "#/components/schemas/CITS_WebServices.Models.Interview"
                   }
                 }
               }
@@ -450,7 +462,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Interview"
+                    "$ref": "#/components/schemas/CITS_WebServices.Models.Interview"
                   }
                 }
               },
@@ -458,7 +470,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Interview"
+                    "$ref": "#/components/schemas/CITS_WebServices.Models.Interview"
                   }
                 }
               },
@@ -466,7 +478,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Interview"
+                    "$ref": "#/components/schemas/CITS_WebServices.Models.Interview"
                   }
                 }
               }
@@ -488,7 +500,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Interview"
+                    "$ref": "#/components/schemas/CITS_WebServices.Models.Interview"
                   }
                 }
               },
@@ -496,7 +508,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Interview"
+                    "$ref": "#/components/schemas/CITS_WebServices.Models.Interview"
                   }
                 }
               },
@@ -504,7 +516,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Interview"
+                    "$ref": "#/components/schemas/CITS_WebServices.Models.Interview"
                   }
                 }
               }

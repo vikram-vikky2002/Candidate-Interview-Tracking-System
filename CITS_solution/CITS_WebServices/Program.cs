@@ -1,5 +1,6 @@
 using CITS_DataAccessLayer;
-
+using CITS_DataAccessLayer.Models;
+using CITS_WebServices.Services;
 namespace CITS_WebServices
 {
     public class Program
@@ -10,6 +11,8 @@ namespace CITS_WebServices
 
             // Add services to the container.
             builder.Services.AddControllers();
+            builder.Services.AddTransient<IEmailService, EmailService>();
+
 
             // Enable CORS for Angular client
             builder.Services.AddCors(options =>
