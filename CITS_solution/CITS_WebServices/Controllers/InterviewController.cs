@@ -80,7 +80,7 @@ public ActionResult<List<Models.Interview>> GetByInterviewer(int interviewerId)
         }
 
         [HttpPost]
-        public IActionResult Schedule([FromBody] Interview interview)
+        public IActionResult Schedule([FromBody] Models.Interview interview)
         {
             try
             {
@@ -97,9 +97,9 @@ public ActionResult<List<Models.Interview>> GetByInterviewer(int interviewerId)
                     bool isScheduled = Repository.ScheduleInterview(interviewObj);
                     
                     if (isScheduled)
-                        return Ok("Interview scheduled successfully");
+                        return Ok(new { message = "Interview scheduled successfully" });
 
-                    return BadRequest("Interview unable to schedule..");
+                    return BadRequest(new { message = "Interview unable to schedule.." });
                 }
 
                 return BadRequest("Invalid input model");

@@ -6,14 +6,16 @@
   </div>
 
   <div class="topbar-nav">
+    <!-- Topbar Navigation Links -->
     <a routerLink="/dashboard-stats" routerLinkActive="active-link">Dashboard</a>
-    <a *ngIf="roleId === 1 || roleId === 3" routerLink="/candidate-list" routerLinkActive="active-link">Candidates</a>
-    <a *ngIf="roleId === 2 || roleId === 3" routerLink="/interviewer-calendar" routerLinkActive="active-link">Interviews</a>
-    <a *ngIf="roleId === 1 || roleId === 3" routerLink="/jobs" routerLinkActive="active-link">Jobs</a>
-    <a *ngIf="roleId === 3" routerLink="/education-list" routerLinkActive="active-link">Education</a>
-    <a *ngIf="roleId === 3" routerLink="/skills-list" routerLinkActive="active-link">Skills</a>
-    <a *ngIf="roleId === 3" routerLink="/dashboard-stats" routerLinkActive="active-link">Analytics</a>
+    <a *ngIf="roleId === 2 || roleId === 1" routerLink="/candidate-list" routerLinkActive="active-link">Candidates</a>
+    <a *ngIf="roleId === 3 || roleId === 1" routerLink="/interviewer-calendar" routerLinkActive="active-link">Interviews</a>
+    <a *ngIf="roleId === 2 || roleId === 1" routerLink="/jobs" routerLinkActive="active-link">Jobs</a>
+    <a *ngIf="roleId === 1" routerLink="/education-list" routerLinkActive="active-link">Education</a>
+    <a *ngIf="roleId === 1" routerLink="/skills-list" routerLinkActive="active-link">Skills</a>
+    <a *ngIf="roleId === 1" routerLink="/dashboard-stats" routerLinkActive="active-link">Analytics</a>
     <a routerLink="/settings" routerLinkActive="active-link">Settings</a>
+
   </div>
 
   <div class="topbar-actions">
@@ -34,14 +36,16 @@
   <!-- Sidebar -->
   <div class="sidebar" #sidebar [class.sidebar-collapsed]="!isSidebarVisible">
     <nav class="nav-links">
+      <!-- Sidebar Navigation -->
       <a routerLink="/dashboard-stats" routerLinkActive="active-link">📊 Dashboard</a>
-      <a *ngIf="roleId === 1 || roleId === 3" routerLink="/candidate-list" routerLinkActive="active-link">👤 Candidates</a>
-      <a *ngIf="roleId === 2 || roleId === 3" routerLink="/interviewer-calendar" routerLinkActive="active-link">📅 Interviews</a>
-      <a *ngIf="roleId === 1 || roleId === 3" routerLink="/jobs" routerLinkActive="active-link">💼 Jobs</a>
-      <a *ngIf="roleId === 3" routerLink="/education-list" routerLinkActive="active-link">🎓 Education</a>
-      <a *ngIf="roleId === 3" routerLink="/skills-list" routerLinkActive="active-link">🛠 Skills</a>
-      <a *ngIf="roleId === 3" routerLink="/dashboard-stats" routerLinkActive="active-link">📈 Analytics</a>
+      <a *ngIf="roleId === 2 || roleId === 1" routerLink="/candidate-list" routerLinkActive="active-link">👤 Candidates</a>
+      <a *ngIf="roleId === 3 || roleId === 1" routerLink="/interviewer-calendar" routerLinkActive="active-link">📅 Interviews</a>
+      <a *ngIf="roleId === 2 || roleId === 1" routerLink="/jobs" routerLinkActive="active-link">💼 Jobs</a>
+      <a *ngIf="roleId === 1" routerLink="/education-list" routerLinkActive="active-link">🎓 Education</a>
+      <a *ngIf="roleId === 1" routerLink="/skills-list" routerLinkActive="active-link">🛠 Skills</a>
+      <a *ngIf="roleId === 1" routerLink="/dashboard-stats" routerLinkActive="active-link">📈 Analytics</a>
       <a routerLink="/settings" routerLinkActive="active-link">⚙️ Settings</a>
+
     </nav>
   </div>
 

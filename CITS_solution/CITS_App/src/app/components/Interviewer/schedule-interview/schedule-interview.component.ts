@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { InterviewService } from 'src/app/services/Interview/interview.service';
-import { Candidate } from 'src/app/models/Candidate/candidate';
 import { Interview } from 'src/app/models/interview';
 
 @Component({
@@ -11,7 +10,8 @@ import { Interview } from 'src/app/models/interview';
 export class ScheduleInterviewComponent implements OnInit {
   @Input() candidate!: any;
   @Input() editMode = false;
-  @Output() closed = new EventEmitter<boolean>(); // emit true if saved
+  @Output() closed = new EventEmitter<boolean>();
+  interviewers: any[] = [];
 
   formData = {
     scheduledDateTime: '',
@@ -19,9 +19,16 @@ export class ScheduleInterviewComponent implements OnInit {
     interviewer: '',
   };
 
-  constructor(private interviewSrv: InterviewService) {}
+  constructor(private interviewSrv: InterviewService) { }
 
   ngOnInit(): void {
+    console.log('Received candidate in modal:', this.candidate);
+
+    this.interviewSrv.getInterviewers().subscribe({
+      next: res => this.interviewers = res,
+      error: err => console.error('Failed to load interviewers', err)
+    });
+
     if (this.editMode && (this.candidate as any).interview) {
       const i = (this.candidate as any).interview as Interview;
       this.formData = {
@@ -41,13 +48,14 @@ export class ScheduleInterviewComponent implements OnInit {
 
   saveInterview() {
     const payload: Interview = {
-      candidateId: this.candidate.CandidateId!,
+      candidateId: this.candidate.candidateId,  // <-- FIXED LINE
       scheduledDateTime: new Date(this.formData.scheduledDateTime),
       interviewMode: this.formData.interviewMode,
       interviewerId: Number(this.formData.interviewer),
-      stageId: 2, // “Interview Scheduled”
+      stageId: 2,
       status: 'Scheduled',
       interviewId: 0,
+      meetingLink:''
     };
 
     const req$ = this.editMode

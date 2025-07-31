@@ -522,17 +522,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Interview"
+                "$ref": "#/components/schemas/CITS_WebServices.Models.Interview"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Interview"
+                "$ref": "#/components/schemas/CITS_WebServices.Models.Interview"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/CITS_DataAccessLayer.Models.Interview"
+                "$ref": "#/components/schemas/CITS_WebServices.Models.Interview"
               }
             }
           }

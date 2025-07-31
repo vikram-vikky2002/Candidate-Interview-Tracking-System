@@ -25,7 +25,7 @@ export class DashboardStatsComponent implements OnInit {
 
   ngOnInit() {
     this.roleId = Number(localStorage.getItem('roleId'));
-    this.isInterviewer = this.roleId === 2;
+    this.isInterviewer = this.roleId === 3;
 
     if (this.isInterviewer) {
       const interviewerId = Number(localStorage.getItem('userId'));

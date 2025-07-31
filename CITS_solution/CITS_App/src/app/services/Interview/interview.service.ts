@@ -63,7 +63,8 @@ export class InterviewService {
 
   // ✅ Schedule an interview
   scheduleInterview(interview: Interview): Observable<any> {
-    return this._http.post<any>(`${this._apiUrl}/Schedule`, interview);
+    console.log(interview)
+    return this._http.post<any>(`https://localhost:7181/api/Interview/Schedule`, interview);
   }
 
   // ✅ Update interview status
@@ -104,4 +105,9 @@ export class InterviewService {
   getEvaluationsByInterviewerId(interviewerId: number): Observable<Evaluation[]> {
     return this._http.get<Evaluation[]>(`https://localhost:7181/api/Evaluation/GetEvaluationsByInterviewerId/${interviewerId}`);
   }
+
+  getInterviewers() {
+    return this._http.get<any[]>('https://localhost:7181/api/User/GetUserByRole/Interviewer')
+  }
+
 }

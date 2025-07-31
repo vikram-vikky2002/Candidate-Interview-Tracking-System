@@ -30,13 +30,16 @@
 
       <div class="form-group">
         <label for="interviewer">Interviewer</label>
-        <input id="interviewer"
-               type="text"
-               [(ngModel)]="formData.interviewer"
-               name="interviewer"
-               placeholder="Name / email / ID"
-               required
-               class="form-control" />
+        <select id="interviewer"
+                [(ngModel)]="formData.interviewer"
+                name="interviewer"
+                required
+                class="form-control">
+          <option value="" disabled selected>Select interviewer</option>
+          <option *ngFor="let user of interviewers" [value]="user.userId">
+            {{ user.fullName }} ({{ user.email }})
+          </option>
+        </select>
       </div>
 
       <div class="modal-actions">

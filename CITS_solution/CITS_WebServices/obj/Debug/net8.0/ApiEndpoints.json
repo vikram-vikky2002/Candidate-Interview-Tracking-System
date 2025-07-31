@@ -319,7 +319,7 @@
     "Parameters": [
       {
         "Name": "interview",
-        "Type": "CITS_DataAccessLayer.Models.Interview",
+        "Type": "CITS_WebServices.Models.Interview",
         "IsRequired": true
       }
     ],

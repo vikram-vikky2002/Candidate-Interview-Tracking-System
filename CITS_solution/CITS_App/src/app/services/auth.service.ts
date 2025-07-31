@@ -48,9 +48,9 @@ export class AuthService {
   getUserRoleName(): string {
     const roleId = this.getUserRoleId();
     switch (roleId) {
-      case 1: return 'Recruiter';
-      case 2: return 'Interviewer';
-      case 3: return 'Admin';
+      case 2: return 'Recruiter';
+      case 3: return 'Interviewer';
+      case 1: return 'Admin';
       default: return 'Unknown';
     }
   }
