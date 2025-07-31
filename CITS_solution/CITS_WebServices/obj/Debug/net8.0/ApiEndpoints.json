@@ -138,6 +138,16 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "CITS_WebServices.Controllers.EmailTestController",
+    "Method": "SendTestEmail",
+    "RelativePath": "api/EmailTest/SendTestEmail",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "CITS_WebServices.Controllers.EvaluationController",
     "Method": "AddEvaluation",
     "RelativePath": "api/Evaluation/AddEvaluation",
@@ -211,7 +221,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[CITS_DataAccessLayer.Models.Interview, CITS_DataAccessLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.List\u00601[[CITS_WebServices.Models.Interview, CITS_WebServices, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -237,7 +247,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[CITS_DataAccessLayer.Models.Interview, CITS_DataAccessLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.List\u00601[[CITS_WebServices.Models.Interview, CITS_WebServices, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -299,7 +309,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[CITS_DataAccessLayer.Models.Interview, CITS_DataAccessLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.List\u00601[[CITS_WebServices.Models.Interview, CITS_WebServices, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",

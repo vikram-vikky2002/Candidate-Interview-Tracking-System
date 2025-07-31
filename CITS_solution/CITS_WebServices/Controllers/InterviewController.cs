@@ -1,5 +1,7 @@
 ﻿using CITS_DataAccessLayer;
 using CITS_DataAccessLayer.Models;
+using CITS_WebServices.Models;
+using CITS_WebServices.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,15 +12,19 @@ namespace CITS_WebServices.Controllers
     [ApiController]
     public class InterviewController : Controller
     {
-        public InterviewRepository Repository { get; set; }
+        private readonly InterviewRepository Repository;
+        private readonly CandidateRepository _repository = new CandidateRepository();
+        private readonly IEmailService _emailService;
 
-        public InterviewController(InterviewRepository interviewRepository)
+        public InterviewController(IEmailService emailService)
         {
-            Repository = interviewRepository;
+            Repository = new InterviewRepository();
+            _emailService = emailService;
         }
 
+
         [HttpGet]
-        public ActionResult<List<Interview>> GetByCandidateId(int candidateId)
+        public ActionResult<List<Models.Interview>> GetByCandidateId(int candidateId)
         {
             var result = Repository.GetInterviewsByCandidateId(candidateId);
             if (result == null) 
@@ -30,7 +36,7 @@ namespace CITS_WebServices.Controllers
 [HttpGet]
 public ActionResult<List<Models.Interview>> GetByInterviewer(int interviewerId)
 {
-    List<Interview> result = Repository.GetInterviewsByInterviewer(interviewerId);
+    List<CITS_DataAccessLayer.Models.Interview> result = Repository.GetInterviewsByInterviewer(interviewerId);
 
     // ❗ Check null BEFORE Select
     if (result == null)
@@ -60,7 +66,7 @@ public ActionResult<List<Models.Interview>> GetByInterviewer(int interviewerId)
             return Ok(interview); // 👈 Not Ok([interview])
         }
         [HttpGet]
-        public ActionResult<List<Interview>> GetAllInterviews()
+        public ActionResult<List<Models.Interview>> GetAllInterviews()
         {
             var result = Repository.GetAllInterviews();
             if (result == null)
@@ -70,7 +76,7 @@ public ActionResult<List<Models.Interview>> GetByInterviewer(int interviewerId)
         }
 
         [HttpGet]
-        public ActionResult<List<Interview>> GetUpcoming()
+        public ActionResult<List<Models.Interview>> GetUpcoming()
         {
             var result = Repository.GetUpcomingInterviewsByDate(DateTime.Now);
             if (result == null) 
@@ -80,13 +86,13 @@ public ActionResult<List<Models.Interview>> GetByInterviewer(int interviewerId)
         }
 
         [HttpPost]
-        public IActionResult Schedule([FromBody] Models.Interview interview)
+        public async Task<IActionResult> Schedule([FromBody] Models.Interview interview)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    Interview interviewObj = new Interview();
+                   CITS_DataAccessLayer.Models. Interview interviewObj = new CITS_DataAccessLayer.Models.Interview();
                     interviewObj.CandidateId = interview.CandidateId;
                     interviewObj.ScheduledDateTime = interview.ScheduledDateTime;
                     interviewObj.InterviewMode = interview.InterviewMode;
@@ -95,10 +101,18 @@ public ActionResult<List<Models.Interview>> GetByInterviewer(int interviewerId)
                     interviewObj.Status = interview.Status;
 
                     bool isScheduled = Repository.ScheduleInterview(interviewObj);
-                    
-                    if (isScheduled)
-                        return Ok(new { message = "Interview scheduled successfully" });
 
+                    if (isScheduled)
+                    {
+                        var candidate = _repository.GetCandidateById(interview.CandidateId);
+                        await _emailService.SendEmailAsync(
+                            candidate.Email,
+                        "Interview Scheduled",
+                            $"Dear {candidate.FullName},<br/>Your interview is scheduled on {interview.ScheduledDateTime:dddd, dd MMMM yyyy HH:mm}.<br/>Mode: {interview.InterviewMode}."
+                        );
+
+                        return Ok(new { message = "Interview scheduled successfully" });
+                    }
                     return BadRequest(new { message = "Interview unable to schedule.." });
                 }
 
