@@ -291,15 +291,15 @@ export class JobService {
         const candidateData: Candidate = {
           candidateId: 0,
           fullName: applicationData.fullName,
-          Email: applicationData.email,
-          Phone: applicationData.phone,
-          ExperienceYears: SuccessResponse.data.experience_years,
-          MatchPercentage: SuccessResponse.data.match_percentage,
-          Summary: SuccessResponse.data.summary,
-          CurrentStageId: 1,
-          AppliedFor: this.jobsData[0].title,
-          Status: "In Progress",
-          CreatedAt: new Date()
+          email: applicationData.email,
+          phone: applicationData.phone,
+          experienceYears: SuccessResponse.data.experience_years,
+          matchPercentage: SuccessResponse.data.match_percentage,
+          summary: SuccessResponse.data.summary,
+          currentStageId: 1,
+          appliedFor: this.jobsData[0].title,
+          status: "In Progress",
+          createdAt: new Date()
         };
 
         console.log(candidateData);

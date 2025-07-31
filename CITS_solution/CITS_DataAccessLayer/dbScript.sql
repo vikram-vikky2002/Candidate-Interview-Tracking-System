@@ -3,7 +3,7 @@ GO
 
 IF (EXISTS (SELECT name FROM master.dbo.sysdatabases 
 WHERE ('[' + name + ']' = N'CITSDB'OR name = N'CITSDB')))
-DROP DATABASE CITSDB
+DROP DATABASE CITSDB2
 GO
 
 -- Create Database
@@ -96,6 +96,7 @@ CREATE TABLE Interviews (
     InterviewMode VARCHAR(50) NOT NULL CONSTRAINT chk_Interviews_InterviewMode CHECK (InterviewMode IN ('Online', 'Offline')),
     InterviewerID INT NOT NULL CONSTRAINT fk_Interviews_InterviewerID FOREIGN KEY REFERENCES Users(UserID),
     StageID INT NOT NULL CONSTRAINT fk_Interviews_StageID FOREIGN KEY REFERENCES InterviewStages(StageID),
+    MeetingLink VARCHAR(100),
     Status VARCHAR(50) NOT NULL CONSTRAINT chk_Interviews_Status CHECK (Status IN ('Scheduled', 'Completed', 'Cancelled'))
 );
 GO

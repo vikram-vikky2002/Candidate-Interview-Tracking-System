@@ -1,7 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace CITS_DataAccessLayer.Models;
 
@@ -35,17 +34,8 @@ public partial class CitsdbContext : DbContext
     public virtual DbSet<User> Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        var builder = new ConfigurationBuilder()
-               .SetBasePath(Directory.GetCurrentDirectory())
-               .AddJsonFile("appsettings.json");
-        var config = builder.Build();
-        var connectionString = config.GetConnectionString("CITSConnection");
-        if (!optionsBuilder.IsConfigured)
-        {
-            optionsBuilder.UseSqlServer(connectionString);
-        }
-    }
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=CITSDB;Integrated Security=true");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -87,7 +77,7 @@ public partial class CitsdbContext : DbContext
 
         modelBuilder.Entity<CandidateSkill>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Candidat__3214EC27D4FD1009");
+            entity.HasKey(e => e.Id).HasName("PK__Candidat__3214EC2767699198");
 
             entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.CandidateId).HasColumnName("CandidateID");
@@ -104,7 +94,7 @@ public partial class CitsdbContext : DbContext
 
         modelBuilder.Entity<Education>(entity =>
         {
-            entity.HasKey(e => e.EducationId).HasName("PK__Educatio__4BBE38E50A44A0D4");
+            entity.HasKey(e => e.EducationId).HasName("PK__Educatio__4BBE38E544CC2503");
 
             entity.ToTable("Education");
 
@@ -161,9 +151,11 @@ public partial class CitsdbContext : DbContext
                 .HasMaxLength(50)
                 .IsUnicode(false);
             entity.Property(e => e.InterviewerId).HasColumnName("InterviewerID");
+            entity.Property(e => e.MeetingLink)
+                .HasMaxLength(100)
+                .IsUnicode(false);
             entity.Property(e => e.ScheduledDateTime).HasColumnType("datetime");
             entity.Property(e => e.StageId).HasColumnName("StageID");
-  
             entity.Property(e => e.Status)
                 .HasMaxLength(50)
                 .IsUnicode(false);
@@ -208,9 +200,9 @@ public partial class CitsdbContext : DbContext
 
         modelBuilder.Entity<Skill>(entity =>
         {
-            entity.HasKey(e => e.SkillId).HasName("PK__Skills__DFA091E7EF47C955");
+            entity.HasKey(e => e.SkillId).HasName("PK__Skills__DFA091E7DE85E20C");
 
-            entity.HasIndex(e => e.SkillName, "UQ__Skills__8100EB55D2194109").IsUnique();
+            entity.HasIndex(e => e.SkillName, "UQ__Skills__8100EB5544AA1C60").IsUnique();
 
             entity.Property(e => e.SkillId).HasColumnName("SkillID");
             entity.Property(e => e.SkillName)

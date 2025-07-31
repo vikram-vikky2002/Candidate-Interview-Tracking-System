@@ -1,13 +1,13 @@
 export interface Candidate {
     candidateId: number;
     fullName: string;
-    Email: string;
-    Phone: string;
-    ExperienceYears: string;
-    MatchPercentage: string;
-    Summary: string;
-    CurrentStageId: number;
-    AppliedFor: string;
-    Status: string;
-    CreatedAt: Date;
+    email: string;
+    phone: string;
+    experienceYears: string;
+    matchPercentage: string;
+    summary: string;
+    currentStageId: number;
+    appliedFor: string;
+    status: string;
+    createdAt: Date;
 }

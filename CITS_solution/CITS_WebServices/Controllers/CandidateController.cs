@@ -80,7 +80,7 @@ namespace CITS_WebServices.Controllers
 
         //AddCandidate
         [HttpPost]
-        public async Task<IActionResult> AddCandidate(Candidate candidate)
+        public async Task<IActionResult> AddCandidate(Models.Candidate candidate)
         {
             if (candidate == null)
             {
