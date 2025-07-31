@@ -14,6 +14,17 @@
     <p><strong>Candidate ID:</strong> {{ interview.candidateId }}</p>
     <p><strong>Interviewer ID:</strong> {{ interview.interviewerId }}</p>
     <p><strong>Scheduled:</strong> {{ interview.scheduledDateTime ? (interview.scheduledDateTime | date: 'MMM d, y - h:mm a') : 'N/A' }}</p>
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Evaluation Type</mat-label>
+      <textarea matInput
+                required
+                [(ngModel)]="evaluationType"
+                name="evaluationType"
+                rows="4"
+                [readonly]="isCompleted"
+                [disabled]="isCompleted"></textarea>
+    </mat-form-field>
+    
     <!-- Feedback Field -->
     <mat-form-field appearance="outline" class="w-100">
       <mat-label>Feedback</mat-label>

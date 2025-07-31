@@ -1,6 +1,5 @@
 ﻿using CITS_DataAccessLayer;
 using CITS_DataAccessLayer.Models;
-using CITS_WebServices.Models;
 using CITS_WebServices.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,7 +13,6 @@ namespace CITS_WebServices.Controllers
     {
         public InterviewRepository Repository { get; set; }
         public InterviewStagesRepository _InterviewStagesRepository { get; set; }
-        private readonly InterviewRepository Repository;
         private readonly CandidateRepository _repository = new CandidateRepository();
         private readonly IEmailService _emailService;
 
@@ -22,7 +20,6 @@ namespace CITS_WebServices.Controllers
         {
             Repository = new InterviewRepository();
             _emailService = emailService;
-            Repository = interviewRepository;
             _InterviewStagesRepository = new InterviewStagesRepository();
         }
 
@@ -91,7 +88,7 @@ namespace CITS_WebServices.Controllers
         }
 
         [HttpPost]
-        public IActionResult Schedule([FromBody] Models.Interview interview)
+        public async Task<IActionResult> ScheduleAsync([FromBody] Models.Interview interview)
         {
             try
             {

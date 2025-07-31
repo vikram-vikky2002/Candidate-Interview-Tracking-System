@@ -12,7 +12,6 @@ import { Evaluation } from '../../../models/Evaluation/Evaluation';
   export class InterviewEvaluationComponent implements OnInit {
     interviewId!: number;
     interview: Interview = {
- 
       candidateId: 0,
       interviewerId: 0,
       scheduledDateTime: new Date(),
@@ -20,8 +19,8 @@ import { Evaluation } from '../../../models/Evaluation/Evaluation';
       meetingLink: '',
       interviewMode: '',
       stageId: 0,
-      interviewId: 0
-
+      interviewId: 0,
+      evaluationType: ''
     }
 
   ;
@@ -30,6 +29,7 @@ import { Evaluation } from '../../../models/Evaluation/Evaluation';
     loading = true;
     errorMsg: string | null = null;
     isCompleted: boolean = false;
+    evaluationType: string = '';
 
     constructor(
       private route: ActivatedRoute,
@@ -52,6 +52,7 @@ import { Evaluation } from '../../../models/Evaluation/Evaluation';
                 console.log('Evaluation details:', evaluation);
                 this.feedback = evaluation?.feedback ?? '';
                 this.score = evaluation?.score ?? 0;
+                this.evaluationType = evaluation?.evaluationType ?? '';
               },
               error: (err) => {
                 console.error('No evaluation found for this interview:', err);
@@ -86,7 +87,7 @@ import { Evaluation } from '../../../models/Evaluation/Evaluation';
         evaluationId: 0, 
         candidateId: this.interview.candidateId,
         interviewId: this.interviewId,
-        evaluationType: 'Online', // Default type, adjust as necessary
+        evaluationType: this.interview.evaluationType, // Default type, adjust as necessary
         score: this.score,
         feedback: this.feedback,
         evaluatedAt: new Date().toISOString() // Current date and time

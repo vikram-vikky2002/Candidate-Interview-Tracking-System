@@ -13,6 +13,7 @@ namespace CITS_WebServices.Controllers
     {
         private readonly CandidateRepository _repository;
         private readonly IEmailService _emailService;
+        private readonly SkillsRepository _skillsRepository;
 
         public CandidateController(IEmailService emailService)
         {

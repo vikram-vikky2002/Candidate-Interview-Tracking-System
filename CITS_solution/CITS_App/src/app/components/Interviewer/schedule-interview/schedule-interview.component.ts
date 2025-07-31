@@ -40,7 +40,7 @@ export class ScheduleInterviewComponent implements OnInit {
         ];
       }
     });
-    if ((this.candidate as any).interview) {
+
     console.log('Received candidate in modal:', this.candidate);
 
     this.interviewSrv.getInterviewers().subscribe({
@@ -57,7 +57,8 @@ export class ScheduleInterviewComponent implements OnInit {
         stageId: i.stageId,
       };
     }
-  }
+  
+}
 
   private toLocalISO(dt: Date | string): string {
     const d = new Date(dt);
@@ -74,6 +75,7 @@ export class ScheduleInterviewComponent implements OnInit {
       interviewerId: Number(this.formData.interviewer),
       stageId: this.formData.stageId,
       status: 'Scheduled',
+      evaluationType: '',
       interviewId: 0,
       meetingLink:''
     };
