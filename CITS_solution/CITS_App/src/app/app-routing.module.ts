@@ -21,7 +21,16 @@ import { CandidateDetailsComponent } from './components/Candidates/candidate-det
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },  // 🔥 Separate login outside layout
-
+  {
+    path: '',
+    // component: LayoutComponent,
+    children: [
+      { path: 'jobs', component: JobListingComponent },
+      { path: 'job/:id', component: JobDetailsComponent },
+      { path: 'apply/:id', component: JobApplicationComponent },
+      { path: '', redirectTo: 'jobs', pathMatch: 'full' }
+    ]
+  },
   {
     path: '',
     component: LayoutComponent,
@@ -33,12 +42,12 @@ const routes: Routes = [
       { path: 'add-education', component: AddEducationComponent },
       { path: 'skills-list', component: SkillsListComponent },
       { path: 'assign-skill', component: AssignSkillComponent },
-      { path: 'jobs', component: JobListingComponent },
+      // { path: 'jobs', component: JobListingComponent },
       { path: 'scheduleInterview', component: ScheduleInterviewComponent },
       { path: 'candidate-list', component: CandidatesListComponent },
       { path: 'candidates/:id', component: CandidateDetailsComponent },
-      { path: 'job/:id', component: JobDetailsComponent },
-      { path: 'apply/:id', component: JobApplicationComponent },
+      // { path: 'job/:id', component: JobDetailsComponent },
+      // { path: 'apply/:id', component: JobApplicationComponent },
       { path: 'evaluate/:interviewId', component: InterviewEvaluationComponent },
       { path: 'interviewer-calendar', component: InterviewCalendarComponent },
       { path: '', redirectTo: 'dashboard-stats', pathMatch: 'full' } // 👈 Default after login

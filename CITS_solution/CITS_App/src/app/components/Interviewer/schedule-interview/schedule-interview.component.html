@@ -5,6 +5,7 @@
     </h3>
 
     <form class="modal-form" (ngSubmit)="saveInterview()">
+      
       <div class="form-group">
         <label for="scheduledDateTime">Date &amp; Time</label>
         <input id="scheduledDateTime"
@@ -54,8 +55,29 @@
         </select>
       </div>
 
+      <div class="form-group">
+        <label for="meetingLink">Generate Meeting Link</label>
+          <!-- Create Button -->
+          <button
+              *ngIf="(authState$ | async) && !(isLoading$ | async) && meetingLink == null"
+              id="create-button"
+              (click)="createMeetLink()"
+              class="btn btn--primary btn--wide">
+              Create Meet Link
+          </button>
+          <label for="meetingLink" *ngIf="meetingLink != null">{{ meetingLink }}</label>
+          <!-- Re-authenticate Button if needed -->
+          <button
+              *ngIf="!(authState$ | async) && !(isLoading$ | async) && meetingLink == null"
+              id="auth-button"
+              (click)="signIn()"
+              class="btn btn--primary btn--wide">
+              Re-authenticate with Google
+          </button>
+      </div>
+
       <div class="modal-actions">
-        <button type="submit" class="btn btn--primary btn--wide">
+        <button type="submit" class="btn btn--primary btn--wide" *ngIf="meetingLink != null">
           {{ 'Schedule' }}
         </button>
         <button type="button" class="btn btn--outline btn--wide" (click)="close(false)">

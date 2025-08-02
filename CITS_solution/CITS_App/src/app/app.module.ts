@@ -60,7 +60,6 @@ import { CandidateDetailsComponent } from './components/Candidates/candidate-det
     JobApplicationComponent,
     InterviewEvaluationComponent,
     InterviewCalendarComponent,
-    ScheduleInterviewComponent,
     CandidateDetailsComponent
   ],
   imports: [
@@ -82,7 +81,8 @@ import { CandidateDetailsComponent } from './components/Candidates/candidate-det
     MatTableModule,
     MatSelectModule,
     MatSnackBarModule,
-  ],
+    ScheduleInterviewComponent
+],
   providers: [],
   bootstrap: [AppComponent]
 })

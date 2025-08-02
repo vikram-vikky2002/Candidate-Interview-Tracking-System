@@ -83,6 +83,7 @@ def extract_skills_with_gemini(text: str, job_description: str = "", other_detai
             "skills": ["list", "of", "technical", "skills"],
             "experience_years": 0 (related to the job description),
             "education": ["highest degree", "institution", "year of passing"],
+            "match_percentage": 0.0 (percentage match with the job description),
             "summary": "brief professional summary"
         }
         
@@ -118,6 +119,8 @@ def extract_skills_with_gemini(text: str, job_description: str = "", other_detai
             result['experience_years'] = 0
         if not isinstance(result.get('education'), list):
             result['education'] = []
+        if not isinstance(result.get('match_percentage'), (int, float)):
+            result['match_percentage'] = 0.0
         if not isinstance(result.get('summary'), str):
             result['summary'] = ''
             
@@ -219,7 +222,7 @@ async def parse_resume():
             }
         
         # Calculate match percentage
-        match_percentage = calculate_match_percentage(text, job_description)
+        # match_percentage = calculate_match_percentage(text, job_description)
         
         # Extract contact information
         email = re.search(r'[\w\.-]+@[\w\.-]+\.\w+', text)
@@ -236,7 +239,7 @@ async def parse_resume():
                     'email': email.group(0) if email else '',
                     'phone': phone.group(0).strip() if phone else ''
                 },
-                'match_percentage': match_percentage,
+                'match_percentage': gemini_response.get('match_percentage', 0.0),
                 'analysis': gemini_response  # Include full Gemini response for debugging
             }
         })

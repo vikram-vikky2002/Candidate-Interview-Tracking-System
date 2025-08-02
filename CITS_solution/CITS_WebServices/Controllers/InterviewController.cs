@@ -101,6 +101,7 @@ namespace CITS_WebServices.Controllers
                     interviewObj.InterviewerId = interview.InterviewerId;
                     interviewObj.StageId = interview.StageId;
                     interviewObj.Status = interview.Status;
+                    interviewObj.MeetingLink = interview.meetingLink;
 
                     bool isScheduled = Repository.ScheduleInterview(interviewObj);
 
@@ -110,7 +111,7 @@ namespace CITS_WebServices.Controllers
                         await _emailService.SendEmailAsync(
                             candidate.Email,
                         "Interview Scheduled",
-                            $"Dear {candidate.FullName},<br/>Your interview is scheduled on {interview.ScheduledDateTime:dddd, dd MMMM yyyy HH:mm}.<br/>Mode: {interview.InterviewMode}."
+                            $"Dear {candidate.FullName},<br/>Your interview is scheduled on {interview.ScheduledDateTime:dddd, dd MMMM yyyy HH:mm}.<br/>Mode: {interview.InterviewMode}.<br/>Meeting Link : {interview.meetingLink}"
                         );
 
                         return Ok(new { message = "Interview scheduled successfully" });

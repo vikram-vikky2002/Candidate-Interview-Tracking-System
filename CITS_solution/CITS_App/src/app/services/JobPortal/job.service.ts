@@ -320,7 +320,7 @@ export class JobService {
               candidateId: SuccessResponse2.candidateId,
               degree: SuccessResponse.data.education[0],
               institute: SuccessResponse.data.education[1],
-              year: SuccessResponse.data.education[2]
+              year: SuccessResponse.data.education[2].toString()
             };
 
             console.log(educationData);

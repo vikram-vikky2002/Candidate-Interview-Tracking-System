@@ -159,3 +159,60 @@
   font-size: 16px;
   text-align: center;
 }
+
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background-color: #1e1e1e;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  z-index: 1000;
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.menu-icon {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.topbar-title {
+  font-weight: bold;
+  font-size: 18px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 375px;
+  color: #00e5ff;
+}
+
+.topbar-nav {
+  display: flex;
+  gap: 12px;
+}
+
+  .topbar-nav a {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+    .topbar-nav a.active-link {
+      color: #00e5ff;
+    }
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}

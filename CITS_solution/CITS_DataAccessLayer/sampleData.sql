@@ -30,9 +30,9 @@ GO
 
 INSERT INTO Education (CandidateID, Degree, Institute, Year)
 VALUES
-(1, 'B.Tech Computer Science', 'IIT Bombay', '2019'),
-(2, 'M.Tech Information Tech', 'NIT Trichy', '2020'),
-(3, 'B.Sc Statistics', 'University of Madras', '2021');
+(6, 'B.Tech Computer Science', 'IIT Bombay', '2019'),
+(7, 'M.Tech Information Tech', 'NIT Trichy', '2020'),
+(8, 'B.Sc Statistics', 'University of Madras', '2021');
 GO
 
 INSERT INTO Skills (Skill_Name)
@@ -47,32 +47,33 @@ GO
 
 INSERT INTO CandidateSkills (CandidateID, SkillID)
 VALUES
-(1, 1), -- David: Java
-(1, 5), -- David: SQL
-(2, 3), -- Eva: Angular
-(2, 4), -- Eva: Node.js
-(3, 2), -- Frank: Python
-(3, 6); -- Frank: Data Analysis
+(6, 1), -- David: Java
+(6, 5), -- David: SQL
+(7, 3), -- Eva: Angular
+(7, 4), -- Eva: Node.js
+(8, 2), -- Frank: Python
+(8, 6); -- Frank: Data Analysis
 GO
 
 
 INSERT INTO Interviews (CandidateID, ScheduledDateTime, InterviewMode, InterviewerID, StageID, Status)
 VALUES
-(1004, '2025-07-30 23:00:00', 'Online', 2, 2, 'Scheduled'),
-(1002, '2025-07-31 11:00:00', 'Offline', 2, 3, 'Scheduled'),
-(1003, '2025-07-31 15:30:00', 'Online', 2, 1, 'Cancelled');
+(7, '2025-07-30 23:00:00', 'Online', 2, 2, 'Scheduled'),
+(6, '2025-07-31 11:00:00', 'Offline', 2, 3, 'Scheduled'),
+(8, '2025-07-31 15:30:00', 'Online', 2, 1, 'Cancelled');
 GO
 
 INSERT INTO Evaluations (CandidateID, InterviewID, EvaluationType, Score, Feedback)
 VALUES
-(1004, 1, 'Technical Score', 82.0, 'Good knowledge of core Java concepts'),
-(1002, 2, 'Technical Score', 90.5, 'Excellent in full-stack problem solving'),
-(1003, 3, 'Resume Score', 70.0, 'Decent resume but lacks clarity on projects');
+(7, 7, 'Technical Score', 82.0, 'Good knowledge of core Java concepts'),
+(6, 6, 'Technical Score', 90.5, 'Excellent in full-stack problem solving'),
+(8, 8, 'Resume Score', 70.0, 'Decent resume but lacks clarity on projects');
 GO
 
 SELECT * FROM Roles;
 SELECT * FROM Users;
 SELECT * FROM InterviewStages;
+SELECT * FROM Interviews;
 SELECT * FROM Candidates;
 SELECT * FROM Education;
 SELECT * FROM Skills;

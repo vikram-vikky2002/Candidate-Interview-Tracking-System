@@ -4,6 +4,7 @@ import { forkJoin } from 'rxjs';
 import { Candidate } from 'src/app/models/Candidate/candidate';
 import { CandidateService } from 'src/app/services/Candidate/candidate.service';
 import { SkillsService } from 'src/app/services/Skills/skills.service';
+import { ScheduleInterviewComponent } from 'src/app/components/Interviewer/schedule-interview/schedule-interview.component';
 
 interface Column {
   key: string;

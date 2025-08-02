@@ -14,6 +14,7 @@ export class InterviewCalendarComponent implements OnInit {
   emptyLeadingDays: any[] = [];
   selectedDate: Date | null = null;
   today: Date = new Date();
+  i: any[] = [];
 
   constructor(private interviewService: InterviewService, private router: Router) { }
 
@@ -35,6 +36,7 @@ export class InterviewCalendarComponent implements OnInit {
     }
 
     this.interviewService.getAllInterviews().subscribe((interviews) => {
+      this.i = interviews;
       interviews.forEach((interview) => {
         if (interview.scheduledDateTime != null) {
           const interviewDate = new Date(interview.scheduledDateTime);
@@ -69,7 +71,9 @@ export class InterviewCalendarComponent implements OnInit {
   }
 
   openEvaluation(interviewId: number | string): void {
-    this.router.navigate(['/evaluate', interviewId]);
+    if(this.i.find((i) => i.interviewId === interviewId).status.toLowerCase() !== 'completed') {
+      this.router.navigate(['/evaluate', interviewId]);
+    }
   }
 
   goToMeeting(link: string) {
