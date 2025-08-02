@@ -81,3 +81,16 @@ README.md
    - Tracks candidates by stage and takes decisions.
 
 ---
+
+## 🚀 How to Run
+
+1. **Install .NET Core SDK**
+2. **Install Python SDK**
+3. **Install Node and Angular CLI**
+4. **Install all the Python Packages (resume_parser/requirements.txt)**
+5. **Install node packages**
+   - cd (CITS_solution\CITS_App) && npm install
+6. **Run bat file**
+   - open start.bat
+
+---
