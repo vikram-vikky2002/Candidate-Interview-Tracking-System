@@ -268,12 +268,12 @@ export class JobService {
     this.filteredJobsSubject.next(filtered);
   }
 
-  submitApplication(applicationData: ApplicationFormData): void {
+  submitApplication(applicationData: ApplicationFormData, jobId: number): void {
     console.log('Submitting application:', JSON.stringify(applicationData, null, 2));
   
     this.sendtoModel(
       applicationData.resumeUploaded!, 
-      JSON.stringify(this.jobsData[0]), 
+      JSON.stringify(this.jobsData.find(job => job.id === jobId)), 
       JSON.stringify(applicationData)
     )
     .pipe(
@@ -297,7 +297,7 @@ export class JobService {
           matchPercentage: SuccessResponse.data.match_percentage,
           summary: SuccessResponse.data.summary,
           currentStageId: 1,
-          appliedFor: this.jobsData[0].title,
+          appliedFor: this.jobsData.find(job => job.id === jobId)!.title,
           status: "In Progress",
           createdAt: new Date()
         };
@@ -381,10 +381,12 @@ export class JobService {
     .subscribe({
       next: () => {
         console.log('Candidate and related data added successfully.');
+        alert('Submission successful');
         this.applicationSubmittedSubject.next();
       },
       error: err => {
         console.error('Submit application process failed:', err);
+        alert('Submission failed: ' + err);
       }
     });
   }

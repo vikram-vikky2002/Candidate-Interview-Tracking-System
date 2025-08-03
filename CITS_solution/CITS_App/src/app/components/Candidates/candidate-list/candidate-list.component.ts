@@ -4,7 +4,6 @@ import { forkJoin } from 'rxjs';
 import { Candidate } from 'src/app/models/Candidate/candidate';
 import { CandidateService } from 'src/app/services/Candidate/candidate.service';
 import { SkillsService } from 'src/app/services/Skills/skills.service';
-import { ScheduleInterviewComponent } from 'src/app/components/Interviewer/schedule-interview/schedule-interview.component';
 
 interface Column {
   key: string;
@@ -75,6 +74,9 @@ export class CandidatesListComponent implements OnInit {
   private fetchCandidates() {
     this.candidateSrv.getAllCandidates().subscribe((cand) => {
       console.log(cand);
+      for (let i = 0; i < cand.length; i++) {
+        cand[i].matchPercentage < 1 ? cand[i].matchPercentage *= 100 : cand[i].matchPercentage;
+      }
       const skillCalls = cand.map((c) =>
         this.skillsSrv.getSkillsByCandidateId(c.candidateId)
       );

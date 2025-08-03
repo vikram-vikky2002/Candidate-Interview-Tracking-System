@@ -51,7 +51,7 @@
             </div>
             <div class="info-item">
               <label>Match Percentage</label>
-              <span class="match-percentage">{{ candidate.matchPercentage }}%</span>
+              <span class="match-percentage">{{ candidate.matchPercentage < 1 ? candidate.matchPercentage * 100 : candidate.matchPercentage }}%</span>
             </div>
           </div>
           

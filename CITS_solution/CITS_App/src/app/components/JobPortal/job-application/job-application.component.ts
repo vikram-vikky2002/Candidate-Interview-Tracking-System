@@ -21,6 +21,7 @@ export class JobApplicationComponent implements OnInit {
   fileError = '';
   isDragOver = false;
   noExperience = false;
+  jobId: number = 0;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -135,6 +136,7 @@ export class JobApplicationComponent implements OnInit {
     
     if (jobId) {
       this.job = this.jobService.getJobById(jobId);
+      this.jobId = jobId;
       this.loading = false;
       
       if (!this.job) {
@@ -258,7 +260,7 @@ export class JobApplicationComponent implements OnInit {
       const formData = this.collectFormData();
       
       // Submit application
-      this.jobService.submitApplication(formData);
+      this.jobService.submitApplication(formData, this.jobId);
       
       // Reset submitting state after service handles submission
       setTimeout(() => {
