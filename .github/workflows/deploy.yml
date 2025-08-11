@@ -1,0 +1,47 @@
+name: Build and Deploy
+on:
+  push:
+    branches: [ ci/cd-testing ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Checkout code
+    - uses: actions/checkout@v4
+
+    # --- Build .NET Gateway ---
+    - uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+    - run: |
+        cd CITS_solution/CITS_APIGateway
+        dotnet restore
+        dotnet build --configuration Release
+
+    # --- Build .NET WebServices ---
+    - run: |
+        cd CITS_solution/CITS_WebServices
+        dotnet restore
+        dotnet build --configuration Release
+
+    # --- Python Model Server ---
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+    - run: |
+        cd resume_parser
+        python -m venv venv
+        source venv/bin/activate
+        pip install -r requirements.txt
+        # python app.py  # Uncomment if needed for testing
+
+    # --- Angular App ---
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 20
+    - run: |
+        cd CITS_solution/CITS_App
+        npm install
+        npm run build --prod
