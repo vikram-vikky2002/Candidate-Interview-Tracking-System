@@ -43,5 +43,6 @@ jobs:
         node-version: 20
     - run: |
         cd CITS_solution/CITS_App
+        npm install -g @angular/cli
         npm install --legacy-peer-deps
         ng s -o
